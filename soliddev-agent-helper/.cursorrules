@@ -1,0 +1,12 @@
+# W3C Solid Development Rules
+
+This file provides rules for Cursor's AI when working on this project.
+
+- You are helping build a W3C Solid application based on Semantic Web standards.
+- You MUST consult the files in the `knowledge/` directory of this repository before making architectural decisions or writing data models.
+- Read `knowledge/solid-core.md` for Protocol, Auth, and Access Control rules.
+- Read `knowledge/semantic-web.md` and `knowledge/ontologies.md` for modeling data in RDF/Turtle.
+- Read `knowledge/implementation-guide.md` for code patterns and library usage.
+- Data is stored in Solid Pods as Linked Data, not JSON.
+- Never hardcode user data endpoints; dynamically resolve them from the user's WebID.
+- Ensure all requests to private Pod resources use the authenticated `fetch` from the active Solid session.
