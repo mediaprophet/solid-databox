@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solid-Databox Primer</title>
+  <!--
+    Non-normative companion to solid-databox-protocol.html.
+    Project name: Solid-Databox. Function/descriptor: Habeas Data Egress.
+  -->
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+  <script class="remove">
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "solid-databox-primer",
+      subtitle: "Habeas Data Egress — Architecture & Rationale",
+      editors: [{
+        name: "Timothy Charles Holborn",
+        mailto: "timothy.holborn@gmail.com",
+        company: "Webizen / WebCivics"
+      }],
+      xref: ["web-platform"],
+      localBiblio: {
+        "SOLID-DATABOX-PROTOCOL": {
+          title: "Solid-Databox Protocol",
+          href: "solid-databox-protocol.html",
+          publisher: "Webizen / WebCivics"
+        },
+        "SOLID-PROTOCOL": {
+          title: "Solid Protocol",
+          href: "https://solidproject.org/TR/protocol",
+          publisher: "W3C Solid Community Group"
+        },
+        "SOLID-OIDC": {
+          title: "SOLID-OIDC",
+          href: "https://solidproject.org/TR/oidc",
+          publisher: "W3C Solid Community Group"
+        },
+        "OID4VCI": {
+          title: "OpenID for Verifiable Credential Issuance",
+          href: "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html",
+          publisher: "OpenID Foundation"
+        },
+        "GOVSTACK": {
+          title: "GovStack Building Block Specifications",
+          href: "https://www.govstack.global/",
+          publisher: "GovStack Initiative"
+        },
+        "SOLID-DATABOX-VOCABULARY": {
+          title: "Solid-Databox Record Ontology and Vocabulary",
+          href: "solid-databox-vocabulary.html",
+          publisher: "Webizen / WebCivics"
+        }
+      }
+    };
+  </script>
+</head>
+<body>
+
+<section id="abstract">
+  <p>
+    <strong>Solid-Databox</strong> is a <em>Habeas Data Egress</em> building block:
+    institution-run infrastructure that delivers verifiable copies of the records an
+    institution holds about a person <em>to that person</em>, over open standards, with
+    an audit trail. This is the non-normative companion to the
+    [[SOLID-DATABOX-PROTOCOL]]. It explains the problem Solid-Databox addresses, why the
+    operational burden is placed deliberately on institutions, the architecture at a
+    glance, and the project&rsquo;s position within Digital Public Infrastructure. It
+    states no conformance requirements; those live in the protocol.
+  </p>
+</section>
+
+<section id="sotd">
+  <p>
+    This is an <strong>unofficial draft</strong> with no standing at the W3C, the Solid
+    Community Group, or any other body. It is published to structure work toward the
+    Solid 2026 Hackathon and to invite review. The project name is
+    <strong>Solid-Databox</strong>; &ldquo;Habeas Data Egress&rdquo; names its function
+    as a Digital Public Infrastructure building block.
+  </p>
+</section>
+
+<section>
+  <h2>The Problem</h2>
+  <p>
+    Institutions&nbsp;&mdash; government agencies, education and health providers, and
+    others&nbsp;&mdash; routinely create and hold records that determine a person&rsquo;s
+    access to services, legal standing, employment, and health. Individuals are just as
+    routinely denied a timely, complete, verifiable copy of those records. The
+    underlying harm is not merely inconvenience: it is <em>false claims acted upon</em>.
+    When a record is wrong, incomplete, or misleading and the person it concerns holds no
+    copy, they cannot verify it, cannot contest it, and cannot use it in their own
+    defence. The consequences reach from wrongful administrative debts to family-court
+    determinations made on incomplete information.
+  </p>
+</section>
+
+<section>
+  <h2>The Realignment</h2>
+  <p>
+    Earlier decentralised-web efforts asked natural persons to run their own
+    infrastructure&nbsp;&mdash; to become their own systems administrators in order to
+    defend their own rights. That was a structural miscalculation. The parties that hold
+    the data, the budgets, and the legal obligations are the institutions, not the
+    individuals harmed by them.
+  </p>
+  <p>
+    Solid-Databox therefore places the engineering burden where the resources already
+    sit. Institutions run the egress infrastructure inside their own environments; the
+    individual&rsquo;s side of the exchange is intentionally thin&nbsp;&mdash;
+    authenticate, retrieve, and, where a record is false, contest. Once that plumbing
+    exists, a consumer market for personal knowledge software can form on the far side of
+    the pipe. This is a realignment of method, not of purpose.
+  </p>
+</section>
+
+<section>
+  <h2>Roles &amp; Architecture at a Glance</h2>
+  <p>The protocol defines five roles and two directions of flow:</p>
+  <ul>
+    <li><strong>Issuer</strong> &mdash; the institution, depositing verifiable records.</li>
+    <li><strong>Egress point</strong> &mdash; the Solid &ldquo;post-box&rdquo; that holds
+      deposits for collection.</li>
+    <li><strong>Issuer bridge</strong> &mdash; middleware connecting the institution&rsquo;s
+      existing systems of record to the egress point.</li>
+    <li><strong>Consumer Agent</strong> &mdash; the person&rsquo;s software (e.g. Webizen)
+      that retrieves and imports records.</li>
+    <li><strong>Holder</strong> &mdash; the natural person the records concern.</li>
+  </ul>
+  <p>
+    The <em>outbound</em> path runs Issuer&nbsp;&rarr;&nbsp;Holder; a governed
+    <em>return</em> path runs Holder&nbsp;&rarr;&nbsp;Issuer for corrections and appends.
+    Normative detail is in the [[SOLID-DATABOX-PROTOCOL]].
+  </p>
+</section>
+
+<section>
+  <h2>What Institutions Run</h2>
+  <p>
+    The reference engine is the <strong>Community Solid Server (CSS)</strong>, deployable
+    in two profiles from the same artefacts: a secure-by-default
+    <code>docker-compose</code> bundle for non-profits and small services with little IT
+    capacity, and Helm charts for agencies running Kubernetes behind API gateways. Both
+    expose the same protocol surface.
+  </p>
+  <p>
+    A middleware <em>bridge</em> connects existing systems without rip-and-replace: it
+    maps Microsoft Entra ID (formerly Active Directory) authentication to Solid-OIDC
+    [[SOLID-OIDC]] and WebID, transforms SQL rows into Verifiable Credentials on the way
+    out, and&nbsp;&mdash; on the way back&nbsp;&mdash; stages citizen corrections on a
+    staff-review queue rather than writing destructively to the system of record. At
+    government scale the same bridge polls REST endpoints through the agency&rsquo;s API
+    gateway and routes corrections onto a durable event bus. The institution keeps its
+    database and its directory; Solid-Databox is additive.
+  </p>
+</section>
+
+<section>
+  <h2>What Individuals Run</h2>
+  <p>
+    On the far side of the pipe, a personal agent (<strong>Webizen</strong>)
+    authenticates, retrieves records addressed to the Holder, and imports them into a
+    personal knowledge system (<strong>QualiaDB</strong>) under the individual&rsquo;s own
+    consent and privacy controls. This is where the &ldquo;inforg&rdquo;&nbsp;&mdash; the
+    curated body of information about a person&nbsp;&mdash; is assembled and held. Solid
+    provides interoperable transport; the personal vault does the heavy lifting of agency,
+    provenance, and curation. Solid-Databox specifies only the egress interface, so any
+    Solid-compatible consumer software can collect from it.
+  </p>
+</section>
+
+<section>
+  <h2>Access, Guardianship &amp; Accountability</h2>
+  <p>
+    Not all records carry the same sensitivity, and not all people can act for themselves.
+    Solid-Databox ties the <em>grade</em> of access a person is granted to the
+    <em>assurance</em> of how their identity was established and authenticated. An account
+    opened by traditional self-service&nbsp;&mdash; an email address and a password&nbsp;&mdash;
+    is valid but self-asserted, and reaches only the lowest grade: enough to read low-stakes
+    correspondence or fix a contact detail. Reaching health, legal, or child-protection
+    records requires step-up to a verified digital identity, such as Australia&rsquo;s myID
+    (formerly myGovID) under the Australian Government Digital ID System, or an equivalent
+    accredited provider elsewhere.
+  </p>
+  <p>
+    Guardianship is treated as a first-class relationship, not an afterthought: a guardian
+    is an <em>agent</em> authorised to act for a <em>protected person</em> (the
+    <em>entity</em>), under a recorded authority&nbsp;&mdash; parental status, a court order,
+    an enduring guardianship&nbsp;&mdash; with a bounded scope, a full audit of who acted on
+    whose behalf, and a clean transition when a child reaches majority or capacity is
+    regained. The normative rules are in the [[SOLID-DATABOX-PROTOCOL]].
+  </p>
+  <p>
+    Accountability runs both ways. An institution's own agents cannot be anonymous: for any call or
+    interaction that concerns a person, every operator, supervisor, and automated system
+    involved&nbsp;&mdash; including across transfers&nbsp;&mdash; is logged by a stable identifier and
+    role, even where their name was never given to the caller. That identifier may stay pseudonymous,
+    but it must be resolvable by the institution and, on lawful request, by a court. An automated or
+    AI agent must be disclosed as such, never passed off as a person. The same holds for
+    organisations: when a government service is delivered by a contractor or an NGO, the record names
+    both the delivering party and the principal it acts for, and which of them remains accountable to
+    you&nbsp;&mdash; outsourcing does not dissolve responsibility.
+  </p>
+  <p>
+    Authority is territorial, so each record carries its governing jurisdiction&nbsp;&mdash; Commonwealth,
+    a state, or a territory&nbsp;&mdash; and a determination carries the route to challenge it: the
+    tribunal, ombudsman, or court competent to review it, and by when. The evidence container thereby
+    points to its own remedy.
+  </p>
+</section>
+
+<section>
+  <h2>Grounded in Law, Honest About Coercion</h2>
+  <p>
+    The obligations here are not invented&nbsp;&mdash; they exist in law, and Solid-Databox ties each to its
+    source: the access and correction rights that underpin the whole design sit on the privacy law's access
+    principles (in Australia, APP&nbsp;12 and APP&nbsp;13) and on human-rights instruments, the latter drawn from
+    the Web Civics namespace that already codifies the international corpus. An entitlement can therefore be
+    defended by reference to the instrument that grants it, not merely to this project.
+  </p>
+  <p>
+    It is also honest about wrongdoing. Sometimes the person who commits a wrong was made to&nbsp;&mdash; ordered
+    by a manager, pressured by a contractor above them. The design lets conduct be attested and proved with
+    zero-knowledge techniques, so a consumer can prove they were wronged without exposing their whole file, and a
+    coerced employee can prove they were instructed&nbsp;&mdash; shifting liability to the party that compelled
+    them&nbsp;&mdash; while staying pseudonymous until a court requires otherwise. That distinction, between a free
+    wrong and a coerced one, is also the line between uninsurable and insurable risk, and it is what lets both
+    wronged customers and pressured workers actually litigate.
+  </p>
+</section>
+
+<section>
+  <h2>Habeas Data Egress as a DPI Building Block</h2>
+  <p>
+    Internationally, this pattern is being funded and specified as
+    <strong>Digital Public Infrastructure (DPI)</strong>. Solid-Databox is designed to map
+    onto GovStack building blocks [[GOVSTACK]]&nbsp;&mdash; credential management,
+    identity, and data exchange&nbsp;&mdash; to interoperate with issuance flows such as
+    OpenID4VCI [[OID4VCI]] used by stacks like MOSIP, and to act as an edge-dominant data
+    exchange in which the citizen is the authorised conduit for their own data. Framing the
+    work as a <em>Habeas Data Egress</em> building block positions it for DPI grants,
+    government tenders, and institutional partnerships rather than a single-jurisdiction
+    prototype.
+  </p>
+</section>
+
+<section>
+  <h2>Commercialisation</h2>
+  <p>
+    The core standards (Solid, JSON-LD, Verifiable Credentials, Linked Data
+    Notifications) remain open-source public goods. Sustainable revenue accrues at the
+    integration and tooling layers&nbsp;&mdash; the shape of Red Hat around Linux, or
+    managed cloud around open primitives:
+  </p>
+  <ul>
+    <li><strong>Enterprise egress middleware</strong> &mdash; the Entra/AD bridge,
+      SQL-to-VC transformation, and staff-review workflow, delivered as supported software.</li>
+    <li><strong>High-assurance auditing</strong> &mdash; tamper-evident logs and telemetry
+      that prove a data request was fulfilled lawfully and on time.</li>
+    <li><strong>Citizen-side tooling</strong> &mdash; Webizen, QualiaDB, and local personal
+      agents, offered as consumer products without exposing data to external clouds.</li>
+  </ul>
+</section>
+
+<section class="informative">
+  <h2>The Open Question: Evidence, Not Compliance Theatre</h2>
+  <div class="issue" title="Central design question">
+    An egress point run by the institution can also choose <em>not</em> to deposit. So the
+    audit guarantees only defend a right if either (a)&nbsp;deposit is triggered at the
+    moment a record is created, rather than left discretionary, or (b)&nbsp;the Holder side
+    can independently prove that an expected record is absent. Which of these Solid-Databox
+    <em>mandates</em> is the decision that separates a rights instrument from tooling that
+    merely documents institutions already willing to comply. It is tracked as a normative
+    open question in the [[SOLID-DATABOX-PROTOCOL]].
+  </div>
+  <p>
+    The design intent is that a delivered copy becomes a &ldquo;point of no
+    return&rdquo;: once a Holder holds a verifiable record, later institutional alteration
+    or deletion cannot invalidate the copy they already hold, and the fact of alteration or
+    non-response is itself logged.
+  </p>
+</section>
+
+<section>
+  <h2>Reading the Specifications</h2>
+  <p>
+    The [[SOLID-DATABOX-PROTOCOL]] is the normative core: the resource model, the
+    deposit&nbsp;&rarr;&nbsp;notify&nbsp;&rarr;&nbsp;retrieve&nbsp;&rarr;&nbsp;correct
+    protocol, authentication and assurance, access grades, guardianship, and the evidence
+    &amp; audit requirements. The [[SOLID-DATABOX-VOCABULARY]] defines the content
+    categories and metadata&nbsp;&mdash; letters, notes, economic records, system data, and
+    multimedia such as IVR and call recordings&nbsp;&mdash; and how a transcript or other
+    derivative records its accuracy and provenance. Two further modules are expected to
+    split into their own documents as they mature:
+  </p>
+  <ul>
+    <li><strong>Identity as an Enumerated Cryptographic State</strong> &mdash; the model
+      that treats identity as an explicit set of cryptographic identifiers keyed to
+      distinct <em>agents</em> and <em>entities</em>, rather than a single sovereign
+      identifier.</li>
+    <li><strong>Non-Response and Deletion Logging</strong> &mdash; the evidence-preservation
+      guarantees that answer the open question above.</li>
+  </ul>
+</section>
+
+</body>
+</html>

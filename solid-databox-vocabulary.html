@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solid-Databox Record Ontology &amp; Vocabulary</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+  <script class="remove">
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "solid-databox-vocabulary",
+      subtitle: "Content categories, derivatives, and metadata for Habeas Data Egress",
+      editors: [{
+        name: "Timothy Charles Holborn",
+        mailto: "timothy.holborn@gmail.com",
+        company: "Webizen / WebCivics"
+      }],
+      xref: ["web-platform"],
+      localBiblio: {
+        "SOLID-DATABOX-PROTOCOL": { title: "Solid-Databox Protocol", href: "solid-databox-protocol.html", publisher: "Webizen / WebCivics" },
+        "SOLID-DATABOX-PRIMER": { title: "Solid-Databox Primer", href: "solid-databox-primer.html", publisher: "Webizen / WebCivics" },
+        "PROV-O": { title: "PROV-O: The PROV Ontology", href: "https://www.w3.org/TR/prov-o/", publisher: "W3C" },
+        "DCTERMS": { title: "DCMI Metadata Terms", href: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/", publisher: "Dublin Core Metadata Initiative" },
+        "SCHEMA-ORG": { title: "Schema.org", href: "https://schema.org/", publisher: "Schema.org" },
+        "ODRL-VOCAB": { title: "ODRL Vocabulary & Expression 2.2", href: "https://www.w3.org/TR/odrl-vocab/", publisher: "W3C" },
+        "PREMIS": { title: "PREMIS Data Dictionary for Preservation Metadata", href: "https://www.loc.gov/standards/premis/", publisher: "Library of Congress" },
+        "DCAT": { title: "Data Catalog Vocabulary (DCAT) 3", href: "https://www.w3.org/TR/vocab-dcat-3/", publisher: "W3C" },
+        "SKOS": { title: "SKOS Simple Knowledge Organization System Reference", href: "https://www.w3.org/TR/skos-reference/", publisher: "W3C" },
+        "OWL-TIME": { title: "Time Ontology in OWL", href: "https://www.w3.org/TR/owl-time/", publisher: "W3C" },
+        "WEB-ANNOTATION": { title: "Web Annotation Data Model", href: "https://www.w3.org/TR/annotation-model/", publisher: "W3C" },
+        "MEDIA-FRAGMENTS": { title: "Media Fragments URI 1.0", href: "https://www.w3.org/TR/media-frags/", publisher: "W3C" },
+        "VC-DATA-MODEL-2.0": { title: "Verifiable Credentials Data Model 2.0", href: "https://www.w3.org/TR/vc-data-model-2.0/", publisher: "W3C" },
+        "ORG": { title: "The Organization Ontology", href: "https://www.w3.org/TR/vocab-org/", publisher: "W3C" },
+        "REGORG": { title: "Registered Organization Vocabulary", href: "https://www.w3.org/TR/vocab-regorg/", publisher: "W3C" },
+        "CPSV": { title: "Core Public Service Vocabulary Application Profile", href: "https://semiceu.github.io/CPSV-AP/", publisher: "SEMIC / European Commission" },
+        "WEBCIVICS": { title: "Web Civics Ontology Namespace (human-rights instruments; Jural, Jurisdiction, Agency vocabularies)", href: "https://ns.webcivics.net/", publisher: "WebCivics" },
+        "ELI": { title: "European Legislation Identifier (ELI)", href: "https://op.europa.eu/en/web/eu-vocabularies/eli", publisher: "Publications Office of the European Union" }
+      }
+    };
+  </script>
+</head>
+<body>
+
+<section id="abstract">
+  <p>
+    This vocabulary defines the content categories and metadata used by Solid-Databox
+    [[SOLID-DATABOX-PROTOCOL]] to type the records an institution deposits about a person:
+    from a letter or a case note, through economic records and structured system data, to
+    telephony and multimedia&nbsp;&mdash; IVR interactions, call recordings, interviews,
+    and body-worn video. It reuses PROV-O [[PROV-O]], Dublin Core [[DCTERMS]], schema.org
+    [[SCHEMA-ORG]], and the Verifiable Credentials data model [[VC-DATA-MODEL-2.0]], and
+    coins terms (prefix <code>sop:</code>) only where those leave a gap&nbsp;&mdash; most
+    importantly for the relationship between an original record and its
+    <em>derivatives</em>, such as transcripts, whose accuracy cannot be assumed.
+  </p>
+</section>
+
+<section id="sotd">
+  <p>
+    Unofficial draft, no standing at any standards body, published to structure work
+    toward the Solid 2026 Hackathon. Companion to the [[SOLID-DATABOX-PROTOCOL]] and
+    [[SOLID-DATABOX-PRIMER]]. The namespace <code>https://w3id.org/solid-databox/ns#</code>
+    (prefix <code>sop:</code>) is provisional.
+  </p>
+</section>
+
+<section id="conformance">
+  <p>
+    This document defines classes and properties, and a small number of usage rules for
+    them. Where those rules use RFC&nbsp;2119 keywords they bind any implementation that
+    produces or consumes Solid-Databox records; behavioural enforcement is specified in the
+    [[SOLID-DATABOX-PROTOCOL]].
+  </p>
+</section>
+
+<section>
+  <h2>Design Principles</h2>
+  <ol>
+    <li><strong>Reuse over reinvention.</strong> Anchor on established vocabularies; coin
+      <code>sop:</code> terms only for genuine gaps.</li>
+    <li><strong>The artifact is not its claims.</strong> An audio recording is one entity;
+      a transcript asserting what was said is a separate, <em>derived</em> entity with its
+      own author, accuracy, and verification status. A derivative never silently replaces
+      its source.</li>
+    <li><strong>Three orthogonal axes.</strong> A record is typed by <em>modality</em>
+      (its form), by <em>function</em> (its role), and, if derived, by <em>derivation</em>.
+      Instances are multiply typed&nbsp;&mdash; a <code>sop:CallRecording</code> may also be
+      a <code>sop:Determination</code>.</li>
+    <li><strong>Metadata scales with stakes and modality.</strong> Every record carries
+      descriptive and provenance metadata; multimedia additionally carries technical and
+      segment-level metadata.</li>
+    <li><strong>Extensible by institutions.</strong> The category set is a SKOS scheme
+      [[SKOS]] that institutions extend for their own record types without breaking
+      interoperability.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Namespaces &amp; Reused Vocabularies</h2>
+  <table class="def">
+    <thead><tr><th>Prefix</th><th>Namespace / source</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><code>sop:</code></td><td><code>https://w3id.org/solid-databox/ns#</code></td><td>Solid-Databox classes, properties, and enumerations</td></tr>
+      <tr><td><code>prov:</code></td><td>[[PROV-O]]</td><td>Provenance: derivation, generation, attribution</td></tr>
+      <tr><td><code>dcterms:</code></td><td>[[DCTERMS]]</td><td>Descriptive metadata: title, created, creator, language</td></tr>
+      <tr><td><code>schema:</code></td><td>[[SCHEMA-ORG]]</td><td>Media and message types; technical metadata</td></tr>
+      <tr><td><code>odrl:</code></td><td>[[ODRL-VOCAB]]</td><td>Rights and access policies over records</td></tr>
+      <tr><td><code>premis:</code></td><td>[[PREMIS]]</td><td>Fixity and preservation events</td></tr>
+      <tr><td><code>dcat:</code></td><td>[[DCAT]]</td><td>Cataloguing structured datasets</td></tr>
+      <tr><td><code>skos:</code></td><td>[[SKOS]]</td><td>The extensible category scheme</td></tr>
+      <tr><td><code>time:</code></td><td>[[OWL-TIME]]</td><td>Temporal extents</td></tr>
+      <tr><td><code>oa:</code></td><td>[[WEB-ANNOTATION]]</td><td>Segment-level annotation and dispute</td></tr>
+      <tr><td><code>org:</code></td><td>[[ORG]]</td><td>Departments, units, and membership of institutional actors</td></tr>
+      <tr><td><code>rov:</code></td><td>[[REGORG]]</td><td>Legally registered organisations: legal name, registration, type</td></tr>
+      <tr><td><code>wc:</code></td><td>[[WEBCIVICS]]</td><td>Human-rights instruments; Jural, Jurisdiction, and Agency vocabularies (deferred to)</td></tr>
+      <tr><td><code>eli:</code></td><td>[[ELI]]</td><td>Identifying legislation and its provisions</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Core Class</h2>
+  <p>
+    <dfn data-lt="record|records">sop:Record</dfn> is the unit of egress: any content
+    deposited about a person. It is a subclass of <code>prov:Entity</code> and
+    <code>schema:CreativeWork</code>, so every record carries provenance and descriptive
+    metadata. All classes below are subclasses of <code>sop:Record</code>.
+  </p>
+</section>
+
+<section>
+  <h2>Axis 1 — Modality</h2>
+  <p>How the content is embodied. Aligned with schema.org media types.</p>
+  <dl>
+    <dt><dfn>sop:TextualRecord</dfn> (⊑ <code>schema:TextDigitalDocument</code>)</dt>
+    <dd>Human-readable text. Subtypes: <code>sop:Letter</code> (formal correspondence),
+      <code>sop:Note</code> / <code>sop:CaseNote</code> (a note made by a person, e.g. a
+      caseworker file note), <code>sop:Form</code> (a completed form), <code>sop:Message</code>
+      (⊑ <code>schema:Message</code>), <code>sop:EmailMessage</code> (⊑ <code>schema:EmailMessage</code>).</dd>
+    <dt><dfn>sop:AudioRecord</dfn> (⊑ <code>schema:AudioObject</code>)</dt>
+    <dd>Recorded audio. Subtypes: <code>sop:CallRecording</code> (a recorded telephone call),
+      <dfn>sop:IVRInteraction</dfn> (an interactive-voice-response session, including
+      DTMF/menu selections and any spoken input), <code>sop:Voicemail</code>,
+      <code>sop:VoiceNote</code>.</dd>
+    <dt><dfn>sop:VideoRecord</dfn> (⊑ <code>schema:VideoObject</code>)</dt>
+    <dd>Recorded video. Subtypes: <code>sop:Interview</code>, <code>sop:TelehealthConsultation</code>,
+      <code>sop:BodyWornVideo</code>, <code>sop:SurveillanceRecording</code>.</dd>
+    <dt><dfn>sop:ImageRecord</dfn> (⊑ <code>schema:ImageObject</code>)</dt>
+    <dd>Still images. Subtypes: <code>sop:ScannedDocument</code>, <code>sop:Photograph</code>,
+      <code>sop:IdentityDocumentImage</code>.</dd>
+    <dt><dfn>sop:StructuredDataRecord</dfn> (⊑ <code>dcat:Dataset</code>)</dt>
+    <dd>Machine-structured data extracted from or held in a system of record. Subtypes:
+      <code>sop:DatabaseRecord</code> (one or more rows), <code>sop:LogEntry</code>,
+      <code>sop:SensorReading</code>.</dd>
+    <dt><dfn>sop:CompositeRecord</dfn></dt>
+    <dd>A bundle of related records&nbsp;&mdash; e.g. a case file&nbsp;&mdash; linked by
+      <code>prov:hadMember</code> / <code>dcterms:hasPart</code>.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Axis 2 — Function</h2>
+  <p>The role a record plays, independent of its modality. Applied alongside a modality type.</p>
+  <dl>
+    <dt><dfn>sop:Correspondence</dfn></dt>
+    <dd>A communication between parties (a letter, an email, a call, a message).</dd>
+    <dt><dfn>sop:Determination</dfn></dt>
+    <dd>A decision, assessment, or order with consequences for the person&nbsp;&mdash; a
+      benefit determination, an eligibility assessment, a court order. High-stakes by default.</dd>
+    <dt><dfn>sop:CaseNote</dfn></dt>
+    <dd>An observation or note recorded by an institutional agent about the person or an
+      interaction.</dd>
+    <dt><dfn>sop:EconomicRecord</dfn></dt>
+    <dd>A financial record. Subtypes: <code>sop:TransactionRecord</code>, <code>sop:Receipt</code>,
+      <code>sop:Invoice</code>, <code>sop:PaymentRecord</code>, <code>sop:DebtRecord</code>,
+      <code>sop:EntitlementRecord</code> (a voucher, benefit, or concession).</dd>
+    <dt><dfn>sop:EvidenceItem</dfn></dt>
+    <dd>A record held or presented as evidence in a proceeding.</dd>
+    <dt><dfn>sop:IdentityAssertion</dfn></dt>
+    <dd>A record establishing or asserting an attribute of the person's identity.</dd>
+    <dt><dfn>sop:HealthRecord</dfn>, <dfn>sop:LegalRecord</dfn>, <dfn>sop:EducationRecord</dfn></dt>
+    <dd>Domain records whose access grade is set by their domain profile
+      (see&nbsp;[[SOLID-DATABOX-PROTOCOL]], Access Grades).</dd>
+    <dt><dfn>sop:BiometricRecord</dfn></dt>
+    <dd>A special-category record derived from a person's biometrics; the highest access
+      grade and strictest handling apply.</dd>
+  </dl>
+</section>
+
+<section id="derivatives">
+  <h2>Axis 3 — Derivation, and the Fidelity of Transcripts</h2>
+  <p>
+    A <dfn data-lt="derivative|derivatives">sop:Derivative</dfn> is a <code>sop:Record</code>
+    produced from another record. It relates to its source by <code>prov:wasDerivedFrom</code>
+    and additionally by <dfn>sop:assertsContentOf</dfn>, which makes explicit that the
+    derivative is a <em>claim about</em> the source, not a substitute for it. Subtypes:
+    <code>sop:Transcript</code>, <code>sop:Translation</code>, <code>sop:Summary</code>,
+    <code>sop:Redaction</code>, <code>sop:ExtractedData</code> (e.g. entities or figures
+    pulled from a document), and <code>sop:Proxy</code> (a thumbnail or low-fidelity copy).
+  </p>
+  <p>
+    A transcript of an IVR interaction or a call is the paradigm case: it may be produced by
+    automatic speech recognition and be materially wrong. Every <code>sop:Derivative</code>
+    therefore MUST declare how it was produced and how far it has been verified:
+  </p>
+  <dl>
+    <dt><dfn>sop:derivationMethod</dfn> → <code>sop:DerivationMethod</code></dt>
+    <dd>One of <code>sop:HumanAuthored</code>, <code>sop:MachineGenerated</code> (ASR, OCR,
+      or machine translation), <code>sop:HybridReviewed</code> (machine-generated then
+      human-corrected).</dd>
+    <dt><dfn>sop:derivationAgent</dfn> → <code>prov:Agent</code></dt>
+    <dd>The producer&nbsp;&mdash; a named person, or software identified by name, version, and
+      (for a model) the model identifier. Also expressible as <code>prov:wasAttributedTo</code>.</dd>
+    <dt><dfn>sop:verificationStatus</dfn> → <code>sop:VerificationStatus</code></dt>
+    <dd>One of <code>sop:Unverified</code>, <code>sop:MachineAsserted</code> (produced by a
+      machine, unchecked), <code>sop:HumanReviewed</code>, <code>sop:Certified</code> (attested
+      by an authorised party, e.g. a court reporter), <code>sop:Disputed</code>, or
+      <code>sop:Superseded</code>.</dd>
+    <dt><dfn>sop:confidence</dfn> (xsd:decimal, 0–1)</dt>
+    <dd>An overall confidence score where the producer supplies one; segment-level confidence
+      is attached via annotation (below).</dd>
+    <dt><dfn>sop:isVerbatim</dfn> (xsd:boolean)</dt>
+    <dd>Whether the derivative is verbatim or cleaned/edited.</dd>
+    <dt><dfn>sop:fidelityNote</dfn> (text)</dt>
+    <dd>A human-readable caveat about known limits (audio quality, accent handling, redaction).</dd>
+  </dl>
+  <p class="note">
+    Usage rule (enforced by the [[SOLID-DATABOX-PROTOCOL]]): a party MUST NOT rely on a
+    derivative at an evidentiary weight its <code>sop:verificationStatus</code> does not
+    support. A <code>sop:MachineAsserted</code> transcript may inform, but MUST NOT by itself
+    ground, a <code>sop:Determination</code>. Where a derivative and its source disagree, the
+    source governs; the original recording is retained and addressable so the claim can always
+    be checked against it.
+  </p>
+</section>
+
+<section>
+  <h2>Metadata Bundles</h2>
+  <p>Each record carries metadata drawn from the following, using reused terms where they exist.</p>
+  <dl>
+    <dt>Descriptive</dt>
+    <dd><code>dcterms:title</code>, <code>dcterms:description</code>, <code>dcterms:subject</code>,
+      <code>dcterms:created</code>, <code>dcterms:creator</code>, <code>dcterms:language</code>.</dd>
+    <dt>Technical (fuller for multimedia)</dt>
+    <dd><code>schema:encodingFormat</code> (an IANA media type), <code>schema:contentSize</code>,
+      <code>schema:duration</code> (ISO&nbsp;8601), <code>schema:bitrate</code>, sample rate and
+      codec, image resolution. Integrity via <dfn>sop:contentHash</dfn> (an algorithm-prefixed
+      digest, e.g. <code>sha256:…</code>) and, for preservation, <code>premis:fixity</code>.</dd>
+    <dt>Provenance</dt>
+    <dd><code>prov:wasGeneratedBy</code> (the capturing or producing activity),
+      <code>prov:wasAttributedTo</code>, <code>prov:wasDerivedFrom</code>,
+      <code>prov:generatedAtTime</code>, <code>prov:wasAssociatedWith</code>.</dd>
+    <dt>Capture context</dt>
+    <dd><dfn>sop:originatingChannel</dfn> → <code>sop:OriginatingChannel</code>, one of
+      <code>sop:TelephonyIVR</code>, <code>sop:VoiceCall</code>, <code>sop:SMS</code>,
+      <code>sop:Email</code>, <code>sop:WebForm</code>, <code>sop:InPerson</code>,
+      <code>sop:PostalMail</code>, <code>sop:CaseworkerEntry</code>, <code>sop:AutomatedSystem</code>;
+      plus <dfn>sop:sourceSystem</dfn> (the system of record) and <dfn>sop:capturedBy</dfn>
+      (→ <code>prov:Agent</code>).</dd>
+    <dt>Rights &amp; access</dt>
+    <dd><dfn>sop:accessGrade</dfn> and the minimum assurance the record requires
+      (see&nbsp;[[SOLID-DATABOX-PROTOCOL]], Access Grades); <code>odrl:hasPolicy</code> for
+      finer permissions.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Multimedia: Segments, Alignment &amp; Correction</h2>
+  <p>
+    Because a wrong record must be challengeable at the point where it is wrong, multimedia
+    records are addressable at the segment level:
+  </p>
+  <ul>
+    <li>A span of audio or video is referenced with a Media Fragments URI [[MEDIA-FRAGMENTS]]
+      (for example <code>…/call.wav#t=30,45</code>).</li>
+    <li>A transcript segment carries its source time-alignment, so any line can be played back
+      against the original.</li>
+    <li>A correction or dispute is a Web Annotation [[WEB-ANNOTATION]] whose
+      <code>oa:hasTarget</code> is the specific segment (of the recording <em>or</em> of the
+      transcript) and whose <code>oa:hasBody</code> carries the corrected content&nbsp;&mdash;
+      feeding directly into the protocol's Correction return-channel.</li>
+  </ul>
+</section>
+
+<section id="participants">
+  <h2>Participants, Roles &amp; Interactions</h2>
+  <p>
+    An institution's agents&nbsp;&mdash; call-centre operators especially&nbsp;&mdash; often
+    identify themselves to a caller by only a first name, or not at all, and a single call may pass
+    through an IVR, one or more operators, a supervisor, and an interpreter before it ends. If a
+    record or a decision flows from that call, the person affected must be able to reconstruct
+    <em>who</em> was involved and <em>when</em>. This vocabulary therefore models the participants of
+    an interaction, their roles, and the handovers between them.
+  </p>
+  <dl>
+    <dt><dfn data-lt="interaction|interactions">sop:Interaction</dfn> (⊑ <code>prov:Activity</code>, <code>schema:InteractAction</code>)</dt>
+    <dd>A communicative episode between a person and an institution: a call, an IVR session, a chat,
+      or a counter visit. A record such as a <code>sop:CallRecording</code> documents an interaction
+      via <dfn>sop:documentsInteraction</dfn> (aligned with <code>prov:wasGeneratedBy</code>).</dd>
+    <dt><dfn>sop:InteractionSegment</dfn> (⊑ <code>prov:Activity</code>) — a &ldquo;leg&rdquo;</dt>
+    <dd>A sub-interval of an interaction with a stable set of participants, bounded by
+      <code>prov:startedAtTime</code> / <code>prov:endedAtTime</code> (or a <code>time:Interval</code>)
+      and linked to its interaction by <code>dcterms:isPartOf</code>. A <dfn>sop:Hold</dfn> is a
+      segment with no active <code>sop:InstitutionalAgent</code>.</dd>
+    <dt><dfn>sop:Participation</dfn> (⊑ <code>prov:Association</code>)</dt>
+    <dd>One party's involvement in an interaction or segment, reifying the agent, the role, and the
+      interval. Attached to the activity by <code>prov:qualifiedAssociation</code>; carries
+      <code>prov:agent</code>, <code>prov:hadRole</code> (a <code>sop:ParticipantRole</code>), and
+      timing.</dd>
+    <dt><dfn>sop:ParticipantRole</dfn></dt>
+    <dd>One of <code>sop:Caller</code> (the person, i.e. the Holder), <code>sop:InstitutionalAgent</code>
+      (a human operator representing the institution), <code>sop:AutomatedAgent</code> (an IVR, bot, or
+      AI system), <code>sop:Supervisor</code>, <code>sop:Interpreter</code>, <code>sop:ThirdParty</code>.
+      The participant's <em>type</em> is a <code>prov:Person</code>, <code>prov:SoftwareAgent</code>, or
+      <code>prov:Organization</code>; the role is its part in this interaction.</dd>
+  </dl>
+  <p>Every institutional participant is identified, even where their name was not given to the caller:</p>
+  <dl>
+    <dt><dfn>sop:actorIdentifier</dfn></dt>
+    <dd>A stable identifier for an institutional participant (an operator or staff ID, or a software
+      agent's identifier) that the institution can resolve to the natural person or software agent it
+      denotes. Required for accountability; pseudonymity is permitted, anonymity is not.</dd>
+    <dt><dfn>sop:identifierDisclosed</dfn> (xsd:boolean)</dt>
+    <dd>Whether the identifier or the actor's name was disclosed to the person during the interaction.</dd>
+    <dt><dfn>sop:resolvableBy</dfn></dt>
+    <dd>The party&nbsp;&mdash; the institution, and on lawful request an oversight body or court&nbsp;&mdash;
+      able to resolve a pseudonymous <code>sop:actorIdentifier</code> to a natural person.</dd>
+    <dt><code>prov:actedOnBehalfOf</code>, <code>org:member</code> [[ORG]]</dt>
+    <dd>The delegation chain: the operator acted on behalf of a department, which is part of the
+      agency; a bot or AI acted on behalf of the institution that deployed it.</dd>
+    <dt><dfn>sop:modelIdentifier</dfn></dt>
+    <dd>For a <code>sop:AutomatedAgent</code>, the software name, version, and (for a model) its
+      identifier&nbsp;&mdash; so an automated actor is never mistakable for a human.</dd>
+  </dl>
+  <p>Handovers are explicit:</p>
+  <dl>
+    <dt><dfn data-lt="transfer|transfers">sop:TransferEvent</dfn> (⊑ <code>prov:Activity</code>)</dt>
+    <dd>A handover from one participation or segment to the next: <dfn>sop:transferredFrom</dfn> and
+      <dfn>sop:transferredTo</dfn>, with <code>prov:atTime</code>, an optional <dfn>sop:transferReason</dfn>,
+      and an optional target queue or unit (<dfn>sop:targetUnit</dfn> → <code>org:Organization</code>).
+      The chain of transfer events makes the full path of a call reconstructable.</dd>
+  </dl>
+  <pre class="turtle">
+&lt;#call-2026-07-02&gt; a sop:IVRInteraction ; sop:documentsInteraction &lt;#int-1&gt; .
+
+&lt;#int-1&gt; a sop:Interaction ;
+    prov:qualifiedAssociation &lt;#p-caller&gt; , &lt;#p-ivr&gt; , &lt;#p-op&gt; , &lt;#p-sup&gt; .
+
+&lt;#p-op&gt; a sop:Participation ;
+    prov:agent          &lt;https://agency.example/staff/4471&gt; ;   # resolvable by the agency
+    prov:hadRole        sop:InstitutionalAgent ;
+    sop:actorIdentifier "OP-4471" ; sop:identifierDisclosed false ;
+    prov:actedOnBehalfOf &lt;https://agency.example/dept/payments&gt; ;
+    prov:startedAtTime  "2026-07-02T09:15:10+10:00"^^xsd:dateTime ;
+    prov:endedAtTime    "2026-07-02T09:19:02+10:00"^^xsd:dateTime .
+
+&lt;#t-1&gt; a sop:TransferEvent ; sop:transferredFrom &lt;#p-op&gt; ; sop:transferredTo &lt;#p-sup&gt; ;
+    sop:transferReason "escalation" ; prov:atTime "2026-07-02T09:19:02+10:00"^^xsd:dateTime .
+  </pre>
+</section>
+
+<section id="organisations">
+  <h2>Organisations, Sectors &amp; Service Delivery</h2>
+  <p>
+    Records are deposited by, and interactions conducted with, organisations&nbsp;&mdash; and
+    increasingly the organisation a person deals with is not the one ultimately responsible. A
+    government service may be delivered by a private contractor or a non-profit under a contract or a
+    statutory delegation. The party model therefore types organisations, their sector, and the
+    delivery chains that connect a delivering party to the principal it acts for, reusing the
+    Organization Ontology [[ORG]] and, for registered bodies, the Registered Organization Vocabulary
+    [[REGORG]].
+  </p>
+
+  <section>
+    <h3>The organisation and its identity</h3>
+    <p>
+      <dfn data-lt="organisation|organisations|organization">sop:Organisation</dfn> is an
+      <code>org:FormalOrganization</code>; where legally registered it is also a
+      <code>rov:RegisteredOrganization</code> carrying a <code>rov:legalName</code> and a
+      <code>rov:registration</code> (for example an Australian ABN or ACN). As with an institutional
+      actor, an organisation MUST be identifiable&nbsp;&mdash; a <dfn>sop:orgIdentifier</dfn> such as a
+      Legal Entity Identifier (ISO&nbsp;17442) or a jurisdictional register entry&nbsp;&mdash; so that a
+      party cannot be obscured across a delivery chain.
+    </p>
+  </section>
+
+  <section>
+    <h3>Sector, legal form, and control</h3>
+    <p>
+      An organisation is typed on three independent facets, because what a body <em>does</em>, how it
+      is <em>incorporated</em>, and who <em>controls or funds</em> it are different questions: a charity
+      may deliver a health service under government funding.
+    </p>
+    <ul>
+      <li><strong>Sector</strong> (domain of activity), assigned with <code>org:classification</code>
+        into the <dfn>sop:OrganisationSector</dfn> SKOS scheme [[SKOS]], whose top concepts include
+        <code>sop:Government</code> (federal / state / local; agency, statutory authority, court,
+        regulator), <code>sop:Education</code>, <code>sop:Health</code>, <code>sop:NonProfit</code>
+        (charity, NGO, community legal centre), <code>sop:Commercial</code>,
+        <code>sop:SocialEnterprise</code>, <code>sop:Cooperative</code>, <code>sop:Community</code>
+        (clubs and associations), and <code>sop:International</code> (multilateral and DPI bodies). An
+        organisation MAY hold several; institutions MAY extend the scheme.</li>
+      <li><strong>Legal form</strong>, via <code>rov:orgType</code> (e.g. company limited by guarantee,
+        incorporated association, statutory body), aligned with ISO&nbsp;20275 Entity Legal Form codes.</li>
+      <li><strong>Control / funding</strong>, via <dfn>sop:controlType</dfn>: one of
+        <code>sop:Public</code>, <code>sop:Private</code>, or <code>sop:Mixed</code>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Service delivery and contracting chains</h3>
+    <p>
+      When one organisation delivers a service on behalf of another, the relationship is made explicit
+      and specialises PROV delegation (<code>prov:actedOnBehalfOf</code>):
+    </p>
+    <dl>
+      <dt><dfn>sop:ServiceMandate</dfn> (⊑ <code>prov:Delegation</code>)</dt>
+      <dd>A reified arrangement under which a <dfn>sop:deliveringParty</dfn> delivers a service on
+        behalf of a <dfn>sop:principalParty</dfn>. It carries a <code>sop:deliveryInstrument</code>, a
+        <dfn>sop:mandateScope</dfn> (the functions or services covered), a validity
+        <code>time:Interval</code>, and&nbsp;&mdash; critically&nbsp;&mdash; an
+        <dfn>sop:accountableParty</dfn>: the organisation that remains answerable to the person for the
+        service, which outsourcing does not transfer by default.</dd>
+      <dt><dfn>sop:deliveryInstrument</dfn> → <code>sop:DeliveryInstrument</code></dt>
+      <dd>One of <code>sop:Contract</code>, <code>sop:Subcontract</code>, <code>sop:Grant</code>,
+        <code>sop:StatutoryDelegation</code>, <code>sop:MemorandumOfUnderstanding</code>,
+        <code>sop:Licence</code>, or <code>sop:Franchise</code>.</dd>
+      <dt><dfn>sop:actsOnBehalfOf</dfn> (⊑ <code>prov:actedOnBehalfOf</code>)</dt>
+      <dd>A direct link from a delivering organisation (or one of its actors) to its principal. Mandates
+        compose: a subcontracting chain (principal → prime → subcontractor) is a chain of
+        <code>sop:ServiceMandate</code>s traceable to the tier that actually acted.</dd>
+    </dl>
+    <pre class="turtle">
+&lt;https://agency.example&gt; a sop:Organisation ;
+    org:classification sop:Government ; sop:controlType sop:Public ;
+    sop:orgIdentifier "lei:5493…" .
+
+&lt;https://provider.example&gt; a sop:Organisation ;
+    org:classification sop:Commercial ; sop:controlType sop:Private .
+
+&lt;#mandate-1&gt; a sop:ServiceMandate ;
+    sop:principalParty     &lt;https://agency.example&gt; ;
+    sop:deliveringParty    &lt;https://provider.example&gt; ;
+    sop:deliveryInstrument sop:Contract ;
+    sop:mandateScope       "employment services delivery" ;
+    sop:accountableParty   &lt;https://agency.example&gt; ;   # principal remains accountable
+    prov:startedAtTime     "2025-07-01T00:00:00+10:00"^^xsd:dateTime .
+    </pre>
+  </section>
+</section>
+
+<section id="jurisdiction">
+  <h2>Jurisdiction, Oversight &amp; Redress</h2>
+  <p>
+    Authority is territorial and layered, and the point of holding a verifiable record is often to take
+    it somewhere for review. This section gives records and parties a jurisdiction, types the bodies
+    whose function is oversight or enforcement, and links a determination to the pathway by which it can
+    be challenged&nbsp;&mdash; turning an evidence container into an access-to-justice instrument.
+  </p>
+
+  <section>
+    <h3>Jurisdiction: states, territories, levels</h3>
+    <p>
+      <dfn data-lt="jurisdiction|jurisdictions">sop:Jurisdiction</dfn> is a <code>skos:Concept</code> in
+      the <dfn>sop:JurisdictionScheme</dfn>, keyed to ISO&nbsp;3166 codes: the Commonwealth of Australia
+      (<code>AU</code>), its states and territories via ISO&nbsp;3166-2 (<code>AU-NSW</code>,
+      <code>AU-VIC</code>, <code>AU-QLD</code>, <code>AU-SA</code>, <code>AU-WA</code>, <code>AU-TAS</code>,
+      <code>AU-ACT</code>, <code>AU-NT</code>), down to local government areas and up to supranational and
+      international bodies. Each carries a <dfn>sop:jurisdictionLevel</dfn>: <code>sop:Federal</code>,
+      <code>sop:State</code>, <code>sop:Territory</code>, <code>sop:Local</code>, or
+      <code>sop:Supranational</code>.
+    </p>
+    <p>
+      A record or party links to its jurisdiction with <dfn>sop:hasJurisdiction</dfn> (the authority
+      competent over it) and, where relevant, <dfn>sop:governingJurisdiction</dfn> (the law under which
+      it is held and governed). This aligns with <code>schema:jurisdiction</code> and the Core Public
+      Service Vocabulary [[CPSV]].
+    </p>
+  </section>
+
+  <section>
+    <h3>Oversight &amp; enforcement bodies</h3>
+    <p>
+      <dfn>sop:OversightBody</dfn> is a <code>sop:Organisation</code> whose function is oversight, review,
+      or enforcement. Its function is typed by the <dfn>sop:OversightFunction</dfn> scheme:
+    </p>
+    <ul>
+      <li><code>sop:Ombudsman</code> &mdash; parliamentary and industry ombudsmen (a Commonwealth or
+        state ombudsman; a telecommunications or energy-and-water ombudsman).</li>
+      <li><code>sop:LawEnforcement</code> &mdash; police and enforcement agencies, federal and state.</li>
+      <li><code>sop:Court</code>, <code>sop:Tribunal</code> &mdash; judicial and merits-review bodies.</li>
+      <li><code>sop:Regulator</code> &mdash; sectoral regulators.</li>
+      <li><code>sop:IntegrityCommission</code> &mdash; anti-corruption and integrity bodies.</li>
+      <li><code>sop:HumanRightsCommission</code> &mdash; human-rights, anti-discrimination, and
+        equal-opportunity bodies.</li>
+      <li><code>sop:InformationCommissioner</code> &mdash; privacy, information, and freedom-of-information
+        oversight.</li>
+      <li><code>sop:AuditorGeneral</code>, <code>sop:InspectorGeneral</code> &mdash; audit and inspection.</li>
+    </ul>
+    <p>
+      Oversight is recursive: an enforcement body is itself overseen (police by an integrity commission
+      or ombudsman). <dfn>sop:overseenBy</dfn> links an organisation or service to the body that oversees
+      it, so the chain of oversight is itself in the record.
+    </p>
+  </section>
+
+  <section>
+    <h3>Redress pathways</h3>
+    <p>A determination is linked to how it can be challenged:</p>
+    <dl>
+      <dt><dfn>sop:reviewableBy</dfn></dt>
+      <dd>The body competent to review a determination or hear a complaint about it (a tribunal, court,
+        or ombudsman), within a stated <code>sop:hasJurisdiction</code>.</dd>
+      <dt><dfn>sop:reviewTimeLimit</dfn></dt>
+      <dd>Any statutory time limit within which review or complaint must be sought (a
+        <code>time:Duration</code> or a deadline), so the person is not silently timed out.</dd>
+      <dt><dfn>sop:redressPathway</dfn></dt>
+      <dd>An ordered pathway where review is staged: internal review → external merits review →
+        ombudsman → court.</dd>
+    </dl>
+  </section>
+</section>
+
+<section id="legal-instruments">
+  <h2>Legal Instruments &amp; Obligations</h2>
+  <p>
+    The obligations Solid-Databox enforces are not invented here; they exist in law. This section binds each
+    obligation to the instrument that creates it, so a &ldquo;MUST provide&rdquo; can be traced to a treaty
+    article or a section of an Act, and a person can see the legal ground of an entitlement.
+  </p>
+  <p>
+    Human-rights instruments are sourced from the Web Civics namespace [[WEBCIVICS]] (prefix <code>wc:</code>),
+    which already codifies the international corpus&nbsp;&mdash; the UDHR, the ICCPR and ICESCR, the CRC, CAT,
+    CEDAW, the CRPD, the ILO conventions and others&nbsp;&mdash; and whose core <em>Jural</em>,
+    <em>Jurisdiction</em>, and <em>Agency / Agent Accountability</em> vocabularies this specification aligns with
+    and defers to. Consistent with that namespace, human-dignity classifications attach to the natural person and
+    are disjoint from institutional constructs. The <a href="#jurisdiction"></a> and party models above should be
+    read as mapping onto the WebCivics jural and jurisdiction terms, not replacing them.
+  </p>
+
+  <section>
+    <h3>Identifying an instrument</h3>
+    <p>
+      A <dfn data-lt="legal instrument|legal instruments|instrument">sop:LegalInstrument</dfn> (a treaty, Act,
+      regulation, or charter) and its constituent <dfn data-lt="provision|provisions">sop:Provision</dfn> (an
+      article, section, or Australian Privacy Principle) are identified with the European Legislation Identifier
+      [[ELI]] (prefix <code>eli:</code>), which is FRBR-based and dereferenceable, alongside the jurisdiction's
+      own register (for the Commonwealth, the Federal Register of Legislation). An instrument carries its
+      <code>sop:hasJurisdiction</code> and its enabling authority.
+    </p>
+  </section>
+
+  <section>
+    <h3>Binding obligations to what must be provided</h3>
+    <p>
+      Obligations are modelled as jural relations (aligning with the WebCivics Jural vocabulary): a
+      <dfn data-lt="right|rights">sop:Right</dfn> held by a person correlates with a
+      <dfn data-lt="duty|duties">sop:Duty</dfn> borne by a duty-bearer. Two properties connect law to mechanism:
+    </p>
+    <dl>
+      <dt><dfn>sop:mandatedBy</dfn></dt>
+      <dd>Links a record type, access right, or protocol obligation to the <code>sop:Provision</code> that
+        requires it&nbsp;&mdash; e.g. the retrieval right is <code>sop:mandatedBy</code> the access principle of
+        the applicable privacy law.</dd>
+      <dt><dfn>sop:dischargedBy</dfn></dt>
+      <dd>The inverse view: the Solid-Databox mechanism by which a duty-bearer discharges a statutory duty,
+        producing an auditable record that the obligation was met&nbsp;&mdash; or, by its absence, was not.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>Instruments to be codified</h3>
+    <p>
+      The WebCivics corpus covers the international layer; the following domestic instruments are <em>not yet</em>
+      present and are to be added, each as a <code>sop:LegalInstrument</code> with its provisions, following the
+      WebCivics pattern (<code>/institutions/[authority]/[instrument-slug]/</code> served as Turtle and JSON-LD):
+    </p>
+    <ul>
+      <li><strong>Privacy &amp; records</strong>: the <em>Privacy Act 1988</em> (Cth) and the Australian Privacy
+        Principles&nbsp;&mdash; especially APP&nbsp;12 (access to personal information) and APP&nbsp;13
+        (correction), which directly ground the retrieval and correction protocol; the <em>My Health Records Act
+        2012</em>, the <em>Freedom of Information Act 1982</em>, and state equivalents (e.g. the <em>Health Records
+        Act 2001</em> (Vic), the <em>PPIP Act 1998</em> (NSW)).</li>
+      <li><strong>Australian human-rights instruments</strong>: the <em>Australian Human Rights Commission Act
+        1986</em>; the <em>Racial</em>, <em>Sex</em>, <em>Disability</em>, and <em>Age Discrimination</em> Acts;
+        and the domestic human-rights statutes&nbsp;&mdash; the <em>Charter of Human Rights and Responsibilities
+        Act 2006</em> (Vic), the <em>Human Rights Act 2004</em> (ACT), and the <em>Human Rights Act 2019</em>
+        (Qld).</li>
+      <li><strong>Domain Acts</strong>: the social-security, child-protection, or telecommunications legislation a
+        given deployment relies upon, added the same way and cited by the domain profiles.</li>
+    </ul>
+  </section>
+  <pre class="turtle">
+&lt;https://w3id.org/solid-databox/right/personal-records-access&gt;
+    a sop:Right ;
+    sop:mandatedBy &lt;https://www.legislation.gov.au/C1988A00119#app12&gt; .   # Privacy Act 1988, APP 12 (access)
+
+&lt;#retrieval&gt; a sop:Duty ;
+    sop:dischargedBy &lt;#solid-databox-retrieval&gt; ;
+    sop:hasJurisdiction &lt;https://ns.webcivics.net/jurisdiction/AU&gt; .
+  </pre>
+</section>
+
+<section id="conduct-risk">
+  <h2>Conduct, Coercion &amp; Risk</h2>
+  <p>
+    People inside institutions sometimes do wrong&nbsp;&mdash; and sometimes they do wrong because they were made
+    to, by a superior or by an external party. Treating every act as freely willed erases the coerced worker as
+    surely as anonymity erases the accountable one. This section models attestations about conduct, so a free
+    wrong and a coerced one can be told apart, liability can be located, and the line between insurable and
+    uninsurable risk can be drawn. It aligns with the WebCivics <em>Agent Accountability</em> and <em>Jural</em>
+    vocabularies [[WEBCIVICS]].
+  </p>
+  <dl>
+    <dt><dfn>sop:ConductAttestation</dfn> (a Verifiable Credential [[VC-DATA-MODEL-2.0]])</dt>
+    <dd>A signed claim, by an identified or pseudonymous actor, that an act occurred, was observed, or was
+      instructed&nbsp;&mdash; the evidentiary unit of this section.</dd>
+    <dt><dfn>sop:intent</dfn> → <dfn>sop:IntentLevel</dfn></dt>
+    <dd>The asserted state of mind behind an act: <code>sop:Intentional</code>, <code>sop:Reckless</code>,
+      <code>sop:Negligent</code>, or <code>sop:Innocent</code>&nbsp;&mdash; what most sharply separates insurable
+      from uninsurable risk.</dd>
+    <dt><dfn>sop:instructedBy</dfn>, <dfn>sop:coercedBy</dfn></dt>
+    <dd>The act was performed on the instruction of, or under coercion by, another actor&nbsp;&mdash; internal (a
+      superior in the same organisation) or external. These specialise <code>prov:actedOnBehalfOf</code> and link
+      into the delivery and participation chains, so pressure can be traced to its source.</dd>
+    <dt><dfn>sop:underDuress</dfn> (xsd:boolean)</dt>
+    <dd>That the actor asserts they acted under duress&nbsp;&mdash; a claim which, if made out, is a defence and
+      shifts responsibility toward the coercer.</dd>
+    <dt><dfn>sop:riskClass</dfn> → <dfn>sop:RiskClassification</dfn></dt>
+    <dd>One of <code>sop:Insurable</code> (accident, negligence), <code>sop:Uninsurable</code> (intentional
+      wrongdoing, which public policy will not indemnify), or <code>sop:LiabilityShifted</code> (the actor was
+      coerced, and responsibility moves to the party that compelled the act).</dd>
+  </dl>
+  <p class="note">
+    These are <em>assertions</em>, not adjudications: the vocabulary lets parties state and prove them; whether
+    duress is made out, or an act was intentional, is for a tribunal or court (see <a href="#jurisdiction"></a>).
+    The zero-knowledge machinery in the [[SOLID-DATABOX-PROTOCOL]] governs how such claims are proved without
+    over-disclosure.
+  </p>
+</section>
+
+<section>
+  <h2>The Category Scheme (Extensibility)</h2>
+  <p>
+    The function categories above form a SKOS concept scheme [[SKOS]],
+    <code>sop:RecordCategoryScheme</code>, whose members are <code>skos:Concept</code>
+    instances. An institution MAY publish its own scheme that <code>skos:broadMatch</code>es
+    these categories&nbsp;&mdash; adding, say, a &ldquo;child-protection order&rdquo; or a
+    &ldquo;telecommunications complaint&rdquo; category&nbsp;&mdash; so local record types remain
+    interoperable without being hard-coded here.
+  </p>
+</section>
+
+<section class="appendix">
+  <h2>Turtle Sketch (Illustrative)</h2>
+  <pre class="turtle">
+@prefix sop:   &lt;https://w3id.org/solid-databox/ns#&gt; .
+@prefix prov:  &lt;http://www.w3.org/ns/prov#&gt; .
+@prefix schema:&lt;https://schema.org/&gt; .
+@prefix rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+
+sop:Record         a rdfs:Class ; rdfs:subClassOf prov:Entity , schema:CreativeWork .
+sop:AudioRecord    rdfs:subClassOf sop:Record , schema:AudioObject .
+sop:IVRInteraction rdfs:subClassOf sop:AudioRecord .
+sop:Transcript     rdfs:subClassOf sop:Derivative .
+sop:Derivative     rdfs:subClassOf sop:Record .
+
+sop:assertsContentOf  a rdf:Property ; rdfs:domain sop:Derivative ; rdfs:range sop:Record .
+sop:verificationStatus a rdf:Property ; rdfs:range sop:VerificationStatus .
+sop:derivationMethod   a rdf:Property ; rdfs:range sop:DerivationMethod .
+
+# Example: an IVR call and its unverified machine transcript
+&lt;#call-2026-07-02&gt;
+    a sop:IVRInteraction , sop:Correspondence ;
+    sop:originatingChannel sop:TelephonyIVR ;
+    sop:sourceSystem &lt;https://agency.example/telephony&gt; ;
+    schema:encodingFormat "audio/wav" ; schema:duration "PT2M11S" ;
+    sop:contentHash "sha256:9f2c…" ;
+    prov:generatedAtTime "2026-07-02T09:14:00+10:00"^^xsd:dateTime .
+
+&lt;#transcript-call-2026-07-02&gt;
+    a sop:Transcript ;
+    prov:wasDerivedFrom &lt;#call-2026-07-02&gt; ;
+    sop:assertsContentOf &lt;#call-2026-07-02&gt; ;
+    sop:derivationMethod sop:MachineGenerated ;
+    sop:derivationAgent  &lt;https://models.example/asr/whisper-large-v3&gt; ;
+    sop:verificationStatus sop:MachineAsserted ;
+    sop:confidence 0.82 ;
+    sop:isVerbatim true ;
+    sop:fidelityNote "Automatic transcription; not human-reviewed. Verify against audio." .
+  </pre>
+</section>
+
+</body>
+</html>

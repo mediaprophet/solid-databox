@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solid-Databox — Project Overview</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+  <script class="remove">
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "solid-databox-overview",
+      subtitle: "A Habeas Data Egress building block — what it is, its parts, and where it stands",
+      editors: [{
+        name: "Timothy Charles Holborn",
+        mailto: "timothy.holborn@gmail.com",
+        company: "Webizen / WebCivics"
+      }],
+      xref: ["web-platform"],
+      localBiblio: {
+        "SOLID-DATABOX-PROTOCOL": { title: "Solid-Databox Protocol", href: "solid-databox-protocol.html", publisher: "Webizen / WebCivics" },
+        "SOLID-DATABOX-VOCABULARY": { title: "Solid-Databox Record Ontology and Vocabulary", href: "solid-databox-vocabulary.html", publisher: "Webizen / WebCivics" },
+        "SOLID-DATABOX-PRIMER": { title: "Solid-Databox Primer — Architecture and Rationale", href: "solid-databox-primer.html", publisher: "Webizen / WebCivics" },
+        "SOLID-PROTOCOL": { title: "Solid Protocol", href: "https://solidproject.org/TR/protocol", publisher: "W3C Solid Community Group" },
+        "SOLID-OIDC": { title: "SOLID-OIDC", href: "https://solidproject.org/TR/oidc", publisher: "W3C Solid Community Group" },
+        "ELI": { title: "European Legislation Identifier (ELI)", href: "https://op.europa.eu/en/web/eu-vocabularies/eli", publisher: "Publications Office of the European Union" },
+        "GOVSTACK": { title: "GovStack Building Block Specifications", href: "https://www.govstack.global/", publisher: "GovStack Initiative" },
+        "WEBCIVICS": { title: "Web Civics Ontology Namespace (cml: / values: — human-rights corpus, jural, agency)", href: "https://ns.webcivics.net/", publisher: "WebCivics" }
+      }
+    };
+  </script>
+</head>
+<body>
+
+<section id="abstract">
+  <p>
+    <strong>Solid-Databox</strong> is a <em>Habeas Data Egress</em> building block: institution-run
+    infrastructure that delivers verifiable copies of the records an institution holds about a person
+    <em>to that person</em>, over open standards and with an audit trail, so that consumer software can
+    build the individual's own knowledge vault. This document is the front door to the project. It
+    outlines the problem, the approach, the documents and tools that make up the project, the
+    guarantees it makes, and where the work currently stands. For depth, follow the links: this is a
+    map, not the territory.
+  </p>
+</section>
+
+<section id="sotd">
+  <p>
+    Unofficial draft, with no standing at the W3C, the Solid Community Group, or any other body,
+    published to organise work toward the Solid 2026 Hackathon and to invite review. The project name
+    is <strong>Solid-Databox</strong>; &ldquo;Habeas Data Egress&rdquo; names its function as a Digital
+    Public Infrastructure building block. The citizen-side software is Webizen and QualiaDB.
+  </p>
+</section>
+
+<section>
+  <h2>What Solid-Databox is</h2>
+  <p>
+    Institutions create and hold records that decide a person's access to services, legal standing,
+    employment, and health, yet the person is routinely denied a timely, complete, verifiable copy of
+    those records. The harm is not merely inconvenience: it is <em>false claims acted upon</em> —
+    from wrongful automated debts to family-court determinations made on incomplete information — by
+    people who hold no copy with which to verify or contest.
+  </p>
+  <p>
+    Solid-Databox answers this by putting the engineering burden where the data, the budgets, and the
+    legal obligations already sit: the institution. An institution runs an egress point — a controlled
+    Solid &ldquo;post-box&rdquo; — into which it deposits verifiable records addressed to the people
+    they concern. A person's own agent retrieves them, and where a record is false, contests it. Once
+    that plumbing exists, a consumer market for personal knowledge software forms on the far side of
+    the pipe. The full argument is in the <a href="Solid_2026_Hackathon_Project_Proposal_v1.3.0.docx.md">project
+    proposal</a> and the [[SOLID-DATABOX-PRIMER]].
+  </p>
+</section>
+
+<section>
+  <h2>The parts</h2>
+  <p>The project is a small suite of documents and tools. Start at the top and follow down as needed.</p>
+  <dl>
+    <dt><a href="Solid_2026_Hackathon_Project_Proposal_v1.3.0.docx.md">Project Proposal</a> (v1.3.0)</dt>
+    <dd>The long-form case: the human-rights framing, twenty-five years of prior work, the use cases,
+      and the strategic realignment toward institution-run egress tooling. The &ldquo;why&rdquo; at length.</dd>
+
+    <dt>This <strong>Overview</strong></dt>
+    <dd>The front door: what the project is, its parts, its guarantees, and its status.</dd>
+
+    <dt>[[SOLID-DATABOX-PRIMER]] — Architecture &amp; Rationale</dt>
+    <dd>Non-normative. The architecture in depth: roles, what institutions run, what individuals run,
+      graded access and guardianship, accountability, legal grounding, and the DPI mapping.</dd>
+
+    <dt>[[SOLID-DATABOX-PROTOCOL]] — the normative core</dt>
+    <dd>Identity, authentication and assurance, access grades, guardianship, accountability of
+      institutional actors, service-delivery chains, jurisdiction and redress, legal basis, attestations
+      and zero-knowledge proofs, the deposit → notify → retrieve → correct protocol, and evidence &amp;
+      audit.</dd>
+
+    <dt>[[SOLID-DATABOX-VOCABULARY]] — the record &amp; party ontology</dt>
+    <dd>The content categories (modality × function × derivation), transcript fidelity, participants and
+      transfers, organisations and delivery chains, jurisdiction and oversight, legal instruments, and
+      conduct/coercion/risk — reusing PROV-O, Dublin Core, schema.org, ELI, and the WebCivics
+      <code>cml:</code>/<code>values:</code> corpus [[WEBCIVICS]].</dd>
+
+    <dt><a href="solid-databox-kit-blueprint.md">Institutional Deployment Kit (Agent Edition)</a></dt>
+    <dd>The hackathon deliverable: AI coding-agent files (an agent constitution, subagents, tasks, and a
+      per-institution profile schema) plus the ontological factors, so any institution's coding agent can
+      implement a conforming databox. Defined by a blueprint; kit files to follow.</dd>
+
+    <dt><a href="legis2cml.py">Tooling — <code>legis2cml.py</code></a></dt>
+    <dd>Converts a legislation PDF into the WebCivics CML concept layer (<code>*.cml.n3</code> +
+      <code>*.cml.html</code>), page-by-page via a local model, so the legal instruments that ground the
+      obligations can be machine-read. Machine output is always <code>cml:Proposed</code>, never attested.</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Architecture at a glance</h2>
+  <p>
+    The protocol defines five roles and two directions of flow. Outbound
+    (<strong>Issuer</strong>&nbsp;→&nbsp;<strong>Holder</strong>): an institution deposits verifiable
+    records, through an <strong>Issuer bridge</strong> that connects its existing SQL and directory
+    systems, into an <strong>egress point</strong> (a conforming Solid server); a
+    <strong>Consumer Agent</strong> (Webizen) retrieves them for the <strong>Holder</strong> and imports
+    them into a personal vault (QualiaDB). A governed return path
+    (<strong>Holder</strong>&nbsp;→&nbsp;<strong>Issuer</strong>) carries corrections and disputes to a
+    staff-review queue — never a destructive write. Normative detail is in the [[SOLID-DATABOX-PROTOCOL]].
+  </p>
+</section>
+
+<section>
+  <h2>What the project guarantees</h2>
+  <p>
+    The value is not the plumbing (a Community Solid Server plus middleware) but a small set of
+    <em>invariants</em> that every conforming deployment must uphold. These are the project's promise, and
+    what a conformance check tests:
+  </p>
+  <ol>
+    <li><strong>Machine proposes, human disposes</strong> — automated systems may only propose
+      (<code>cml:Proposed</code>); only a signed authoritative human attests. No auto-attestation.</li>
+    <li><strong>Assurance gates access</strong> — a record's access grade sets a minimum level of
+      assurance; a self-asserted account never reaches high-stakes records.</li>
+    <li><strong>No destructive correction</strong> — a citizen's correction is staged for human review,
+      never applied straight to the system of record.</li>
+    <li><strong>No anonymous institutional actors</strong> — every operator and software actor, across
+      transfers, is logged by a resolvable identifier; pseudonymity is allowed, anonymity is not;
+      automated actors self-disclose.</li>
+    <li><strong>Outsourcing does not launder accountability</strong> — records name the delivering party,
+      the principal, and who remains accountable.</li>
+    <li><strong>Evidence is preserved</strong> — deposits, deletions, and non-responses are logged; a
+      delivered copy is independent of the egress point; where a derivative (a transcript) and its source
+      disagree, the original governs and stays retrievable.</li>
+    <li><strong>Redress travels with the record</strong> — a determination names the competent review
+      body and the statutory time limit.</li>
+    <li><strong>Obligations cite their law</strong> — each record type is bound to the instrument and
+      provision that require it.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Standards foundation</h2>
+  <p>
+    Solid-Databox reuses, rather than reinvents: the Solid Protocol [[SOLID-PROTOCOL]] and the Linked
+    Data Platform [[LDP]] for storage and transport; Linked Data Notifications [[LDN]] for delivery;
+    Verifiable Credentials [[VC-DATA-MODEL-2.0]] for the payloads; SOLID-OIDC [[SOLID-OIDC]] bridged to
+    institutional identity (Microsoft Entra ID, myID) for authentication; ELI [[ELI]] for legislation
+    identity and the WebCivics <code>cml:</code>/<code>values:</code> corpus [[WEBCIVICS]] for the
+    human-rights and deontic layer; and the GovStack building-block model [[GOVSTACK]] for Digital Public
+    Infrastructure alignment.
+  </p>
+</section>
+
+<section>
+  <h2>Status &amp; roadmap</h2>
+  <p>Honest state of the work:</p>
+  <ul>
+    <li><strong>Built</strong> — the proposal (v1.3.0); this overview, the primer, the protocol, and the
+      vocabulary; the deployment-kit blueprint; and the <code>legis2cml</code> tool.</li>
+    <li><strong>Verified</strong> — <code>legis2cml</code>'s parsing and CML/values serialization are
+      tested. The ReSpec documents have <em>not</em> yet been rendered/validated, and the tool's PDF and
+      local-model paths are not yet exercised end-to-end.</li>
+    <li><strong>Open decisions</strong> (see the protocol's issue boxes) — whether deposit is mandated at
+      record-creation or absence must be provable; retention versus a right to erasure; who custodies the
+      pseudonym-to-person mapping; and the per-jurisdiction access-grade tables.</li>
+    <li><strong>Next</strong> — build the deployment kit (extract the vocabulary to a loadable
+      <code>sop.ttl</code>, write the conformance checklist, then the agent files and per-institution
+      profile), validate the specs, and codify the Australian instruments with <code>legis2cml</code>.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How to read this suite</h2>
+  <p>
+    A newcomer: this overview, then the [[SOLID-DATABOX-PRIMER]]. An implementer: the deployment-kit
+    blueprint and the [[SOLID-DATABOX-PROTOCOL]]. A modeller: the [[SOLID-DATABOX-VOCABULARY]]. A funder
+    or partner: the proposal and this overview's guarantees and status.
+  </p>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solid-Databox Protocol</title>
+  <!--
+    Project name: Solid-Databox. Function/descriptor (for DPI/GovStack): Habeas Data Egress.
+    To rename, change: (1) <title> above, (2) respecConfig.shortName below,
+    (3) this file's name (solid-databox-protocol.html). Everything else
+    cross-references shortName, so a single edit propagates.
+  -->
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+  <script class="remove">
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "solid-databox-protocol",
+      subtitle: "A Habeas Data Egress building block",
+      // editors: public contributor identity; edit affiliation as you wish.
+      editors: [{
+        name: "Timothy Charles Holborn",
+        mailto: "timothy.holborn@gmail.com",
+        company: "Webizen / WebCivics"
+      }],
+      // github: "ORG/solid-databox",   // TODO: set once a repo exists
+      // edDraftURI: "https://example.org/solid-databox-protocol/",  // TODO
+      xref: ["web-platform"],
+      // Solid specs are community-maintained and not in ReSpec's default
+      // reference database, so they are declared here. VC, LDP, LDN, RDF,
+      // OAuth resolve automatically via [[SHORTNAME]].
+      localBiblio: {
+        "SOLID-PROTOCOL": {
+          title: "Solid Protocol",
+          href: "https://solidproject.org/TR/protocol",
+          publisher: "W3C Solid Community Group"
+        },
+        "SOLID-OIDC": {
+          title: "SOLID-OIDC",
+          href: "https://solidproject.org/TR/oidc",
+          publisher: "W3C Solid Community Group"
+        },
+        "OID4VCI": {
+          title: "OpenID for Verifiable Credential Issuance",
+          href: "https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html",
+          publisher: "OpenID Foundation"
+        },
+        "GOVSTACK": {
+          title: "GovStack Building Block Specifications",
+          href: "https://www.govstack.global/",
+          publisher: "GovStack Initiative"
+        },
+        "SOLID-DATABOX-PRIMER": {
+          title: "Solid-Databox: Architecture and Rationale (Primer)",
+          href: "solid-databox-primer.html",
+          publisher: "Webizen / WebCivics"
+        },
+        "DIGITAL-ID-ACT": {
+          title: "Digital ID Act 2024 and the Australian Government Digital ID System (AGDIS)",
+          href: "https://www.digitalidsystem.gov.au/",
+          publisher: "Australian Government"
+        },
+        "NIST-800-63": {
+          title: "NIST SP 800-63 Digital Identity Guidelines (Identity, Authenticator, and Federation Assurance Levels)",
+          href: "https://pages.nist.gov/800-63-3/",
+          publisher: "National Institute of Standards and Technology"
+        },
+        "eIDAS": {
+          title: "Regulation (EU) No 910/2014 (eIDAS); Levels of Assurance per Implementing Regulation (EU) 2015/1502",
+          href: "https://eur-lex.europa.eu/eli/reg/2014/910/oj",
+          publisher: "European Union"
+        },
+        "SOLID-DATABOX-VOCABULARY": {
+          title: "Solid-Databox Record Ontology and Vocabulary",
+          href: "solid-databox-vocabulary.html",
+          publisher: "Webizen / WebCivics"
+        },
+        "WEBCIVICS": {
+          title: "Web Civics Ontology Namespace (human-rights instruments; Jural, Jurisdiction, Agency vocabularies)",
+          href: "https://ns.webcivics.net/",
+          publisher: "WebCivics"
+        },
+        "ELI": {
+          title: "European Legislation Identifier (ELI)",
+          href: "https://op.europa.eu/en/web/eu-vocabularies/eli",
+          publisher: "Publications Office of the European Union"
+        },
+        "VC-DI-BBS": {
+          title: "Data Integrity BBS Cryptosuites v1.0",
+          href: "https://www.w3.org/TR/vc-di-bbs/",
+          publisher: "W3C"
+        }
+      }
+    };
+  </script>
+</head>
+<body>
+
+<section id="abstract">
+  <p>
+    This document defines the <dfn data-lt="Solid-Databox|OutPost|egress protocol">Solid-Databox
+    Protocol</dfn>, a <em>Habeas Data Egress</em> building block: a standards-based
+    interaction pattern by which an institution (an <a>Issuer</a>) deposits verifiable
+    records about a natural person into a controlled, auditable <a>egress point</a>,
+    and by which that person (a <a>Holder</a>) retrieves, and where necessary
+    contests, those records. Solid-Databox builds on the Solid
+    Protocol&nbsp;[[SOLID-PROTOCOL]], the Linked Data Platform&nbsp;[[LDP]], Linked
+    Data Notifications&nbsp;[[LDN]], and the W3C Verifiable Credentials data
+    model&nbsp;[[VC-DATA-MODEL-2.0]]. Its function is <em>habeas data
+    egress</em>&nbsp;&mdash; the technical enactment of <em>habeas data</em>, the
+    remedy (recognised in a number of jurisdictions) by which a person may compel
+    access to and correction of records held about them.
+  </p>
+</section>
+
+<section id="sotd">
+  <p>
+    This is an <strong>unofficial draft</strong>. It has no standing at the W3C, the
+    Solid Community Group, or any other body. It is published to structure work toward
+    the Solid 2026 Hackathon and to invite review. The project name is
+    <strong>Solid-Databox</strong>; &ldquo;Habeas Data Egress&rdquo; names its function
+    as a Digital Public Infrastructure building block. Normative statements are present
+    but incomplete; sections marked with an issue box carry open design questions.
+  </p>
+</section>
+
+<section id="conformance">
+  <!-- ReSpec injects the RFC 2119 keyword boilerplate here automatically. -->
+  <p>
+    This specification defines three conformance classes: a conforming
+    <a>egress point</a>, a conforming <a>Issuer</a> bridge, and a conforming
+    <a>Consumer Agent</a>. A conforming implementation MUST satisfy every normative
+    requirement stated for its class.
+  </p>
+</section>
+
+<section>
+  <h2>Introduction</h2>
+  <p>
+    Institutions routinely create and hold records that determine a person&rsquo;s
+    access to services, legal standing, employment, and health, yet individuals are
+    routinely denied a timely, complete, verifiable copy of those records. This
+    protocol addresses that asymmetry not by replacing institutional systems but by
+    defining a uniform <em>egress</em> pathway out of them, so that a verifiable copy
+    reaches the person the record concerns as a matter of standard practice.
+  </p>
+  <p>
+    The design deliberately places the operational burden on the institution, which
+    holds the data, the budget, and the legal obligation. The person&rsquo;s side of
+    the exchange is intentionally thin: authenticate, retrieve, and&nbsp;&mdash; where a
+    record is false or incomplete&nbsp;&mdash; contest.
+  </p>
+</section>
+
+<section>
+  <h2>Terminology</h2>
+  <dl>
+    <dt><dfn>Issuer</dfn></dt>
+    <dd>An institution that creates records about natural persons and deposits
+      verifiable copies into an <a>egress point</a>. Examples: a government agency,
+      an education provider, a health service.</dd>
+    <dt><dfn>Holder</dfn></dt>
+    <dd>The natural person a record concerns, acting in a private capacity, who
+      retrieves and curates records addressed to them.</dd>
+    <dt><dfn data-lt="egress point|egress points|post-box">Egress point</dfn></dt>
+    <dd>A Solid storage location [[SOLID-PROTOCOL]] configured as a controlled
+      deposit-and-collection surface&nbsp;&mdash; the &ldquo;post-box&rdquo;.</dd>
+    <dt><dfn data-lt="slot|slots">Slot</dfn></dt>
+    <dd>A Linked Data Platform [[LDP]] container within an <a>egress point</a> designated for records
+      addressed to a specific <a>Holder</a>.</dd>
+    <dt><dfn data-lt="deposit|deposits|deposited">Deposit</dfn></dt>
+    <dd>The act of an <a>Issuer</a> placing a verifiable record into a <a>slot</a>.</dd>
+    <dt><dfn>Consumer Agent</dfn></dt>
+    <dd>Software acting for the <a>Holder</a> (e.g. a personal agent such as Webizen)
+      that authenticates to the <a>egress point</a>, retrieves records, and imports
+      them into a personal knowledge system.</dd>
+    <dt><dfn>Agent</dfn> / <dfn>Entity</dfn></dt>
+    <dd>The <em>agent</em> is the party performing an action; the <em>entity</em> is
+      the subject the action concerns. The two are kept distinct throughout
+      (see&nbsp;<a href="#identity"></a>).</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Architecture Overview</h2>
+  <p>
+    The protocol defines a one-way outbound path (<a>Issuer</a>&nbsp;&rarr;
+    <a>Holder</a>) and a governed return path (<a>Holder</a>&nbsp;&rarr;
+    <a>Issuer</a>). An <a>Issuer</a> bridge connects an institution&rsquo;s existing
+    systems of record to the <a>egress point</a>; a <a>Consumer Agent</a> connects the
+    <a>egress point</a> to the <a>Holder</a>&rsquo;s personal knowledge system. The
+    <a>egress point</a> itself is a conforming Solid server.
+  </p>
+</section>
+
+<section id="data-model">
+  <h2>Data Model &amp; Vocabulary</h2>
+  <p>
+    The classes and properties that type deposited content&nbsp;&mdash; its modality,
+    function, derivation, and metadata&nbsp;&mdash; are defined in the companion
+    [[SOLID-DATABOX-VOCABULARY]], which reuses PROV-O, Dublin Core, schema.org, and the
+    Verifiable Credentials data model [[VC-DATA-MODEL-2.0]], and coins terms only for the
+    gaps. The provisional namespace is <code>https://w3id.org/solid-databox/ns#</code>
+    (prefix <code>sop:</code>; TODO: register a <a href="https://w3id.org/">w3id.org</a>
+    redirect).
+  </p>
+  <p>
+    Each <a>deposit</a> MUST carry provenance sufficient to identify the depositing
+    <a>Issuer</a>, the time of deposit, and the addressed <a>Holder</a>, in a form the
+    <a>Holder</a> can verify independently of the <a>egress point</a>.
+  </p>
+  <p>
+    A derivative&nbsp;&mdash; a transcript, translation, summary, or extracted dataset
+    produced from an original record&nbsp;&mdash; is a claim about its source, not a
+    replacement for it (see [[SOLID-DATABOX-VOCABULARY]]). A derivative MUST declare how it
+    was produced (human, machine, or hybrid), the agent that produced it, and its
+    verification status. An <a>Issuer</a> MUST NOT ground a determination on, and a
+    <a>Consumer Agent</a> MUST NOT present as authoritative, a derivative at an evidentiary
+    weight its verification status does not support: a machine transcript of a call is not
+    the call, and where the two disagree the original governs and MUST remain retrievable.
+  </p>
+</section>
+
+<section id="identity">
+  <h2>Identity as an Enumerated Cryptographic State</h2>
+  <p>
+    Identity in this protocol is <strong>not</strong> a single identifier. It is an
+    <dfn>enumerated cryptographic state</dfn>: an explicit, inspectable set of
+    cryptographically supported identifiers (WebIDs, X.509 certificates, keys, and,
+    where used, DIDs) together with their related datasets, organised on an
+    <em>agent-and-entity-centric</em> basis that distinguishes the acting <a>Agent</a>
+    from the subject <a>Entity</a>.
+  </p>
+  <ul>
+    <li>An implementation MUST NOT collapse the <a>Agent</a> and the <a>Entity</a> into
+      a single identifier where they differ (e.g. guardian and child, caseworker and
+      claimant, software agent and the person it acts for).</li>
+    <li>A <a>deposit</a> MUST bind to the <a>Entity</a> it concerns and record the
+      <a>Agent</a> that performed it as distinct assertions.</li>
+    <li>The protocol SHOULD support a <a>Holder</a> presenting more than one
+      identifier over the life of a record without loss of provenance continuity.</li>
+  </ul>
+  <p class="note">
+    This is the technical expression of the human-rights position that human rights,
+    not sovereignty, are the atomic unit of identity: an infant cannot be
+    &ldquo;self-sovereign&rdquo; yet holds rights, and the agent/entity distinction is
+    what preserves them.
+  </p>
+</section>
+
+<section id="auth">
+  <h2>Authentication &amp; Assurance</h2>
+  <p>
+    Conforming parties authenticate using SOLID-OIDC [[SOLID-OIDC]]. The strength of an
+    authentication is not binary; it is characterised by a <dfn data-lt="level of assurance|levels of assurance|assurance level|assurance">Level
+    of Assurance</dfn> (LoA) with three independent dimensions, following established
+    identity frameworks:
+  </p>
+  <ul>
+    <li><strong>Identity proofing</strong>&nbsp;&mdash; how well the real-world identity
+      behind an account was verified: weak for a self-asserted email address, strong for a
+      biometric match to a government-issued photo credential.</li>
+    <li><strong>Authenticator strength</strong>&nbsp;&mdash; how strongly each sign-in
+      proves the same party has returned: a password, a phone, a hardware key.</li>
+    <li><strong>Federation strength</strong>&nbsp;&mdash; how strongly a third-party
+      assertion about the party can be relied upon.</li>
+  </ul>
+  <p>
+    These dimensions map onto national and international frameworks, so that Solid-Databox
+    is portable across Digital Public Infrastructure: the Australian Government Digital ID
+    System identity strengths&nbsp;&mdash; Basic, Standard, Strong [[?DIGITAL-ID-ACT]]&nbsp;&mdash;
+    NIST&rsquo;s Identity, Authenticator, and Federation Assurance Levels [[?NIST-800-63]],
+    the eIDAS levels Low, Substantial, and High [[?eIDAS]], and ISO/IEC&nbsp;29115. An
+    implementation MUST record the LoA under which each identity was established and each
+    request authenticated.
+  </p>
+
+  <section>
+    <h3>Verified digital identity</h3>
+    <p>
+      Where higher assurance is required, a party authenticates through an accredited
+      digital identity provider. In Australia this is the Australian Government Digital ID
+      System (AGDIS), reached through <strong>myID</strong> (formerly myGovID) and an
+      Identity Exchange that brokers the assertion; comparable accredited providers exist
+      in other jurisdictions. Such providers yield a high <a>level of assurance</a>&nbsp;&mdash;
+      up to a biometrically verified strong identity&nbsp;&mdash; and so unlock the higher
+      <a href="#access-grades"></a>.
+    </p>
+  </section>
+
+  <section>
+    <h3>Traditional registration</h3>
+    <p>
+      A party MAY instead establish an account by traditional self-service means, for
+      example an email address and a password, without third-party identity proofing. Such
+      an account is valid but self-asserted: it carries the lowest <a>level of
+      assurance</a> and MUST be confined to the lowest <a href="#access-grades"></a>.
+      Access to high-stakes records MUST require step-up to a verified digital identity; an
+      <a>egress point</a> MUST NOT release a high-grade record to a self-asserted account.
+    </p>
+  </section>
+
+  <section>
+    <h3>Institutional identity providers (Entra ID)</h3>
+    <p>
+      Where an <a>Issuer</a>&rsquo;s identity provider is an external OpenID Connect system,
+      for example Microsoft Entra ID issuing OAuth&nbsp;2.0 tokens [[RFC6749]], the
+      <a>Issuer</a> bridge maps validated provider claims to a persistent WebID before
+      acting against the <a>egress point</a>. Unattended machine-to-machine deposit MAY use
+      the client-credentials grant, and MUST itself meet the assurance required of an
+      <a>Issuer</a>.
+    </p>
+    <p class="issue">
+      Specify the normative claim-to-WebID mapping, the minimum validated claims for a
+      deposit to be accepted, and the exact crosswalk from LoA to each national framework.
+    </p>
+  </section>
+</section>
+
+<section id="access-grades">
+  <h2>Access Grades</h2>
+  <p>
+    Records held about a person differ in sensitivity: a library membership and a
+    child-protection file do not warrant the same protection. The protocol defines an
+    ordered set of <dfn data-lt="access grade|access grades|grade|grades">Access
+    Grades</dfn>, and each record class carries a <em>minimum assurance requirement</em>.
+    Grade is a property of the <em>record</em>; the <a>level of assurance</a> is a property
+    of the <em>requester</em>; access is permitted only where the latter meets or exceeds
+    the former.
+  </p>
+  <p>A conforming <a>egress point</a>:</p>
+  <ul>
+    <li>MUST assign each <a>slot</a> or record class the minimum <a>level of assurance</a>
+      required to read, append to, or contest it.</li>
+    <li>MUST deny a request whose presented assurance is below the record&rsquo;s minimum,
+      and SHOULD indicate the step-up needed rather than merely refusing.</li>
+    <li>MUST evaluate a <a>Guardian</a>&rsquo;s request at the lesser of the
+      Guardian&rsquo;s own assurance and the scope their authority confers
+      (see&nbsp;<a href="#guardianship"></a>).</li>
+    <li>MUST record, in the audit log (see&nbsp;<a href="#evidence"></a>), the grade of the
+      record and the assurance under which each access was granted or denied.</li>
+  </ul>
+  <p class="note">
+    Illustratively: a self-asserted account may read low-grade correspondence and lodge a
+    contact-detail correction; retrieving health or legal records requires a verified
+    digital identity; and a guardian retrieving a child&rsquo;s protection file requires
+    both a strong identity and explicit authority of adequate scope.
+  </p>
+</section>
+
+<section id="guardianship">
+  <h2>Guardianship &amp; Delegated Access</h2>
+  <p>
+    Not every <a>Holder</a> can act for themselves. Children, and adults under guardianship
+    or with impaired capacity, hold rights over the records that concern them but exercise
+    those rights through another party. The protocol treats this as first-class
+    <dfn>delegated access</dfn>, not an exception&nbsp;&mdash; consistent with the position
+    that human rights, not autonomy, are the atomic unit of identity
+    (see&nbsp;<a href="#identity"></a>).
+  </p>
+  <p>
+    A <dfn data-lt="guardian|guardians">Guardian</dfn> is an <a>Agent</a> authorised to act
+    in respect of a <dfn data-lt="protected person|protected persons">Protected
+    Person</dfn> (the <a>Entity</a>). A conforming implementation:
+  </p>
+  <ul>
+    <li>MUST represent guardianship as an assertion binding the Guardian&rsquo;s identity to
+      the Protected Person&rsquo;s identity, distinct from either party&rsquo;s own
+      identity, and MUST NOT merge the two into a single account.</li>
+    <li>MUST record the <em>authority</em> on which the delegation rests&nbsp;&mdash; for
+      example parental status, a court order, an enduring guardianship, or a power of
+      attorney&nbsp;&mdash; as verifiable metadata.</li>
+    <li>MUST bound the delegation by <em>scope</em> (which records, and which actions:
+      read, append, contest) and, where applicable, by <em>time</em>.</li>
+    <li>MUST log every action a Guardian performs as carried out by that Agent on behalf of
+      the Protected Person, never as the Protected Person acting directly.</li>
+    <li>MUST support revocation and lawful transition&nbsp;&mdash; including a Protected
+      Person assuming direct control on reaching majority or regaining capacity&nbsp;&mdash;
+      without erasing the historical record of who acted, when, and under what authority.</li>
+  </ul>
+  <p>
+    A Guardian&rsquo;s effective access is the lesser of their own <a>level of assurance</a>
+    and the scope their authority confers (see&nbsp;<a href="#access-grades"></a>).
+  </p>
+</section>
+
+<section id="accountability">
+  <h2>Accountability of Institutional Actors</h2>
+  <p>
+    Rights and accountability are symmetrical. Just as a <a>Holder</a> must be identifiable to
+    exercise their rights (see&nbsp;<a href="#identity"></a>), an institutional actor must be
+    identifiable to be answerable for what they do. Institutional agents&nbsp;&mdash; call-centre
+    operators in particular&nbsp;&mdash; frequently give a caller only a first name or none, and a
+    single interaction may pass through an IVR, several operators, a supervisor, and an interpreter.
+    The protocol does not permit the institutional side of a record to be anonymous.
+  </p>
+  <p>For any interaction (a call, IVR session, chat, or counter visit) that concerns a <a>Holder</a>:</p>
+  <ul>
+    <li>The institution MUST record every participating institutional actor&nbsp;&mdash; human
+      operator or software agent&nbsp;&mdash; by a stable identifier, together with the actor's role
+      and the interval of their participation, using the participation model of the
+      [[SOLID-DATABOX-VOCABULARY]].</li>
+    <li>Across transfers, each successive actor MUST be recorded and linked by a transfer event, so
+      the full path of the interaction is reconstructable.</li>
+    <li>The identifier MAY be pseudonymous and need not be disclosed to the <a>Holder</a>, but MUST be
+      resolvable by the institution&nbsp;&mdash; and, on lawful request, by an oversight body or
+      court&nbsp;&mdash; to the natural person or software agent it denotes.</li>
+    <li>A software or AI actor MUST be identified as such, by name, version, and where applicable
+      model; an <a>egress point</a> MUST NOT present, and an institution MUST NOT allow, an automated
+      actor to be mistaken for a human.</li>
+    <li>An institution MUST NOT record a materially participating actor as &ldquo;anonymous&rdquo; or
+      omit them.</li>
+  </ul>
+  <p>
+    This participation record is part of the tamper-evident audit trail
+    (see&nbsp;<a href="#evidence"></a>), and it is the institutional mirror of the agent/entity
+    distinction: the operator is the acting <a>Agent</a>, the institution the <a>Entity</a> on whose
+    behalf they act, and neither may be collapsed away.
+  </p>
+</section>
+
+<section id="delivery-chains">
+  <h2>Service Delivery &amp; Contracting Chains</h2>
+  <p>
+    The organisation a person deals with is often not the one ultimately responsible: a government
+    service may be delivered by a private contractor or a non-profit under a contract, grant, or
+    statutory delegation, and that contractor may in turn subcontract. Outsourcing routinely launders
+    accountability&nbsp;&mdash; the person is told the contractor merely follows the rules, and the
+    principal that the contractor is responsible. This protocol forbids that gap at the record level.
+  </p>
+  <p>Where a service or determination concerning a <a>Holder</a> is delivered under such an arrangement:</p>
+  <ul>
+    <li>Each deposited record MUST identify both the delivering party and the principal on whose behalf
+      it acts, and the instrument and scope of the arrangement, using the service-delivery model of the
+      [[SOLID-DATABOX-VOCABULARY]].</li>
+    <li>The record MUST make explicit which party remains accountable to the <a>Holder</a> for the
+      service; outsourcing does not transfer that accountability by default, and a person MUST NOT be
+      left with no identified accountable party.</li>
+    <li>Where delivery is subcontracted across tiers, the chain MUST be traceable to the tier that
+      actually acted, so responsibility can be located rather than diffused.</li>
+  </ul>
+  <p>
+    This is the organisational tier of the same principle as <a href="#accountability"></a>: a
+    delivering body may not hide behind the principal, and a principal may not disclaim the acts of the
+    body it engaged.
+  </p>
+</section>
+
+<section id="jurisdiction-redress">
+  <h2>Jurisdiction &amp; Redress Pathways</h2>
+  <p>
+    Authority is territorial, and a verifiable record is worth most when the person holding it knows
+    where to take it. Australia's federation spreads competence across the Commonwealth, the states and
+    territories, and local government, with a dense layer of ombudsmen, tribunals, courts, regulators,
+    and integrity and human-rights commissions&nbsp;&mdash; and law-enforcement bodies that are
+    themselves overseen. The protocol makes both the governing jurisdiction and the route to redress
+    part of the record.
+  </p>
+  <ul>
+    <li>Every deposited record MUST declare its governing jurisdiction, using the jurisdiction model of
+      the [[SOLID-DATABOX-VOCABULARY]].</li>
+    <li>A record that is a determination MUST identify the body competent to review it or hear a
+      complaint about it, and any statutory time limit&nbsp;&mdash; so the person is told where and by
+      when they may seek redress, and is not silently timed out. This encodes, as data, the review-rights
+      notice that administrative law already expects such a decision to carry.</li>
+    <li>Access to a <a>Holder</a>'s records by a law-enforcement or oversight body is itself a
+      high-assurance, auditable event (see&nbsp;<a href="#access-grades"></a> and
+      <a href="#evidence"></a>): it is recorded, attributed to an identified actor and the authority
+      relied upon, and&nbsp;&mdash; subject to lawful exceptions&nbsp;&mdash; visible to the
+      <a>Holder</a>.</li>
+  </ul>
+  <p>
+    Because oversight is recursive, the body that reviews a determination and the body that oversees an
+    enforcement agency are recorded on the same footing as any other party: no authority sits outside the
+    record.
+  </p>
+</section>
+
+<section id="legal-basis">
+  <h2>Legal Basis</h2>
+  <p>
+    Solid-Databox does not create rights; it operationalises those the law already confers. The obligations in
+    this specification SHOULD be traceable to the instruments that create them, so an entitlement can be defended
+    by reference to its source rather than to this document.
+  </p>
+  <ul>
+    <li>An <a>egress point</a> SHOULD expose, for each record type it makes available, the legal instrument and
+      provision that mandate its provision (<code>sop:mandatedBy</code>, see [[SOLID-DATABOX-VOCABULARY]]).</li>
+    <li>A <a>Holder</a>'s access or correction request MAY invoke a specific right&nbsp;&mdash; for records held in
+      Australia, typically the access and correction principles of the applicable privacy law (APP&nbsp;12 and
+      APP&nbsp;13) or a human-rights instrument&nbsp;&mdash; and the request and its disposition are logged against
+      that ground.</li>
+    <li>Human-rights instruments are referenced from the Web Civics namespace [[WEBCIVICS]]; legislation is
+      identified with the European Legislation Identifier [[ELI]] and the relevant jurisdiction's register.</li>
+  </ul>
+</section>
+
+<section id="zk-attestations">
+  <h2>Attestations, Zero-Knowledge Proofs &amp; Risk</h2>
+  <p>
+    Some records are claims about conduct: that a wrong occurred, or that an actor was made to commit one. Two
+    parties need to make such claims while disclosing as little else as possible&nbsp;&mdash; a consumer proving
+    they were wronged without exposing their whole file, and an employee proving they were instructed or coerced
+    without exposing themselves prematurely to the very party that pressured them. Conduct attestations (see
+    [[SOLID-DATABOX-VOCABULARY]]) are Verifiable Credentials [[VC-DATA-MODEL-2.0]], and this section provides for
+    their zero-knowledge presentation.
+  </p>
+  <ul>
+    <li>A party MAY present a conduct attestation as a zero-knowledge or selectively-disclosed proof&nbsp;&mdash;
+      for example using BBS cryptosuites [[VC-DI-BBS]]&nbsp;&mdash; proving a predicate (that an instruction
+      existed, that a role was held, that an amount exceeded a threshold, that a wrong of a stated type occurred)
+      without revealing the underlying data or, where protected, the presenter's identity.</li>
+    <li>Where an actor asserts they acted under instruction or duress (<code>sop:coercedBy</code>,
+      <code>sop:underDuress</code>), the proof MUST identify the compelling party to the extent needed to shift
+      liability, while the coerced actor's own identity MAY remain pseudonymous, resolvable only by an oversight
+      body or court (as in <a href="#accountability"></a>). This is the whistleblower and coerced-worker
+      protection path.</li>
+    <li>An attestation's risk classification (<code>sop:riskClass</code>) distinguishes insurable risk (accident,
+      negligence) from uninsurable risk (intentional wrongdoing), and from liability that has shifted to a
+      coercer&nbsp;&mdash; supporting litigation and indemnity decisions by either a wronged consumer or a
+      compelled employee.</li>
+  </ul>
+  <div class="issue" title="Honest limit of zero-knowledge">
+    A zero-knowledge proof establishes that the presenter holds an attestation asserting a fact, and can prove
+    predicates over it without full disclosure. It does <em>not</em> make the asserted fact true: its weight still
+    rests on who signed the attestation and on corroboration (for a call, the original recording; see
+    <a href="#evidence"></a>). Zero-knowledge controls <em>disclosure</em>, not <em>truth</em>&nbsp;&mdash; the
+    protocol must not let a cryptographically valid proof of a false attestation pass as proof of the underlying
+    fact.
+  </div>
+</section>
+
+<section id="protocol">
+  <h2>Protocol</h2>
+
+  <section>
+    <h3>Deposit (Issuer &rarr; Egress Point)</h3>
+    <p>
+      An <a>Issuer</a> deposits a record by performing an authenticated HTTP
+      <code>POST</code> (or <code>PUT</code>) of a verifiable payload into the
+      addressed <a>slot</a>, per [[LDP]]. The <a>egress point</a> MUST reject a deposit
+      whose provenance cannot be verified, and MUST record every accepted deposit in
+      the audit log (see&nbsp;<a href="#evidence"></a>).
+    </p>
+  </section>
+
+  <section>
+    <h3>Notification</h3>
+    <p>
+      On accepting a deposit, the <a>egress point</a> MUST deliver a Linked Data
+      Notification [[LDN]] to the <a>Holder</a>&rsquo;s inbox announcing the new record.
+      Notification MUST NOT include the record contents beyond what is required to
+      locate and identify it.
+    </p>
+  </section>
+
+  <section>
+    <h3>Retrieval (Consumer Agent &rarr; Egress Point)</h3>
+    <p>
+      A <a>Consumer Agent</a> authenticates (see&nbsp;<a href="#auth"></a>) and retrieves
+      records addressed to its <a>Holder</a> by standard Solid read operations
+      [[SOLID-PROTOCOL]]. The <a>egress point</a> MUST NOT expose a <a>slot</a> to any
+      party other than its addressed <a>Holder</a> and authorised <a>Issuers</a>.
+      Retrieval is further constrained by <a href="#access-grades"></a>: the
+      <a>Consumer Agent</a> MUST present a <a>level of assurance</a> that meets each
+      requested record&rsquo;s minimum, and a <a>Guardian</a> acting for the
+      <a>Holder</a> is bound additionally by the scope of their authority.
+    </p>
+  </section>
+
+  <section>
+    <h3>Correction (Holder &rarr; Issuer)</h3>
+    <p>
+      A <a>Holder</a> contests or appends to a record by sending a notification
+      [[LDN]], or by opening a message thread bound to the specific record. A
+      conforming <a>Issuer</a> bridge MUST NOT apply such a request as a destructive
+      update to a system of record; it MUST stage the request for human review and
+      record both the request and its disposition in the audit log.
+    </p>
+  </section>
+</section>
+
+<!-- Authentication, Assurance, Access Grades, and Guardianship are defined above,
+     before the Protocol section. -->
+
+<section id="evidence">
+  <h2>Evidence &amp; Audit: Non-Response and Deletion Logging</h2>
+  <div class="issue" title="Open design question">
+    This section is what distinguishes a rights instrument from mere compliance
+    tooling. An egress point run by the institution can also choose <em>not</em> to
+    deposit. The requirements below only bite if either (a) deposit is triggered at the
+    moment of record creation rather than left discretionary, or (b) the Holder side can
+    independently prove an expected record is absent. Resolving which of these the
+    protocol mandates is the central open question.
+  </div>
+  <p>
+    A conforming <a>egress point</a>:
+  </p>
+  <ul>
+    <li>MUST record every <a>deposit</a>, retrieval, and correction request in a
+      tamper-evident log.</li>
+    <li>MUST record deletion of, or modification to, any deposited record, retaining
+      evidence that the record previously existed.</li>
+    <li>SHOULD record the non-arrival of a record that a policy or schedule leads a
+      <a>Holder</a> to expect, so that institutional non-response is itself
+      observable.</li>
+  </ul>
+  <p>
+    A <a>Holder</a>&rsquo;s retained copy, once delivered, is independent of the
+    <a>egress point</a>: subsequent institutional alteration or erasure MUST NOT
+    invalidate the copy the <a>Holder</a> already holds. This is the
+    &ldquo;point of no return&rdquo; property&nbsp;&mdash; the protocol-level heir to the
+    registered-correspondence model, where delivery could not credibly be denied.
+  </p>
+</section>
+
+<section>
+  <h2>Security &amp; Privacy Considerations</h2>
+  <p class="issue">
+    Address: slot access control and enumeration resistance; minimisation in
+    notifications; key rotation within an <a>enumerated cryptographic state</a>;
+    handling of records concerning persons under guardianship; and the abuse case of
+    a coerced <a>Holder</a>.
+  </p>
+</section>
+
+<section class="informative">
+  <h2>Relationship to Digital Public Infrastructure</h2>
+  <p>
+    As a Digital Public Infrastructure building block, Solid-Databox is positioned
+    under the descriptor <em>Habeas Data Egress</em>. The <a>egress point</a> maps onto
+    DPI building blocks [[GOVSTACK]]&nbsp;&mdash; credential management, identity, and
+    data exchange&nbsp;&mdash; and interoperates with credential issuance flows such as
+    OpenID4VCI [[OID4VCI]]. This relationship is non-normative and documented fully in
+    the companion primer [[SOLID-DATABOX-PRIMER]].
+  </p>
+</section>
+
+</body>
+</html>
