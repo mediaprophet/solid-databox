@@ -44,3 +44,8 @@
 | | W3C PROV-O Extended Project Ontology | [linked.data.gov.au/def/project](https://linked.data.gov.au/def/project) |
 | | SMURF Ontology (Spatial Data Linking) | [github.com/rmit-gkl/SMURF](https://github.com/rmit-gkl/SMURF) |
 | | Organisational Supermodel | [linked.data.gov.au/def/org-supermodel](https://linked.data.gov.au/def/org-supermodel) |
+| **GLAM & Archival** | Commonwealth Record Series (CRS) Ontology (National Archives of Australia) | [linked.data.gov.au/def/crs](https://linked.data.gov.au/def/crs) |
+| | Trove & National Library of Australia (NLA) Data | [trove.nla.gov.au](https://trove.nla.gov.au) |
+| | AGLS Metadata Standard | [naa.gov.au](https://naa.gov.au) |
+| | AIATSIS Pathways Thesauri | [aiatsis.gov.au](https://aiatsis.gov.au) |
+| | Language Data Commons of Australia (LDaCA) Controlled Vocabularies | [ldaca.edu.au](https://ldaca.edu.au) |

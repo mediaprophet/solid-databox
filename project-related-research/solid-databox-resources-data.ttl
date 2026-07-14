@@ -5978,3 +5978,33 @@
     dct:title "Organisational Supermodel" ;
     schema:url <https://linked.data.gov.au/def/org-supermodel> .
 
+<https://linked.data.gov.au/def/crs>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Commonwealth Record Series (CRS) Ontology (National Archives of Australia)" ;
+    schema:url <https://linked.data.gov.au/def/crs> .
+
+<https://trove.nla.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Trove & National Library of Australia (NLA) Data" ;
+    schema:url <https://trove.nla.gov.au> .
+
+<https://naa.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "AGLS Metadata Standard" ;
+    schema:url <https://naa.gov.au> .
+
+<https://aiatsis.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "AIATSIS Pathways Thesauri" ;
+    schema:url <https://aiatsis.gov.au> .
+
+<https://ldaca.edu.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Language Data Commons of Australia (LDaCA) Controlled Vocabularies" ;
+    schema:url <https://ldaca.edu.au> .
+
