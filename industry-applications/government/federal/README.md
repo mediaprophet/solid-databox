@@ -27,6 +27,11 @@ Taxation authorities currently demand that citizens and businesses upload massiv
 - **Zero-Knowledge Tax Assessments:** Utilizing Zero-Knowledge Proofs (ZKPs), a citizen can mathematically prove to the federal tax authority that they have correctly calculated their tax liability based on the verified VCs in their Pod, *without* exposing every single line-item of their personal daily spending to the government.
 - **Instant Rebates & Stimulus:** Federal tax rebates, child-care subsidies, or emergency economic stimulus payments can be authorized via a VC and deposited directly into the citizen's Databox, completely eradicating fraudulent claims.
 
+### 5. National Statistics & Census (SPARQL & Semantic Web)
+Federal statistics bureaus (e.g., the Census Bureau) operate more as data consumers and public publishers rather than direct Pod providers. In a Solid ecosystem, they function as macro-level services leveraging semantic web standards.
+- **Dynamic Census via Consent:** Instead of running a massively expensive, centralized census every ten years, the statistics bureau can issue dynamic, opt-in queries. Citizens grant anonymized read-access (or provide ZKP proofs) regarding demographics, employment, or housing directly from their Databoxes. 
+- **Public SPARQL Endpoints:** Once the federal government aggregates this national data, it publishes the macro-statistics via public SPARQL endpoints (aligned with open data platforms like CKAN). A citizen's personal AI agent (running locally in their Databox) can query this federal SPARQL endpoint to pull macroeconomic trends, localized health data, or demographic shifts, overlaying it securely against the citizen's private data to provide personalized, private insights.
+
 ## The Solid Databox Workflow for Federal Agencies
 
 1. **Digital Credential Issuance:** Upon verification, a federal agency issues a cryptographically signed Verifiable Credential (e.g., a Digital Driver's License or a Professional License) directly to the citizen's Solid Pod.
