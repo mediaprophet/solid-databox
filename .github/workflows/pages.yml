@@ -30,8 +30,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire ghpages directory
-          path: './ghpages'
+          # Upload entire dev-linkeddata-au directory
+          path: './dev-linkeddata-au'
           
       - name: Deploy to GitHub Pages
         id: deployment
