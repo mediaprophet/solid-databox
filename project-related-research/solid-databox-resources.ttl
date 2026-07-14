@@ -1,0 +1,273 @@
+@prefix :       <https://w3id.org/solid-databox/resources#> .
+@prefix sop:    <https://w3id.org/solid-databox/ns#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix sioc:   <http://rdfs.org/sioc/ns#> .
+@prefix doap:   <http://usefulinc.com/ns/doap#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix dcat:   <http://www.w3.org/ns/dcat#> .
+@prefix ldp:    <http://www.w3.org/ns/ldp#> .
+@prefix sdo:    <https://w3id.org/solid-databox/resources#> .
+
+<https://w3id.org/solid-databox/resources>
+    a owl:Ontology ;
+    dct:title    "Solid-Databox Resources Ontology" ;
+    dct:description "A small ontology for cataloguing Solid, Read-Write-Web (RWW), and Semantic-Web resources — servers, apps, libraries, vocabularies, specifications, developers, communities, and hosted Pod providers — harvested from the project's CSV inventories. Reuses schema.org, FOAF, DOAP, SKOS, DCAT, PROV-O, and LDP, coining the `sdr:` prefix only where those leave a gap."@en ;
+    dct:creator  [ a foaf:Person ; foaf:name "Timothy Charles Holborn" ;
+                   schema:affiliation "Webizen / WebCivics" ] ;
+    dct:created  "2026-07-14"^^xsd:date ;
+    dct:license  <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" ;
+    owl:imports  <https://schema.org/> ,
+                 <http://xmlns.com/foaf/0.1/> ,
+                 <http://usefulinc.com/ns/doap#> ,
+                 <http://www.w3.org/2004/02/skos/core#> ,
+                 <http://www.w3.org/ns/prov#> ,
+                 <http://www.w3.org/ns/dcat#> ,
+                 <http://www.w3.org/ns/ldp#> ;
+    rdfs:seeAlso <https://w3id.org/solid-databox/resources-vocabulary.html> ;
+    rdfs:label   "Solid-Databox Resources Ontology" .
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Prefix used throughout this ontology:  sdr:  (Solid-Databox Resources)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Top-level resource catalogue class ─────────────────────────────────────────
+
+:Resource
+    a owl:Class ;
+    rdfs:subClassOf schema:CreativeWork , dcat:Resource ;
+    rdfs:label "Solid-Databox Resource"@en ;
+    rdfs:comment "Any catalogued resource — software, vocabulary, specification, person, organisation, or hosted service — relevant to the Solid / RWW / Semantic-Web ecosystem."@en ;
+    skos:altLabel "Resource" .
+
+# ── Software resources (subclasses of schema:SoftwareApplication / DOAP Project) ─
+
+:SoftwareResource
+    a owl:Class ;
+    rdfs:subClassOf :Resource , schema:SoftwareApplication , doap:Project ;
+    rdfs:label "Software Resource"@en ;
+    rdfs:comment "A piece of software — server, app, library, utility, or platform — catalogued in the inventories."@en .
+
+:Server
+    a owl:Class ;
+    rdfs:subClassOf :SoftwareResource ;
+    rdfs:label "Solid / Pod Server"@en ;
+    rdfs:comment "A server implementation that hosts Solid Pods or otherwise implements the Solid protocol stack."@en ;
+    owl:equivalentClass [ a owl:Restriction ;
+        owl:onProperty schema:applicationCategory ;
+        owl:hasValue   "SolidServer" ] .
+
+:App
+    a owl:Class ;
+    rdfs:subClassOf :SoftwareResource , schema:SoftwareApplication ;
+    rdfs:label "Solid / RWW Application"@en ;
+    rdfs:comment "An end-user application built on Solid or the Read-Write-Web."@en .
+
+:Library
+    a owl:Class ;
+    rdfs:subClassOf :SoftwareResource ;
+    rdfs:label "Library / SDK"@en ;
+    rdfs:comment "A reusable library, SDK, or framework for building Solid / Semantic-Web software."@en .
+
+:Utility
+    a owl:Class ;
+    rdfs:subClassOf :SoftwareResource ;
+    rdfs:label "Utility / Tool"@en ;
+    rdfs:comment "A developer utility, command-line tool, browser extension, or integration helper."@en .
+
+:Platform
+    a owl:Class ;
+    rdfs:subClassOf :SoftwareResource ;
+    rdfs:label "Platform / Framework"@en ;
+    rdfs:comment "A broader platform or framework that incorporates Solid / RWW capabilities."@en .
+
+# ── Non-software resources ─────────────────────────────────────────────────────
+
+:Vocabulary
+    a owl:Class ;
+    rdfs:subClassOf :Resource ;
+    rdfs:label "Vocabulary / Ontology"@en ;
+    rdfs:comment "An RDF vocabulary, ontology, or namespace (e.g. schema.org, FOAF, SKOS)."@en ;
+    owl:equivalentClass skos:ConceptScheme , owl:Ontology .
+
+:Specification
+    a owl:Class ;
+    rdfs:subClassOf :Resource ;
+    rdfs:label "Specification"@en ;
+    rdfs:comment "A W3C / community specification underpinning the Solid or Semantic-Web stack."@en .
+
+:Developer
+    a owl:Class ;
+    rdfs:subClassOf :Resource , foaf:Person , schema:Person ;
+    rdfs:label "Developer / Luminary"@en ;
+    rdfs:comment "A person who contributes to the Solid / RWW / SemWeb ecosystem. The CSVs use the label 'Luminary' for notable contributors."@en ;
+    skos:altLabel "Luminary" .
+
+:Community
+    a owl:Class ;
+    rdfs:subClassOf :Resource , schema:Organization ;
+    rdfs:label "Community / Organisation"@en ;
+    rdfs:comment "A community group, company, or organisation active in the ecosystem."@en ;
+    owl:equivalentClass foaf:Group , schema:Organization .
+
+:PodProvider
+    a owl:Class ;
+    rdfs:subClassOf :Community ;
+    rdfs:label "Hosted Pod Provider"@en ;
+    rdfs:comment "An organisation that offers hosted Solid Pods to end users."@en .
+
+:ResourceListing
+    a owl:Class ;
+    rdfs:subClassOf :Resource ;
+    rdfs:label "Resource Listing / Directory"@en ;
+    rdfs:comment "A curated list or directory of resources (e.g. an 'awesome' list or app catalogue)."@en .
+
+# ── Properties ─────────────────────────────────────────────────────────────────
+
+:sourceFile
+    a owl:DatatypeProperty ;
+    rdfs:label "source file"@en ;
+    rdfs:comment "The CSV file within dev-resources/ from which the record was harvested."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string .
+
+:csvType
+    a owl:DatatypeProperty ;
+    rdfs:label "CSV Type"@en ;
+    rdfs:comment "The value of the 'Type' column in the source CSV (e.g. Solid, RWW, SemWeb)."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string .
+
+:csvCategory
+    a owl:DatatypeProperty ;
+    rdfs:label "CSV Category"@en ;
+    rdfs:comment "The value of the 'Category' column in the source CSV."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string .
+
+:csvSubCategory
+    a owl:DatatypeProperty ;
+    rdfs:label "CSV Sub-Category"@en ;
+    rdfs:comment "The value of the 'Sub-Category' column in the source CSV."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string .
+
+:implementationLanguage
+    a owl:DatatypeProperty ;
+    rdfs:label "implementation language"@en ;
+    rdfs:comment "The primary programming language of a software resource (e.g. TypeScript, PHP, Rust, C++)."@en ;
+    rdfs:domain :SoftwareResource ;
+    rdfs:range  xsd:string ;
+    rdfs:subPropertyOf schema:programmingLanguage .
+
+:licenseType
+    a owl:DatatypeProperty ;
+    rdfs:label "license type"@en ;
+    rdfs:comment "The license under which a resource is distributed (e.g. MIT, GPL, Commercial)."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string ;
+    rdfs:subPropertyOf dct:license .
+
+:maintenanceStatus
+    a owl:DatatypeProperty ;
+    rdfs:label "maintenance status"@en ;
+    rdfs:comment "A human-readable maintenance status (e.g. 'actively maintained', 'legacy', 'experimental')."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  xsd:string .
+
+:hostingLocation
+    a owl:DatatypeProperty ;
+    rdfs:label "hosting location"@en ;
+    rdfs:comment "The geographic region in which a Pod provider hosts Pods (e.g. EU, US, Australia)."@en ;
+    rdfs:domain :PodProvider ;
+    rdfs:range  xsd:string ;
+    rdfs:subPropertyOf schema:areaServed .
+
+:hasDeveloper
+    a owl:ObjectProperty ;
+    rdfs:label "has developer"@en ;
+    rdfs:comment "Links a software resource to a person who develops or maintains it."@en ;
+    rdfs:domain :SoftwareResource ;
+    rdfs:range  :Developer ;
+    rdfs:subPropertyOf schema:author , dct:creator .
+
+:hasCommunity
+    a owl:ObjectProperty ;
+    rdfs:label "has community"@en ;
+    rdfs:comment "Links a resource to the community or organisation that maintains it."@en ;
+    rdfs:domain :Resource ;
+    rdfs:range  :Community ;
+    rdfs:subPropertyOf schema:publisher , dct:publisher .
+
+:usesVocabulary
+    a owl:ObjectProperty ;
+    rdfs:label "uses vocabulary"@en ;
+    rdfs:comment "Links a software resource to a vocabulary/ontology it depends on or emits."@en ;
+    rdfs:domain :SoftwareResource ;
+    rdfs:range  :Vocabulary ;
+    rdfs:subPropertyOf dct:references .
+
+:implementsSpecification
+    a owl:ObjectProperty ;
+    rdfs:label "implements specification"@en ;
+    rdfs:comment "Links a software resource to a specification it implements."@en ;
+    rdfs:domain :SoftwareResource ;
+    rdfs:range  :Specification ;
+    rdfs:subPropertyOf dct:references .
+
+:prefix
+    a owl:DatatypeProperty ;
+    rdfs:label "prefix"@en ;
+    rdfs:comment "The conventional prefix used for a vocabulary (e.g. 'foaf', 'schema', 'skos')."@en ;
+    rdfs:domain :Vocabulary ;
+    rdfs:range  xsd:string .
+
+:namespaceURI
+    a owl:DatatypeProperty ;
+    rdfs:label "namespace URI"@en ;
+    rdfs:comment "The namespace URI of a vocabulary."@en ;
+    rdfs:domain :Vocabulary ;
+    rdfs:range  xsd:anyURI ;
+    rdfs:subPropertyOf schema:url .
+
+:purpose
+    a owl:DatatypeProperty ;
+    rdfs:label "purpose"@en ;
+    rdfs:comment "A short statement of the purpose of a vocabulary (from the commonVocab CSV)."@en ;
+    rdfs:domain :Vocabulary ;
+    rdfs:range  xsd:string ;
+    rdfs:subPropertyOf dct:description .
+
+# ── Concept scheme for CSV "Type" values ────────────────────────────────────────
+
+:TypeScheme
+    a skos:ConceptScheme ;
+    rdfs:label "Solid-Databox Resource Type Scheme"@en ;
+    skos:hasTopConcept :TypeSolid , :TypeRWW , :TypeSemWeb , :TypeNews .
+
+:TypeSolid
+    a skos:Concept ; skos:prefLabel "Solid" ;
+    skos:definition "Resources directly part of the Solid ecosystem."@en ;
+    skos:inScheme :TypeScheme .
+
+:TypeRWW
+    a skos:Concept ; skos:prefLabel "RWW" ;
+    skos:definition "Read-Write-Web resources — the precursor movement to Solid."@en ;
+    skos:inScheme :TypeScheme .
+
+:TypeSemWeb
+    a skos:Concept ; skos:prefLabel "SemWeb" ;
+    skos:definition "General Semantic-Web / Linked-Data resources."@en ;
+    skos:inScheme :TypeScheme .
+
+:TypeNews
+    a skos:Concept ; skos:prefLabel "News" ;
+    skos:definition "News articles and press coverage about Solid."@en ;
+    skos:inScheme :TypeScheme .

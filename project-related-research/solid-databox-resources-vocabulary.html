@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Solid-Databox Resources Ontology & Vocabulary</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove" defer></script>
+  <script class="remove">
+    var respecConfig = {
+      specStatus: "unofficial",
+      shortName: "solid-databox-resources",
+      subtitle: "Cataloguing Solid, RWW & Semantic-Web resources harvested from CSV inventories",
+      editors: [{
+        name: "Timothy Charles Holborn",
+        mailto: "timothy.holborn@gmail.com",
+        company: "Webizen / WebCivics"
+      }],
+      xref: ["web-platform"],
+      localBiblio: {
+        "SOLID-DATABOX-PROTOCOL": { title: "Solid-Databox Protocol", href: "solid-databox-protocol.html", publisher: "Webizen / WebCivics" },
+        "SOLID-DATABOX-VOCABULARY": { title: "Solid-Databox Record Ontology & Vocabulary", href: "solid-databox-vocabulary.html", publisher: "Webizen / WebCivics" },
+        "PROV-O": { title: "PROV-O: The PROV Ontology", href: "https://www.w3.org/TR/prov-o/", publisher: "W3C" },
+        "DCTERMS": { title: "DCMI Metadata Terms", href: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/", publisher: "Dublin Core Metadata Initiative" },
+        "SCHEMA-ORG": { title: "Schema.org", href: "https://schema.org/", publisher: "Schema.org" },
+        "DOAP": { title: "Description of a Project (DOAP) vocabulary", href: "https://github.com/ewilderj/doap", publisher: "EDoap" },
+        "SKOS": { title: "SKOS Simple Knowledge Organization System Reference", href: "https://www.w3.org/TR/skos-reference/", publisher: "W3C" },
+        "DCAT": { title: "Data Catalog Vocabulary (DCAT) 3", href: "https://www.w3.org/TR/vocab-dcat-3/", publisher: "W3C" },
+        "FOAF": { title: "FOAF Vocabulary Specification 0.99", href: "http://xmlns.com/foaf/spec/", publisher: "FOAF Project" },
+        "LDP": { title: "Linked Data Platform 1.0", href: "https://www.w3.org/TR/ldp/", publisher: "W3C" },
+        "SIOC": { title: "SIOC Core Ontology", href: "http://rdfs.org/sioc/spec/", publisher: "SIOC Project" },
+        "SOLID-PROTOCOL": { title: "Solid Protocol", href: "https://solidproject.org/TR/protocol", publisher: "W3C Solid Community Group" }
+      }
+    };
+  </script>
+</head>
+<body>
+
+<section id="abstract">
+  <p>
+    This vocabulary defines the classes and properties used by Solid-Databox
+    [[SOLID-DATABOX-PROTOCOL]] to catalogue the resources — servers, applications,
+    libraries, vocabularies, specifications, developers, communities, and hosted Pod
+    providers — that make up the Solid, Read-Write-Web (RWW), and broader Semantic-Web
+    ecosystem. The records are harvested from four CSV inventories kept under
+    <code>dev-resources/</code> and re-published as Linked Data. The ontology reuses
+    schema.org [[SCHEMA-ORG]], FOAF [[FOAF]], DOAP [[DOAP]], SKOS [[SKOS]], DCAT [[DCAT]],
+    PROV-O [[PROV-O]], Dublin Core [[DCTERMS]], and LDP [[LDP]], coining the
+    <code>sdr:</code> prefix only where those leave a gap.
+  </p>
+</section>
+
+<section id="sotd">
+  <p>
+    Unofficial draft, no standing at any standards body, published to structure work
+    toward the Solid 2026 Hackathon. Companion to the [[SOLID-DATABOX-VOCABULARY]] and
+    [[SOLID-DATABOX-PROTOCOL]]. The namespace
+    <code>https://w3id.org/solid-databox/resources#</code> (prefix <code>sdr:</code>)
+    is provisional.
+  </p>
+</section>
+
+<section id="conformance">
+  <p>
+    This document defines classes and properties, and a small number of usage rules for
+    them. Where those rules use RFC&nbsp;2119 keywords they bind any implementation that
+    produces or consumes Solid-Databox resource records.
+  </p>
+</section>
+
+<section>
+  <h2>Design Principles</h2>
+  <ol>
+    <li><strong>Reuse over reinvention.</strong> Anchor on schema.org, FOAF, DOAP, SKOS,
+      DCAT, PROV-O, DCTERMS, and LDP; coin <code>sdr:</code> terms only for genuine
+      gaps — chiefly the CSV provenance columns.</li>
+    <li><strong>The CSV is the source of truth.</strong> Every <code>sdr:Resource</code>
+      SHOULD carry <code>sdr:sourceFile</code> and the relevant CSV column properties so
+      the record can be regenerated deterministically.</li>
+    <li><strong>One record per row.</strong> Each non-empty row in a source CSV becomes
+      exactly one RDF resource; duplicate URLs across CSVs are merged with
+      <code>owl:sameAs</code>.</li>
+    <li><strong>People are first-class.</strong> A developer/luminary is typed as both
+      <code>sdr:Developer</code> and <code>foaf:Person</code> / <code>schema:Person</code>,
+      so existing profile tooling resolves them.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Namespaces</h2>
+  <p>The ontology is published at <code>https://w3id.org/solid-databox/resources#</code>
+    and uses the prefix <code>sdr:</code>. The following prefixes are reused:</p>
+  <table class="simple">
+    <thead><tr><th>Prefix</th><th>Namespace</th><th>Used for</th></tr></thead>
+    <tbody>
+      <tr><td><code>sdr:</code></td><td><code>https://w3id.org/solid-databox/resources#</code></td><td>This ontology</td></tr>
+      <tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td><td>Creative works, SoftwareApplication, Person, Organization</td></tr>
+      <tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td><td>Person, Group, name, knows</td></tr>
+      <tr><td><code>doap:</code></td><td><code>http://usefulinc.com/ns/doap#</code></td><td>Project, repository, programming-language</td></tr>
+      <tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td><td>ConceptScheme for CSV "Type" values</td></tr>
+      <tr><td><code>dct:</code></td><td><code>http://purl.org/dc/terms/</code></td><td>title, description, creator, license, references</td></tr>
+      <tr><td><code>dcat:</code></td><td><code>http://www.w3.org/ns/dcat#</code></td><td>Resource (catalogue entry point)</td></tr>
+      <tr><td><code>prov:</code></td><td><code>http://www.w3.org/ns/prov#</code></td><td>Provenance of the harvest</td></tr>
+      <tr><td><code>ldp:</code></td><td><code>http://www.w3.org/ns/ldp#</code></td><td>Container/Resource typing for Pod-stored catalogues</td></tr>
+      <tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td><td>Ontology, Class, Restriction, sameAs</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Classes</h2>
+
+  <section id="Resource">
+    <h3><code>sdr:Resource</code></h3>
+    <p><strong>Subclass of:</strong> <code>schema:CreativeWork</code>, <code>dcat:Resource</code></p>
+    <p>The top-level catalogue class. Every record harvested from a CSV row is an
+      instance of <code>sdr:Resource</code> or one of its subclasses.</p>
+  </section>
+
+  <section id="SoftwareResource">
+    <h3><code>sdr:SoftwareResource</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code>,
+      <code>schema:SoftwareApplication</code>, <code>doap:Project</code></p>
+    <p>A piece of software — server, app, library, utility, or platform.</p>
+  </section>
+
+  <section id="Server"><h3><code>sdr:Server</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:SoftwareResource</code></p>
+    <p>A server implementation that hosts Solid Pods or implements the Solid protocol
+      stack (e.g. Community Solid Server, Node Solid Server, ESS, Trinpod, Manas, PHP
+      Solid Server, OpenLink Virtuoso).</p>
+  </section>
+
+  <section id="App"><h3><code>sdr:App</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:SoftwareResource</code>,
+      <code>schema:SoftwareApplication</code></p>
+    <p>An end-user application built on Solid or the Read-Write-Web.</p>
+  </section>
+
+  <section id="Library"><h3><code>sdr:Library</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:SoftwareResource</code></p>
+    <p>A reusable library, SDK, or framework for building Solid / Semantic-Web software.</p>
+  </section>
+
+  <section id="Utility"><h3><code>sdr:Utility</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:SoftwareResource</code></p>
+    <p>A developer utility, CLI tool, browser extension, or integration helper.</p>
+  </section>
+
+  <section id="Platform"><h3><code>sdr:Platform</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:SoftwareResource</code></p>
+    <p>A broader platform or framework that incorporates Solid / RWW capabilities.</p>
+  </section>
+
+  <section id="Vocabulary"><h3><code>sdr:Vocabulary</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code>;
+      <code>owl:equivalentClass</code> <code>skos:ConceptScheme</code>,
+      <code>owl:Ontology</code></p>
+    <p>An RDF vocabulary, ontology, or namespace (e.g. schema.org, FOAF, SKOS, ODRL,
+      PROV-O). Sourced primarily from <code>Tools - commonVocab.csv</code>.</p>
+  </section>
+
+  <section id="Specification"><h3><code>sdr:Specification</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code></p>
+    <p>A W3C / community specification underpinning the Solid or Semantic-Web stack
+      (e.g. LDP, SHACL, WebID-TLS, Solid Protocol, VC Data Model).</p>
+  </section>
+
+  <section id="Developer"><h3><code>sdr:Developer</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code>, <code>foaf:Person</code>,
+      <code>schema:Person</code></p>
+    <p>A person who contributes to the ecosystem. The CSVs use the label
+      <em>Luminary</em> for notable contributors; <code>skos:altLabel</code> preserves
+      that term.</p>
+  </section>
+
+  <section id="Community"><h3><code>sdr:Community</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code>;
+      <code>owl:equivalentClass</code> <code>foaf:Group</code>,
+      <code>schema:Organization</code></p>
+    <p>A community group, company, or organisation active in the ecosystem.</p>
+  </section>
+
+  <section id="PodProvider"><h3><code>sdr:PodProvider</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Community</code></p>
+    <p>An organisation that offers hosted Solid Pods to end users (e.g. Inrupt Pod
+      Spaces, solidcommunity.net, trinpod.eu, use.id).</p>
+  </section>
+
+  <section id="ResourceListing"><h3><code>sdr:ResourceListing</code></h3>
+    <p><strong>Subclass of:</strong> <code>sdr:Resource</code></p>
+    <p>A curated list or directory of resources (e.g. an "awesome" list or the
+      solidproject.org/apps catalogue).</p>
+  </section>
+</section>
+
+<section>
+  <h2>Properties</h2>
+
+  <section><h3><code>sdr:sourceFile</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p>The CSV file within <code>dev-resources/</code> from which the record was
+      harvested (e.g. <code>Tools - RWW_Solid Links (mostly github).csv</code>).</p>
+  </section>
+
+  <section><h3><code>sdr:csvType</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p>The value of the <em>Type</em> column (e.g. <code>Solid</code>, <code>RWW</code>,
+      <code>SemWeb</code>, <code>News</code>). Values are also enumerated in the
+      <code>sdr:TypeScheme</code> SKOS concept scheme.</p>
+  </section>
+
+  <section><h3><code>sdr:csvCategory</code> & <code>sdr:csvSubCategory</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p>The <em>Category</em> and <em>Sub-Category</em> CSV columns, preserved verbatim
+      for traceability.</p>
+  </section>
+
+  <section><h3><code>sdr:implementationLanguage</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:SoftwareResource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p><strong>Subproperty of:</strong> <code>schema:programmingLanguage</code></p>
+    <p>The primary programming language of a software resource.</p>
+  </section>
+
+  <section><h3><code>sdr:licenseType</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p><strong>Subproperty of:</strong> <code>dct:license</code></p>
+    <p>The license under which a resource is distributed (e.g. MIT, GPL, Commercial).</p>
+  </section>
+
+  <section><h3><code>sdr:maintenanceStatus</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p>A human-readable maintenance status (e.g. <em>actively maintained</em>,
+      <em>legacy</em>, <em>experimental</em>).</p>
+  </section>
+
+  <section><h3><code>sdr:hostingLocation</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:PodProvider</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p><strong>Subproperty of:</strong> <code>schema:areaServed</code></p>
+    <p>The geographic region in which a Pod provider hosts Pods (e.g. EU, US, Australia).</p>
+  </section>
+
+  <section><h3><code>sdr:hasDeveloper</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:SoftwareResource</code> · <strong>Range:</strong> <code>sdr:Developer</code></p>
+    <p><strong>Subproperty of:</strong> <code>schema:author</code>, <code>dct:creator</code></p>
+    <p>Links a software resource to a person who develops or maintains it.</p>
+  </section>
+
+  <section><h3><code>sdr:hasCommunity</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Resource</code> · <strong>Range:</strong> <code>sdr:Community</code></p>
+    <p><strong>Subproperty of:</strong> <code>schema:publisher</code>, <code>dct:publisher</code></p>
+    <p>Links a resource to the community or organisation that maintains it.</p>
+  </section>
+
+  <section><h3><code>sdr:usesVocabulary</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:SoftwareResource</code> · <strong>Range:</strong> <code>sdr:Vocabulary</code></p>
+    <p><strong>Subproperty of:</strong> <code>dct:references</code></p>
+    <p>Links a software resource to a vocabulary/ontology it depends on or emits.</p>
+  </section>
+
+  <section><h3><code>sdr:implementsSpecification</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:SoftwareResource</code> · <strong>Range:</strong> <code>sdr:Specification</code></p>
+    <p><strong>Subproperty of:</strong> <code>dct:references</code></p>
+    <p>Links a software resource to a specification it implements.</p>
+  </section>
+
+  <section><h3><code>sdr:prefix</code> & <code>sdr:namespaceURI</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Vocabulary</code></p>
+    <p>The conventional prefix (e.g. <code>foaf</code>) and namespace URI of a vocabulary.
+      <code>sdr:namespaceURI</code> is a subproperty of <code>schema:url</code>.</p>
+  </section>
+
+  <section><h3><code>sdr:purpose</code></h3>
+    <p><strong>Domain:</strong> <code>sdr:Vocabulary</code> · <strong>Range:</strong> <code>xsd:string</code></p>
+    <p><strong>Subproperty of:</strong> <code>dct:description</code></p>
+    <p>A short statement of the purpose of a vocabulary (from the commonVocab CSV).</p>
+  </section>
+</section>
+
+<section>
+  <h2>SKOS Concept Scheme — CSV "Type" values</h2>
+  <p>The <code>Type</code> column of the source CSVs is enumerated as a SKOS concept
+    scheme, <code>sdr:TypeScheme</code>, with top concepts:</p>
+  <ul>
+    <li><code>sdr:TypeSolid</code> — <em>Solid</em>: resources directly part of the Solid ecosystem.</li>
+    <li><code>sdr:TypeRWW</code> — <em>RWW</em>: Read-Write-Web resources, the precursor movement.</li>
+    <li><code>sdr:TypeSemWeb</code> — <em>SemWeb</em>: general Semantic-Web / Linked-Data resources.</li>
+    <li><code>sdr:TypeNews</code> — <em>News</em>: news articles and press coverage about Solid.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Example — a Server record</h2>
+  <pre class="example turtle" title="Community Solid Server">
+@prefix sdr:    <https://w3id.org/solid-databox/resources#> .
+@prefix schema: <https://schema.org/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix doap:   <http://usefulinc.com/ns/doap#> .
+
+<https://github.com/CommunitySolidServer/CommunitySolidServer>
+    a sdr:Server , schema:SoftwareApplication , doap:Project ;
+    dct:title         "Community Solid Server" ;
+    dct:description   "An open and modular implementation of the Solid specifications." ;
+    sdr:sourceFile    "Tools - RWW_Solid Links (mostly github).csv" ;
+    sdr:csvType       "Solid" ;
+    sdr:csvCategory   "Server" ;
+    sdr:implementationLanguage "TypeScript" ;
+    sdr:licenseType   "MIT" ;
+    sdr:maintenanceStatus "actively maintained" ;
+    schema:url        <https://github.com/CommunitySolidServer/CommunitySolidServer> ;
+    doap:repository   <https://github.com/CommunitySolidServer/CommunitySolidServer> ;
+    sdr:hasCommunity  <https://www.inrupt.com/> .
+  </pre>
+</section>
+
+<section>
+  <h2>Example — a Vocabulary record</h2>
+  <pre class="example turtle" title="schema.org">
+@prefix sdr: <https://w3id.org/solid-databox/resources#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<https://schema.org/>
+    a sdr:Vocabulary ;
+    dct:title       "Schema Org" ;
+    sdr:prefix      "schema" ;
+    sdr:namespaceURI "https://schema.org/" ;
+    sdr:purpose     "SEO" ;
+    sdr:sourceFile  "Tools - commonVocab.csv" .
+  </pre>
+</section>
+
+<section>
+  <h2>Example — a Developer / Luminary record</h2>
+  <pre class="example turtle" title="Tim Berners-Lee">
+@prefix sdr:  <https://w3id.org/solid-databox/resources#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <https://schema.org/> .
+
+<https://github.com/timbl>
+    a sdr:Developer , foaf:Person , schema:Person ;
+    foaf:name       "Tim Berners-Lee" ;
+    sdr:sourceFile  "Tools - RWW_Solid Links (mostly github).csv" ;
+    sdr:csvType     "Solid" ;
+    sdr:csvCategory "Luminary" ;
+    schema:url      <https://github.com/timbl> .
+  </pre>
+</section>
+
+<section class="appendix">
+  <h2>Source CSVs</h2>
+  <p>The four CSV inventories under <code>dev-resources/</code> that this ontology
+    catalogues:</p>
+  <ol>
+    <li><code>Solid Resources - Links (mostly github).csv</code> — the original mixed
+      Solid / RWW / SemWeb link list.</li>
+    <li><code>Tools - RWW_Solid Links (mostly github).csv</code> — the enriched,
+      language-tagged Solid / RWW tool list.</li>
+    <li><code>Tools - commonVocab.csv</code> — RDF vocabularies and ontologies.</li>
+    <li><code>Tools - SemWeb-tool lists.csv</code> — broad Semantic-Web tools,
+      specifications, vendors, and plugins.</li>
+  </ol>
+</section>
+
+</body>
+</html>

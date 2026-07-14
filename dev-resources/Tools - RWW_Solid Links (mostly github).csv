@@ -1,0 +1,361 @@
+Type,Category,Sub-Category,Title,Description,Language,Link,Link 2,Date
+Solid,Platform,,Node Solid-Server,Node Solid-Server,nodejs,https://github.com/nodeSolidServer/node-solid-server/,,
+,,,,,,https://github.com/WebCivics/webizen-old-search,https://github.com/linkeddata/webizen,
+,RWW,,,,,https://github.com/linkeddata/cimba,,
+,RWW / SOLID,,,,,https://github.com/linkeddata/dokieli,,
+Solid,Luminary,,,,,https://github.com/orgs/inrupt/repositories,,
+,,,,,,https://www.computation.space/2020/06/brick.html,,
+RWW,RWW,App,Cimba,Microblogging,,https://github.com/linkeddata/cimba,,"Aug 12, 2014"
+RWW,RWW,App,,Spreadsheet,,https://github.com/linkeddata/spreadsheet,,"Jan 31, 2014"
+RWW,RWW,App,,File-manager,,https://github.com/linkeddata/warp,,
+,,,,,,https://github.com/linkeddata/app-bp,App Bootstrap,"Jun 19, 2014"
+,,,,,,https://github.com/linkeddata/solid-fitness,,
+,,,,Scheduling App,,https://github.com/linkeddata/app-schedule,,
+,,,,,,https://github.com/linkeddata/midichlorian,,
+,,,,,,https://github.com/linkeddata/errol,,
+,,,,NOtepad,,https://github.com/timbl/pad,,
+,,,,,,https://github.com/linkeddata/rabel,,
+RWW,RWW,App,,Calendar,,https://github.com/rww-apps/ld-cal,,
+RWW,RWW,App,,Microblogging,,https://github.com/rww-apps/kima,,
+RWW,App,,,,,https://github.com/rww-apps/helloworld,,
+,,,,,,https://github.com/melvincarvalho/explorer,,
+,,,,,,https://github.com/melvincarvalho/health,,
+,,,,Poll,,https://github.com/melvincarvalho/poll,,
+,,,,,,https://github.com/melvincarvalho/nutrition,,
+,,,,Chat,,https://github.com/melvincarvalho/chat,,
+,,,,Timeline (like FB),,https://github.com/melvincarvalho/timeline,,
+,,,,,,https://github.com/melvincarvalho/helloworld,,
+,,,,,,https://github.com/melvincarvalho/wallet,,
+,,,,,,https://github.com/melvincarvalho/credits,,
+,,,,Video,,https://github.com/melvincarvalho/video,,
+,,,,,,https://github.com/melvincarvalho/solid-share,,
+,,,,Clipboard,,https://github.com/melvincarvalho/clip,,
+,,,,,,https://github.com/melvincarvalho/realtime,,
+,,,,,,https://github.com/melvincarvalho/inbox,,
+,,,,Group URIs,,https://github.com/melvincarvalho/groupuris,,
+,,,,,,https://github.com/melvincarvalho/solid-hacks,An incomplete GitBook,
+,,,,,,https://github.com/solid-contrib,,
+,,,,,,https://github.com/melvincarvalho/pedometer,,
+,,,,Description of a Project,,https://github.com/melvincarvalho/doap-app,,
+,,,"Mikael Finstad",,,https://github.com/mifi,,
+,,,,,,https://github.com/NoelDeMartin/solid-focus,tasks,
+,,,,,,https://github.com/noeldemartin/media-kraken,,
+,,,Soukai Solid,Solid engine for Soukai,,https://github.com/NoelDeMartin/soukai-solid,,
+,,,RDF Tools,N3 Library,,https://github.com/rdfjs/N3.js,,
+,,,,,,https://github.com/solid-contrib/solid-auth-fetcher,,
+,,,Markbook,book mark <--> mark book -- insane social bookmarking for the solid platform,,https://github.com/mark-book/markbook,,
+,,,,,,https://www.valueflo.ws/,,
+,,,,,,https://lab.allmende.io/solidbase/solidbase,,
+,,,,,,https://github.com/SolidOS/money-pane,,
+,,,,,,https://pondersource.com/,,
+,,,,,,https://github.com/linkeddata/dokieli,,
+,,,,,,https://github.com/RubenVerborgh/SPARQL.js,,
+,,,,,,https://github.com/digita-ai/semcom,,
+,,,"Ruben Taelman",,,https://github.com/rubensworks,Has Solid Repos,
+,,,digita,"provides solutions so people, apps and organisations can easily participate in the Solid-based data web.",,https://www.digita.ai/,,
+,,,,,,https://github.com/netwerk-digitaal-erfgoed/solid-crs,,
+,,,,,,https://github.com/jaxoncreed?tab=repositories,,
+,,,Darcy-Social,"Social media, done proper (solid)",,https://github.com/Darcy-Social,,
+,,,,,,https://github.com/jaxoncreed/o-edit,,
+,,,,,,https://github.com/jaxoncreed/o-chat,,
+,,,,,,https://github.com/bourgeoa/solidcryptpad,,
+,,,,,,https://github.com/jeff-zucker/solid-content-manager,,
+,,,,,,https://github.com/jeff-zucker/solid-ui-components,,
+,,,Data-Kitchen over CSS,,,https://github.com/SolidOS/data-kitchen,,
+,,,,,,https://github.com/jeff-zucker/solid-ui-components,,
+,,,,,,https://github.com/jeff-zucker/linked-bookmarks,,
+,,,,,,https://github.com/bourgeoa/solid-plume,,
+,,,,,,https://github.com/solidpayorg,,
+,,,,,,https://github.com/jeff-zucker/solid-rest-browser,,
+,,,,,,https://github.com/jeff-zucker/solid-rest-file,,
+,,,,,,https://github.com/dindy/solid-discussion-app,,
+,,,,,,https://github.com/dindy/solid-resources/blob/master/webid-tls.md,,
+,,,,,,https://github.com/solid-pay,,
+,,,,,,https://github.com/mrkvon/friend-crawler,,
+,,,,,,https://github.com/AyazDyshin/solid-planner-app,,
+,,,,,,https://github.com/jeff-zucker,,
+Solid,,,SolidOS,"SolidOS is an Operating System for Solid, build as Open Source.",,https://github.com/SolidOS,,
+Solid,Community,,"PDS Interop",PDS Interop stands for Personal Data Stores Interoperability.,,https://pdsinterop.org/,https://github.com/pdsinterop,
+Solid,Development Company,,graphmetrix,Solid Solutions Developer,,https://graphmetrix.com/,,
+,,,Meisdata ,Meisdata offers Personal Datavaults served on the Solid System,,https://www.meisdata.io/,https://github.com/serverproject-dev,
+,,,igrant.io,"UNIFYING EIDAS 2.0 ID, SELF-SOVEREIGN IDENTITY, VERIFIABLE CREDENTIALS, X.509, PODS AND DIGITAL WALLETS",,https://igrant.io/datapod.html,https://igrant.io/,
+,,,redpencil,"Creating excellent applications, better data, and proudly building the #WebWeWant",,https://redpencil.io/,,
+Solid,Community,,,prototype implementation of a Solid server,,https://solidweb.org/,https://gitlab.com/groups/solidweb.org/-/group_members,
+Solid,Community,,,prototype implementation of a Solid server,,https://solidcommunity.net/,https://github.com/solid/solidcommunity.net,
+Solid,Community,,Inrupt PodSpaces,PodSpaces allows developers to get a WebID and a Solid Pod in order to create apps using Inrupt's Enterprise Solid Server,,https://start.inrupt.com/profile,https://www.inrupt.com/,
+Solid,Luminary,,"Ted Thibodeau Jr",,,https://github.com/TallTed,,
+Solid,Luminary,,"Justin Bingham",,,https://github.com/justinwb,,
+Solid,Luminary,,"Alain Bourgeois",,,https://github.com/bourgeoa,,
+Solid,Luminary,,"Michiel de Jong",,,https://gitlab.com/michielbdejong,https://github.com/michielbdejong,
+Solid,Luminary,,"Yvo Brevoort",,,https://github.com/ylebre,,
+,,,,Experimental standalone version of the Solid app launcher,,https://github.com/ylebre/solid-app-launcher,,
+,,,,,,https://github.com/solid-contrib,,
+,,,,,,https://github.com/solid-contrib/solid-rest,,
+Solid,Luminary,,"Angelo Veltens",,,https://github.com/angelo-v,Has Solid Repos,
+,,,,,,https://github.com/solid/contacts,,
+Solid,Luminary,,"Tim Berners-Lee",,,https://github.com/timbl,,
+,,,,,,https://github.com/timbl/quiz-app,,
+,,,Solid,Re-decentralizing the web. Everything MIT licensed. All repos fall under the code of conduct: https://github.com/solid/process/blob/main/code-of-conduct.md,,https://github.com/solid,,
+,,,,,,https://github.com/solid/solid-namespace,,
+,,,Read-Write Linked Data,Originally MIT code. Everything must be MIT Licence.,,https://github.com/linkeddata/,,
+Solid,Luminary,,"elf Pavlik",,,https://github.com/elf-pavlik,,
+,,,,,,https://github.com/megoth,,
+,,,JuniperChicago,,,https://github.com/JuniperChicago,,
+,,,Ludwig,,,https://github.com/ludwigschubi/,,
+,,,,,,https://github.com/ludwigschubi/shex-codegen,,
+,,,Dmitri Zagidulin,,,https://github.com/dmitrizagidulin,,
+,,,,,,https://github.com/interop-alliance/life-server,,
+Solid,Platform,,,,,https://github.com/CommunitySolidServer,,
+Solid,Community,,,,,https://solid.mit.edu/,,
+Solid,Community,,Solid Community AU,an experimental server for trying out Pods and various application,,https://pods.solidcommunity.au/,,
+,,,,,,https://sii.anu.edu.au/,,
+Solid,Community,,anu,,,https://github.com/orgs/anusii/repositories,,
+,,,Aggadom,Data Ownership Infrastructure,,https://aggadom.org/,,
+Solid,Community,,Data Village,,,https://www.datavillage.me/#,,
+,,,SolidBase,The SolidBase application is a budgeting environment used for training accounting practices.,,https://lab.allmende.io/solidbase/solidbase,,
+Solid,Community,,Digita ,,,https://www.digita.ai/,,
+,,,,IPGS : InterPlanetary Graph System based on Solid & IPFS https://ipfs.io/,,https://github.com/scenaristeur/ipgs/,,
+Solid,Community,,SolidLab Flanders,,,https://solidlab.be/,,
+,,,"IRON HORSE SOFTWARE, LLC",,,https://www.ironhorsesoftware.com/,,
+News,Article,,NHS data: Can web creator Sir Tim Berners-Lee fix it?,It is one of the biggest challenges for the NHS: how to give people some control of their medical data while making sure it can be shared with all of the doctors and other healthcare workers who need it.,,https://www.bbc.com/news/technology-54871705,,
+Solid,Server,,Openlink Solid Pod,,,https://solid.openlinksw.com:8445/,,
+Solid,Community,,Janeiro Digital,,,https://www.janeirodigital.com/,,
+Solid,Community,,Startin’Blox,,,https://startinblox.com/en/,,
+,,,Solid Developer Tools & Libraries,a number of robust developer libraries to save you from re-inventing the wheel,,https://solidproject.org/developers/tools/,,
+Solid,Server,,Manas solid server,Solid Pod in RUST,RUST,https://manomayam.github.io/manas/,https://github.com/manomayam/manas,
+Solid,Server,,Community Solid Server,nodejs,NODEJS,https://github.com/CommunitySolidServer/CommunitySolidServer/,,
+Solid,Server,,Solid NextCloud,A plugin to make Nextcloud compatible with Solid,PHP,https://github.com/pdsinterop/solid-nextcloud,,
+Solid,Server,,PHP Solid Server,Standalone Solid Server written in PHP by PDS Interop,PHP,https://github.com/pdsinterop/php-solid-server,,
+Solid,Resources,,Solid Project Apps,An App listing,,https://solidproject.org/apps,,
+,,,SolidVC,This package contains a Verifiable Credentials framework built on top of Solid.,,https://github.com/kezike/solid-vc,,
+,,,Solid Playground,Solid Playground - Solid Single-Page Playground Application,,https://github.com/kezike/solid-pg,,
+Solid,Developer,,"Kayode Ezike",,,https://github.com/kezike/,,
+Solid,Utility,,solid-slack,"a Slack Integration for accessing and managing data stored in Solid,",,https://github.com/kezike/solid-slack,,
+Solid,Luminary,,"Melvin Carvalho",,,https://github.com/melvincarvalho/,,
+Solid,Developer,,Christian Buggedei,,,https://github.com/JollyOrc,,
+Solid,Utility,,"Solid Filemanager",A file manager for solid pods.,,https://github.com/Otto-AA/solid-filemanager,,
+,,,Portal,Explore your personal data in SoLiD Pod,,https://github.com/steamory/portal,,
+Solid,Developer,,ivy,,,https://github.com/leinue,,
+,,,"solid-ipfs",Using SoLiD to store IPFS Hash privately or publicly,,https://github.com/Eximua/solid-ipfs,,
+,,,"""solid pod"" search",,,https://github.com/search?q=%22solid+pod%22&type=repositories,,
+Solid,Utility,,solid-file-python,a Python library for creating and managing files and folders in Solid pods.,,https://github.com/twonote/solid-file-python,,
+Solid,Developer,,"Rui Zhao",,,https://github.com/renyuneyun,,
+Solid,Resources,,"Solid Helper",contains common helpers for developing SoLiD (Social Linked Data) Apps with JS/TS.,,https://github.com/renyuneyun/solid-helper,,
+Solid,Community,,"Eximua Labs",,,https://github.com/orgs/Eximua/,,
+,,,Filego ,"a decentralized storage platform secured by SoLiD, Authing and IPFS.",,https://github.com/Eximua/filego,,
+Solid,Platform,,"Solid Pods For IoT",,,https://github.com/lab9k/Solid-Pods-For-IoT,,
+Solid,Resources,,PersonalWellnessPod,Ontologies and interfaces that work with Solid Pod technology that is designed to store information about personal wellness along several personal wellness dimensions,,https://github.com/jeffreywallphd/HealthHarbor,,
+,,,,"ActivityPub, Activitystreams on Solid POD platform",,https://github.com/scenaristeur/agora,,
+Solid,Developer,,David,,,https://github.com/scenaristeur,Has solid Repos,
+,,,IPGS,IPGS : InterPlanetary Graph System based on Solid & IPFS https://ipfs.io/,,https://github.com/scenaristeur/ipgs/,,
+Solid,Resources,,solid-vue-panes,"PoPock Your Solid POD in your Pocket, see https://scenaristeur.github.io/solid-vue-panes",,https://github.com/scenaristeur/solid-vue-panes,,
+Solid,App,,booklice,share your bookmarks from your pod,,https://github.com/scenaristeur/booklice,,
+Solid,App,,shepherd,Shepherd is our 2nd prototype to showcase how a truly decentralised social network can be based on SOLID.,,https://github.com/Darcy-Social/shepherd,,
+Solid,App,,poddit,bookmarking,,https://poddit.app/,,
+Solid,App,,Darcy,Darcy is going to be the new open social platform. ,,https://darcy.is/,https://github.com/Darcy-Social,
+Solid,App,,Contacts ,Contacts app,,https://github.com/scenaristeur/contacts,,
+Solid,App,,"solid-group","solid-group",,https://github.com/scenaristeur/solid-group,,
+Solid,App,,Solid Inbox,Solid Inbox,,https://github.com/scenaristeur/socialid,,
+Solid,App,,Solid-Chat,Solid-Chat,,https://github.com/scenaristeur/parle,,
+,,,Ess ( Economie Sociale & Solidaire), Airtable like webapp based on Solid Specifications for Social & Solidarity Economy. ess-table can link table data from many Ess organization,,https://github.com/scenaristeur/ess-table,,
+,,,langchainSolid,,,https://github.com/scenaristeur/langchainSolid,,
+,,,,gps solid app,,https://github.com/scenaristeur/salut,,
+,,,Solid-Chat,chat on Solid,,https://github.com/scenaristeur/solidarity,,
+Solid,Platform,,WP-Solid,Solid POD for WordPress,,https://github.com/kasparsd/solid-pod,,
+Solid,Resources,,"Solid Client PHP",This repository contains a PHP library for accessing data and managing permissions on data stored in a Solid Pod It also a contains a Symfony bundle to easily build Solid applications with the Symfony and API Platform frameworks.,PHP,https://github.com/dunglas/solid-client-php,,
+Solid,Utility,,PROV4ITDaTa ,The PROV4ITDaTa Web application allows users to transfer their data from data providers to Solid pods.,,https://github.com/RMLio/prov4itdata-web-app,,
+Solid,Utility,,"Solid-RDF-HexBin-File-Extraction","Solid-RDF-HexBin-File-Extraction",,https://github.com/dconorozzo/Solid-RDF-HexBin-File-Extraction,,
+Solid,App,,WebClip,A Chrome extension to extract structured data from any web page and store it to a Solid Pod.,,https://github.com/codecentric/web-clip,https://chromewebstore.google.com/detail/webclip-clip-all-the-thin/mfgjcggbpdkbnnpgllaicoeplfgkfnkj,
+,,,SolidAuthSwift,Swift-based authentication for a Solid Pod,,https://github.com/crspybits/SolidAuthSwift,,
+,,,Pixolid,"manage, upload, comment, and like images via the Solid POD storage.",,https://github.com/carloss8/pixolid,,
+Solid,Utility,,"Clone To Solid Pod Github Action",clone the contents of a github repo to a Solid Pod,,https://github.com/o-development/clone-to-solid-pod,,
+Solid,App,,"solid-links",A demo PWA hosted on a Solid pod,,https://github.com/neilrae/solid-links,,
+Solid,Utility,,Solid ACL Utils [WIP],A js library for working with acl files.,,https://github.com/Otto-AA/solid-acl-utils,,
+Solid,Developer,,"Otto-AA",,,https://github.com/Otto-AA,,
+Solid,App,,thimble-social,Social Media Application Utilizing Solid POD,,https://github.com/andreasbrake/thimble,,
+Solid,Developer,,Andrea Brake,,,https://github.com/andreasbrake?,,
+Solid,Developer,,"Guennoun Rafik",,,https://github.com/RafGuennoun,,
+Solid,Utility,,solid-fs,client side functionality of the node fs API interfacing to a solid pod,,https://github.com/DataDriven-CAM/solid-fs,,
+Solid,Platform,,"sylvan-pod-server",http server for pods (c++),C++,https://github.com/DataDriven-CAM/sylvan-pod-server,,
+Solid,Developer,,DataDriven-CAM,,,https://github.com/DataDriven-CAM,,
+Solid,Developer,,rimmartin,coder of https://github.com/DataDriven-CAM ,,https://github.com/rimmartin,,
+,,,"Event Notifications Typescript library",,,https://github.com/ErfgoedPod/evno,,
+Solid,Developer,,Miel Vander Sande,,,https://github.com/mielvds,,
+Solid,Developer,,"Patrick Hochstenbach",,,https://github.com/phochste,NOTE: https://github.com/phochste?tab=repositories&q=solid has more than i've added to the list yet.,
+,,,"Acme InboxViewer",,,https://github.com/phochste/AcmeInboxViewer,,
+,,,AcmeBase,A base implementation of a Solid App with login using svelte,,https://github.com/phochste/AcmeBase,,
+,,,SolidEditor,A Microsoft Monaco based editor for text files on a Solid pod,,https://github.com/phochste/SolidEditor,,
+,,,Web::Solid::Auth - A Perl Solid Web Client,A Perl Solid authentication tool (OIDC),,https://github.com/phochste/Web-Solid-Auth,,
+,,,Solid Research Lab - Belgium,"SoLiD desktop app, start a SoLiD POD on your local environment.",,https://github.com/SolidLabResearch,NOTE: MORE LIBRARIES NOT LISTED ON LIST.,
+,,,"SoLiD Box",,,https://github.com/linonetwo/solid-box,,
+,,,lin onetwo,,,https://github.com/linonetwo,NOTE: MORE LIBRARIES NOT LISTED ON LIST.,
+,,,solid-beijing-2019,Slides for SoLiD Beijing MeetUp in 2019-07-20.,,https://github.com/linonetwo/solid-beijing-2019/tree/master,,
+,,,SolidPOD,.sol files used for storing rules about PODs and Solid server implementation + tricky tools,,https://github.com/RiccardoRobb/SolidPOD,,
+Solid,Developer,,Robb,,,https://github.com/RiccardoRobb,,
+,,,"find-solid-pods",A simple service that lists POD service providers.,,https://github.com/crmepham/find-solid-pods,,
+Solid,Developer,,"Christopher Mepham",,,https://github.com/crmepham,note: other solid repos,
+,,,Profile Viewer,,,https://github.com/alishbaimran/Solid-Pod,,
+,,,Homepage ,Homepage served from Solid pod.,,https://github.com/janschill/homepage,,
+,,,"pico-pods",Linking picos to Solid pods,,https://github.com/Picolab/pico-pods,,
+,,,"Mash browser",Generic RDF data browser that can be connected to Solid pods,,https://github.com/ontola/mash,,
+,,,"pod-chat-client",web client based on React - makes use of solid pods to read/write data required to form a chat,,https://github.com/0l5en/pod-chat-client,,
+Solid,Developer,,Christopher Prince,,,https://github.com/crspybits,note: other solid repos,
+Solid,Developer,,Mike Adams,,,https://github.com/mikeadams1,has solid repos,
+,,,Data access library for Solid PODs. Simple and clear.,Simplifies access to Solid pod data,,https://github.com/franzzua,has solid repos,
+,,,Experimental modular wiki using Solid and PodOS,Experimental modular wiki using Solid and PodOS,,https://github.com/josephguillaume/wiki-solid-podos,,
+Solid,Developer,,Joseph Guillaume,,,https://github.com/josephguillaume,has solid repos,
+,,,"PodOS - Your personal online data operating system",PodOS is an online operating system that helps you to access and mange your data on the web.,,https://github.com/pod-os/PodOS,,
+Solid,Utility,,"Solid Migrator App",Web application to help migrate between Solid Pods,,https://github.com/pdsinterop/solid-migrator-app,,
+Solid,Utility,,eml2pod,Convert e-mails (.eml file format) to files you can store on your Solid Pod.,,https://github.com/angelo-v/eml2pod,,
+Solid,Utility,,"solid-storage-root",Discover the storage root of a Solid pod.,,https://github.com/smessie/solid-storage-root,,
+Solid,Developer,,smessie,,,https://github.com/smessie,has solid repos,
+Solid,Platform,,RawPod (c++),A fast solid pod server without any fancy stuff.,C++,https://github.com/SpectralCascade/RawPod,,
+Solid,Developer,,Trinity,note: game works,,https://github.com/SpectralCascade,has solid repos,
+Solid,Utility,,"Solid Community Manager",Create and manage a community on a Solid Pod,,https://github.com/OpenHospitalityNetwork/solid-community-manager,,
+,,,"Open Hospitality Network",,,https://github.com/OpenHospitalityNetwork,has solid repos,
+Solid,Developer,,mrkvon,"Interests and values: Solid Project, intentional community, self-directed learning, collaboration, sharing, sustainability, diversity, freedom, peace, veganism and freeganism, …",,https://github.com/mrkvon,,
+,,,"app-solid-shop",The Solid Shop is a user-powered shopping ecosystem by use of SOLID PODs. This brings all parts together.,,https://github.com/redpencilio/app-solid-shop,,
+,,,"My Scholarly Article",Demo article on provenance during link traversal over Solid pods,,https://github.com/rubensworks/article-solid-query-prov,,
+Solid,Utility,,podmark,Privacy-aware browser sync. Bring your own Solid pod.,,https://github.com/mivdnber/podmark,,
+Solid,App,,InnerPod,A meditation timer and recorder for your Solid Pod,,https://github.com/gjwgit/innerpod,,
+Solid,Developer,,gjwgit,,,https://github.com/gjwgit,,
+Solid,App,,"solid-health-diary",WIP (using Flutter),,https://github.com/gjwgit/solid-health-diary,,
+,,,DCAT virtual Container API,Functionality for creating virtual DCAT containers on a Solid Pod,,https://github.com/LBD-Hackers/dcat-virtual-solid-container,,
+Solid,Developer,,JWerbrouck,,,https://github.com/JWerbrouck,has solid repos,
+Solid,App,,"solid-blog-app",A simple blogging application built using Solid Pods (https://solidproject.org),,https://github.com/gluchj/solid-blog-app,,
+Solid,Tutorial,,"Simply Solid app tutorials",Tutorials about how to build apps for Solid Pods using SimplyEdit.,,https://github.com/pdsinterop/simply-solid-app-tutorials,,
+,,,"Solid Stream Aggregator",A service running on top of Solid Pod(s) to perform aggregation,,https://github.com/SolidLabResearch/solid-stream-aggregator,,
+,,,"Project IDLab - Powerful Personal Data","We have partnered up with IDLab and Imec to showcase how ""taking back control of your personal data"" can be achieved using linked data and Solid pods by creating a smart calendar application.",,https://github.com/osoc22/project-idlab,,
+Solid,Utility,,"reasoner-app","Notation3 reasoning application using EYE in the browser and remotely on a server. Input data from your solid pod, a generic location on the web or directly as text",,https://github.com/smessie/reasoner-app,,
+Solid,Utility,,Obsidian Sample Plugin - Solid Plugin (? WIP ? ),An Obsidian plugin that saves and retrieves markdown files to and from your Solid pod.,,https://github.com/Sekund/obsidian-solid,,
+Solid,Utility,,"Rate Limited LDP Communication",Supporting rate limiting in LDP Communication to do HTTP requests to the Solid Pod's resources and containers,,https://github.com/argahsuknesib/RateLimitedLDPCommunication,,
+Solid,Developer,,"Kush Bisen",,,https://github.com/argahsuknesib,,
+Solid,Utility,,Social Gen Pod 🐢,Converse with an LLM provider of your choice. Store your documents and chat history in a Solid pod.,,https://github.com/Vidminas/socialgenpod,,
+Solid,Utility,,"SPARQL satellite",Mirrors RDF content from Solid Pods to a Fuseki SPARQL store + SPARQL query on union of allowed graphs,,https://github.com/ConSolidProject/sparql-satellite-deprecated,,
+,,,ConSolidProject,,,https://github.com/ConSolidProject,,
+,,,p-webid,"Solid POD for managing an Organization, a Group, a Project, or a Collection ?",,https://github.com/scenaristeur/p-webid,,
+Solid,App,,Solid Recipe Store,"A Node / Express app that stores recipes, reviews and a shopping list using Solid pods as the data storage.",,https://github.com/alex9smith/recipe-store-solid,,
+Solid,Utility,,Solid VC PWA,"Our demo showcases how a user is granted access to resources stored on a Solid Pod, i. e., a web server that adheres to the Solid Protocol, using Web-based Verifiable Credentials.",,https://github.com/uvdsl/solid-vc-pwa,,
+Solid,App,,Data4Diabetes App- Reference implementation,This repository contains a reference implementation of a diabetes application integrated with digital wallet agents and solid pods. This is part of Swedish Innovation Agency Vinnova funded project Data4Diabetes - Swedish Health Data Space pilot with diabetes data using a MyData Operator infrastructure,,https://github.com/decentralised-dataexchange/data4diabetes-app,,
+,,,Solid Chinese website,,,https://learnsolid.cn/,,
+,,,"Learn SoLiD",,,https://github.com/learnsolid,,
+,,,Solid CN Pod Provider,,,https://solid.authing.cn/,,
+,,,Solid Forum,,,https://forum.solidproject.org/,,
+,,,Solid Events Listing,,,https://solidproject.org/events,,
+,,,Solid Project - Vimeo,"Welcome to Solid's official Vimeo account! Here you can watch recordings of your favorite Solid Events or Meetings like Solid World, DEI, and others.",,https://vimeo.com/solidworld,,
+Solid,App,,"PASS - Personal Access System for Services",PASS is an open source digital wallet for providing home-insecure individuals a safe place to store documents within their control.,,https://github.com/codeforpdx/PASS,,
+Solid,App,,Sleepy Bike,Sleepy Bike is a community of bicycle touring travellers and those who want to host them.,,https://sleepy.bike/,,
+,,,Startin’blox,Startin’blox develops an innovative and ethical technology based on interoperable standards.,,https://startinblox.com/en/technology/,https://git.startinblox.com/explore/groups,
+,,,Dechat ES4B,The project consists in the development of a decentralized chat. ,,https://github.com/Arquisoft/dechat_es4b/,,
+Solid,Platform,,"Solid POD","Prototype of a Solid POD for WordPress, a plugin by Kaspars Dambis.",,https://git.startinblox.com/applications/wordpress-webid/solid-pod,,
+,,,,solid POD management made with REACT,,https://github.com/astrd/SolidEmpathy,,
+Solid,Luminary,,Assemblée Virtuelle,"The Virtual Assembly brings together a collective of individuals and organizations, a community, a network, an ecosystem, an archipelago made up of autonomous and connected actors, passionate about the issues:  
+
+On the decentralization of the internet and the web
+Technological, cultural, ecological, social, political, economic transitions, etc. ",,http://www.virtual-assembly.org/,,
+,,,SemApps,An open source toolbox to help you easily build semantic web applications,,https://semapps.org/,,
+Solid,App,,Penny ,Penny is a tool for developers of Solid apps,,https://penny.vincenttunru.com/,,
+Solid,App,,Solid Task Manager,Task Manager implemented with Vue using the Solid protocol to store data into a Solid POD,,https://github.com/noeldemartin/solid-focus,,
+Solid,Utility,,IPGS,IPGS : InterPlanetary Graph System based on Solid & IPFS https://ipfs.io/,,https://github.com/scenaristeur/ipgs/,,
+,,,sole_chat,"Sole is a new project taking place at EII. The project aims to adapt the Solid platform, for building a decentralized messaging application resulting in true data ownership as well as improved privacy.",,https://github.com/Arquisoft/sole_chat,https://ingenieriainformatica.uniovi.es/,
+Solid,Developer,,Noel De Martin,,,https://github.com/NoelDeMartin,,
+Solid,Developer,,Timea,,,https://github.com/timea-solid,,
+Solid,App,,Solid Period Tracker,Open Source Period Tracker in the making that just happens to be using Solid.,,https://github.com/timea-solid/SolidPeriodTracker,,
+Solid,Utility,,"solid-ui",User Interface widgets and utilities for Solid,,https://github.com/SolidOS/solid-ui,,
+Solid,Utility,,"solid-logic",Core business logic of Solid OS,,https://github.com/SolidOS/solid-logic,,
+Solid,Developer,,"Matthias Evering",,,https://github.com/ewingson,,
+Solid,Developer,,దామోదర,,,https://github.com/damooo,,
+Solid,Developer,,Joachim Van Herwegen,,,https://github.com/joachimvh,,
+Solid,Utility,,"Group WebIDs component",Adds support for Group WebIDs to a Community Solid Server instance.,,https://github.com/joachimvh/group-webids-component,,
+,,,,,,https://yarrabah.net/,,
+,,,,,,https://github.com/co-operating-systems,,
+,,,,"SoLiD implementation in akka",,https://github.com/co-operating-systems/Reactive-SoLiD,,
+,,,"Henry Story",bblfish,,https://github.com/bblfish,,
+,,,"Nederlandse Datakluis",,,https://www.datakluis.nl/,,
+,,,ISOC-NL Solid Group,,,https://isoc.nl/nieuws/oprichting-nieuwe-werkgroep-internet-society-netherlands-solid-working-group-isoc-nl-solid-wg/,,
+,,,solidproxy,Agent/Proxy server with authentication (for WebID-TLS delegation) that can be used as a micro-service along a Solid server.,,https://github.com/deiu/solidproxy,,
+,,,"datacommons-solid",Logic to provide a linked data view of datacommons.org data There are various styles of API t chose from.,,https://github.com/solid-contrib/datacommons-solid,,
+,,,"msgraph-solid",This is a placeholder for a facility to allow Solid users who also use Microsoft existing apps to get access to their Microsoft App data automatically through the Microsoft Graph API.,,https://github.com/solid-contrib/msgraph-solid,,
+,,,"arduino-solid-server",,,https://github.com/solid-contrib/arduino-solid-server,,
+,,,"solid-takeout-import",Import your Google Takeout (etc) data into your solid pod so you can keep it and use it with Solid apps,,https://github.com/solid-contrib/solid-takeout-import ,,
+,,,"solid-email",,,https://github.com/solid-contrib/solid-email,,
+,,,"Solid Pastebin Tutorial",,,https://github.com/solid-contrib/solid-tutorial-pastebin,,
+,,,"solid-web-monetization","Incentivizing Decentralized Application Development within Solid through Web Monetization",,https://github.com/KNowledgeOnWebScale/solid-web-monetization,,
+,,,"data-modules",,,https://github.com/solid-contrib/data-modules,,
+,,,,,,https://github.com/KNowledgeOnWebScale/solid-authentication-browser-extension,,
+,,,"Solid Application Interoperability (TypeScript)",Modules implementing Solid Application Interoperability Specification,,https://github.com/elf-pavlik/sai-js,,
+,,,O,,,https://www.o.team/,https://github.com/o-development,
+,,,The Knowledge on Web scale (KNoWS) office of IDLab - Ghent University.,https://knows.idlab.ugent.be/,,https://github.com/KNowledgeOnWebScale,,
+,,,"github-solid",Convert Github (Octokit) data to Solid,,https://github.com/solid-contrib/github-solid,,
+,,,Chat,,,https://github.com/solid/chat,,
+,,,SolidOS,,,https://github.com/SolidOS/solidos,,
+,,,Popock,,,https://scenaristeur.github.io/solid-vue-panes/,,
+,,,Solid Web Components,,,https://github.com/SolidOS/solid-web-components,https://solidos.github.io/solid-web-components/,
+,,,"solid_server",Python Solid Server Example,,https://github.com/hamishgibbs/solid_server,,
+,,,"Solid-Rest",Treat any storage backend as a Solid pod,,https://github.com/solid-contrib/solid-rest,,
+,,,solid-flask,"This is a simple Flask app that can authenticate against a Solid pod and read
+private data from it.",,https://gitlab.com/agentydragon/solid-flask,,
+,,,DexPod,"The DexPod is a Solid Pod server implementation written in Ruby, powered by Linked-Rails.",,https://gitlab.com/ontola/dexpod,,
+,,,"docker-solid",A Docker image to run a Solid server with valid certificates in multi-user mode on localhost.,,https://gitlab.com/oer/cs/docker-solid,,
+,,,"MyPod.store",Virtual Assembly's POD provider open to all!,,mypod.store,,
+,,,ActivityPods,"Brings together two game-changing technologies, ActivityPub and Solid Pods, and empowers developers to create truly decentralized applications",,https://activitypods.org/,https://github.com/assemblee-virtuelle/activitypods,
+,,,Mastopod,Mastodon-compatible app powered by ActivityPods,,https://github.com/assemblee-virtuelle/mastopod,,
+,,,SemApps,An open source toolbox to help you easily build semantic web application,,https://semapps.org/,,
+,,,Archipelago,Fostering interconnections between communities by creating synergies between their platforms,,https://github.com/assemblee-virtuelle/archipelago,https://archipel.assemblee-virtuelle.org/,
+,,,OER - Project Solid,"OER for the advanced module “New Territory on the Internet” around Solid",,https://oer.gitlab.io/oer-courses/vm-neuland/,,
+,,,"pod-adapter",Library with things that helps you build an application using a SOLID-Pod as storage.,,https://gitlab.com/naturzukunft_de/public/solid/pod-adapter,,
+,,,"Solid Profile Editor",,,https://gitlab.com/naturzukunft_de/public/solid/solid-profile-editor,,
+,,,"pod-homepage",A potential homepage for your Solid Pod.,,https://gitlab.com/angelo-v/pod-homepage,https://angelo.veltens.org/#/,
+,,,"Molid - Mock Solid Server",A mock server that can be used for testing Solid apps locally,,https://gitlab.com/angelo-v/molid-mock-solid-server,,
+,,,"Angelo Veltens",,,https://gitlab.com/angelo-v,,
+,,,Solid Linked Open Vocabularies: SolidLoV,This project was created to facilitate and explore the use of Linked Open Vocabularies with Solid Pods,,https://gitlab.com/solid.community/apps/solidlov,,
+,,,Obfuscate,Make web page text unreadable,,https://gitlab.com/vincenttunru/obfuscate,,
+,,,Notepod,Notepod is a note-taking app that saves notes to your Solid Pod.,,https://gitlab.com/vincenttunru/notepod,,
+,,,Penny,Inspect and manipulate the data in your Solid Pods.,,https://gitlab.com/vincenttunru/penny,,
+,,,Tripledoc,,,https://gitlab.com/vincenttunru/tripledoc,https://vincenttunru.gitlab.io/tripledoc/,
+,,,Syntropize,,,https://gitlab.com/syntropize/syntropize,https://syntropize.com/,
+,,,SolidBase,The SolidBase application is a budgeting environment used for training accounting practices.,,https://lab.allmende.io/solidbase/solidbase,,
+,,,SolidHyperledger,This project combines Hyperledger Aries and Solid PODs to combine identifier of these two worlds and use verifiable credentials for verified business transactions.,,https://gitlab.com/hbecker97/did_ssi_blockchain,,
+,,,Solid Health App,,,https://gitlab.com/storeydy/solid-health-app,,
+,,,Solid Groups,Form groups all around the Web to bring people together. ,,https://gitlab.com/angelo-v/solid-groups,,
+,,,Decentralized Purposeful Online Community Application Framework,"This project is a graduation project taking place at Bogazici University by me, advised by professor Suzan Üsküdarlı. https://www.cmpe.boun.edu.tr/~uskudarli/",,https://gitlab.com/srknzl/solid-decentralized-web-applications,,
+,,,Baba-log,SOLID app for tracking baby related activities,,https://gitlab.com/riovir/babalog,https://babalog.riovir.com/,
+,,,"A Decentralized Solid Chat App",Decentralized Chat App using Solid technologies,,https://github.com/SirRhynus/SolidChatApp,,
+,,,solcli,"A CLI for interacting with SOLID servers, by running an OIDC authorization code flow in a browser",,https://github.com/chalford/solcli,,
+,,,Solid Protocol Extension to Store and Share Data with Fleetbase,Solid Protocol Extension to Store and Share Data with Fleetbase,,https://github.com/fleetbase/solid,,
+,,,Fleetbase,"Modular logistics and supply chain operating system (LSOS)",,https://github.com/fleetbase,,
+,,,SmartWalk,a web application for keyword-aware walking route search.,,https://github.com/zhukovdm/smartwalk,,
+,,,Aerogel,The Lightest Solid,,https://github.com/NoelDeMartin/aerogel,,
+,,,JavaScript Solid Utilities,JavaScript utilities for Solid,,https://github.com/NoelDeMartin/solid-utils,,
+,,,Cypress Solid,Cypress Plugin to test applications using the Solid Protocol,,https://github.com/NoelDeMartin/cypress-solid,,
+,,,rdf-proxy,A simple proxy server to fix cors headers and some rdf stuff,,https://github.com/mrkvon/rdf-proxy,,
+,,,Solid Math,Abstract mathematics as Directed Acyclic Graph over Solid,,https://github.com/livegraph-org/solid-math,,
+,,,Solid Friend Crawler,Crawl a network of friends with Solid,,https://github.com/mrkvon/friend-crawler,,
+,,,"pod-browser","An application for browsing the data on your Solid pod, and for setting ACLs on that data.",,https://github.com/torchnetwork/pod-browser,,
+,,,"Solid-shell (Sol)",a comand-line and interactive shell for Solid,,https://github.com/jeff-zucker/solid-shell,,
+,,,KNoodle,Solid-based alternative to Doodle,,https://github.com/renyuneyun/knoodle,,
+,,,Solid Media,A demonstration of the use of Solid in a small media recommendation sharing app.,,https://github.com/OxfordHCC/solid-media,,
+,,,"Oxford HCC",,,https://github.com/orgs/OxfordHCC/repositories,,
+,,,,,,https://github.com/kustomzone/awesome-solid,,
+,,,,,,https://github.com/solidpayorg,https://github.com/project-bitmark,
+,,,"Solid Task App",,,https://github.com/Julian-Cole/solid-task-app,,
+,,,Solidarity,"Solidarity is a Solid based community discussion App.",,https://github.com/Julian-Cole/sol,,
+,,,,,,https://github.com/itsee/awesome-solid,,
+,,,SolidMarks:,SOLID Bookmarks synchronizer,,https://github.com/itsee/solidMarks,,
+,,,"Vue Solid Plugin",A set of Vue plugins/components for making Solid app development easier.,,https://github.com/JordanShurmer/vue-solid-plugin,,
+,,,"Solid Lite",,,https://github.com/solid-lite,,
+,,,nox,Hello World,,https://github.com/ewingson/nox,,
+,,,lib,tools,,https://github.com/ewingson/lib,,
+,,,,,,https://github.com/kjetilk/solid-simple-location,,
+,,,,,,https://github.com/kjetilk,,
+,,,,,,https://github.com/matthieubosquet,,
+,,,,,,https://github.com/elf-pavlik,,
+,,,"HTTP Access-Control (CORS)",Easily handle HTTP Access Control (CORS) in your applications,,https://github.com/primus/access-control,,
+,,,,,,https://github.com/jacoscaz/quadstore-browser,,
+,,,"Solid Community Foundation - Netherlands",,,https://www.solidcommunity.nl/,,
+,,,Linckr ,"""Linckr: one app for all the steps and all your data.""",,https://www.linckr.com/,,
+,,,todo-ldo,A experiment using Linked Data Object and ShEx shapes to handle data for a Solid app handling todo lists,,https://github.com/megoth/todo-ldo,,
+,,,"WOMEN OF SOLID",,,https://www.womenofsolid.org/,,
+,,,"Understory Garden",,,https://github.com/understory-garden/understory.garden,,
+,,,,,,https://github.com/travis,,
+,,,solid-apollo,apollo client for solid,,https://github.com/travis/solid-apollo,,
