@@ -16,6 +16,7 @@ Consumers can maintain verified physiological data that retailers can query (wit
 Moving away from easily lost paper receipts and siloed email confirmations, the Solid Databox serves as the definitive repository for the lifecycle of purchased goods:
 - **Receipt & Provenance Information:** Cryptographically verifiable digital receipts proving ownership, purchase date, and the authenticity/provenance of goods (which is critical for high-end fashion, sustainability tracking, and the secondary resale market).
 - **Warranty & Repair Logs:** Active, structured tracking of warranty periods, repair histories, and return/exchange eligibility directly tied to the product's digital receipt.
+- **Material Helpers & Care Instructions:** Digital tags containing specific care instructions (washing, drying, dry-cleaning) and fabric behavior profiles (e.g., warnings if a material is prone to shrinking or stretching over time). This ensures the garment's longevity and guides the consumer on proper maintenance.
 
 ### 3. Customer Engagement & Loyalty
 - **Loyalty Relationship Supports:** A decentralized approach to loyalty programs. Instead of carrying physical cards or managing dozens of fragmented store accounts, the user's Solid Pod stores their loyalty status, accumulated points, and VIP membership tiers as verifiable credentials.
