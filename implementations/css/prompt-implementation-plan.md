@@ -6,6 +6,11 @@ This plan turns the Databox architecture into an ordered set of implementation p
 completed prompts and passed gates, not weeks. Each prompt produces reviewable artifacts and tests that become the
 inputs to later prompts.
 
+DBX-01 through DBX-28 is the primary execution path to a production-quality, independently assessed release. Use
+[DBX recommended decisions](dbx-recommended-decisions.md) as input to DBX-02, not as a substitute for its ADR and
+review outputs. HAK-01 through HAK-12 in the [Hackathon profile](hackathon-profile.md) is an optional early
+demonstrator; hackathon success does not imply the DBX gates have passed.
+
 Do not send the entire plan to one coding agent with an instruction to "implement everything". Run prompts in order
 within each dependency chain, retain their outputs in the repository, and use the indicated agent capability.
 
@@ -41,7 +46,7 @@ Prepend this text to every implementation prompt:
 > You are working on the organisation-hosted Solid Databox implementation for Community Solid Server. Read all
 > Markdown files in `databox/` and any accepted decision records or handoff documents produced by prerequisite
 > prompts before acting. Preserve program isolation, pairwise identity, assurance-aware access, explicit consumer
-> submission, append-only evidence and the separation between ACP and ODRL. Inspect the current repository and reuse
+> submission, append-only evidence and the separation between WAC/ACP and ODRL. Inspect the current repository and reuse
 > its extension patterns. Do not weaken an invariant to make a test pass. Do not invent an unresolved security or
 > protocol decision: record the blocker and stop that dependent part. Implement the requested artifacts and tests,
 > run relevant validation, and finish with changed files, decisions used, tests run, residual risks and inputs needed
@@ -98,7 +103,9 @@ be accepted before their consumers begin.
 > Inspect CSS authentication, authorization, operation handling, storage decorators, Pod provisioning,
 > notifications, Components.js configuration and tests. Produce an extension map naming the existing interfaces and
 > configuration points Databox should reuse, replace or wrap. Identify where verified claims and authenticated actor
-> context are lost. Make no production-code changes.
+> context are lost. Against the pinned W3C LWS 1.0 Working Draft, identify whether CSS already implements or lacks
+> authorization-server discovery, RFC 8693 token exchange, LWS authentication suites, storage descriptions,
+> `application/lws+json`, access requests/grants and LWS operation semantics. Make no production-code changes.
 
 **Artifacts:** extension map, relevant file/line references, initial dependency list and candidate upstream seams.
 
@@ -115,7 +122,13 @@ map, and every claimed seam is backed by source evidence.
 > Convert unresolved Databox questions into explicit decision records. Cover box topology, ownership, consumer proof
 > ceremony, pairwise identifiers, assurance vocabulary, notification mechanism, receipt states, append-only rules,
 > deletion/tombstones, policy versioning, ODRL conflict strategy, VC proof/status format, encryption boundary and
-> binary evidence. For each decision give alternatives, consequences, recommendation and status.
+> binary evidence. Adjudicate every item in `implementation-decisions.md`, including external IdP trust, broker/token
+> exchange, offline grants, identifier binding, notification recovery and fulfilment, legal temporal applicability,
+> policy-update effects and legislative-corpus proof. Resolve or explicitly block each S-01 through S-27 Solid/LWS
+> interoperability question and pin the dated specification baseline. For each decision give alternatives,
+> consequences, recommendation and status. Start from `databox/dbx-recommended-decisions.md`; record why each
+> recommendation is adopted, modified or rejected. Separate the technical ODRL profile from the later human-reviewed
+> legal-policy mapping so unfinished legislative processing does not cause agents to invent legal rules.
 
 **Artifacts:** decision index and one ADR per decision.
 
@@ -149,7 +162,12 @@ inside the threat model rather than assumed trusted.
 > Define the deployable architecture: CSS extension, provisioning control plane, institutional bridge, ODRL service,
 > evidence ledger, transactional outbox, notification worker, review queue and consumer agent. Specify trust
 > boundaries, synchronous and asynchronous interfaces, failure ownership and which system is authoritative for each
-> state. Record architecture decisions; do not implement components.
+> state. Include the boundary between external human IdPs, any token broker and CSS; distinguish authoritative HTTPS,
+> durable event recovery and optional WebSocket/Solid Notification hints. Include the legal-source ingestion,
+> applicability, human-attestation and policy-compilation stages. Record architecture decisions; do not implement
+> components. Define separate Track A Solid and Track B LWS adapters. For Track B, model authentication credentials,
+> authorization-server discovery, token exchange, storage discovery and ODRL-based access requests/grants without
+> claiming that draft interfaces are already supplied by CSS.
 
 **Artifacts:** component diagram, sequence diagrams, interface catalog and authoritative-state matrix.
 
@@ -165,7 +183,9 @@ traced without an undefined state transition.
 
 > Translate Databox invariants and adopted decisions into uniquely identified, testable requirements. Separate server,
 > bridge, provider, consumer-agent and deployment conformance. Include positive, negative and evidence requirements.
-> Link every requirement to its decision, threat and future test identifier.
+> Add a Solid compatibility matrix for discovery, authentication, WebID/client identification, HTTP/LDP methods,
+> RDF content negotiation, conditional requests, WAC or ACP, CORS, notifications and standard error behavior against
+> the pinned specification versions. Link every requirement to its decision, threat and future test identifier.
 
 **Artifacts:** conformance matrix and test-identification scheme.
 
@@ -184,7 +204,11 @@ that a configuration file or class exists.
 > Define and implement the machine-validated institution/program profile schema. Include principals, processors,
 > origins, identity providers, assurance mappings, record classes, submission classes, ODRL policies, legal bases,
 > retention, redress, systems of record, notification, signing, encryption, tenancy and deployment settings. Provide
-> valid and invalid examples plus schema tests.
+> trusted issuer/claim contracts, token-broker settings where adopted, offline-grant policy, legislative corpus
+> manifests, compiled-policy and human-attestation references, policy effective-time behavior and appeal routes.
+> Include record-existence visibility, consumer index fields, access/correction routes, response-clock calendars,
+> statement association, disclosure-ledger projection and prior-recipient correction/notification behavior.
+> Provide valid and invalid examples plus schema tests.
 
 **Artifacts:** versioned schema, examples, loader types and validation tests.
 
@@ -200,8 +224,12 @@ invalid assurance, origin, policy and retention combinations fail validation.
 
 > Publish a machine-loadable Databox vocabulary and ODRL Profile. Reuse ODRL Core/Common terms before defining custom
 > terms. Define each custom action, operand, constraint, duty, consequence and remedy with processing semantics.
-> Include profile versioning, conflict strategy, validation shapes, examples and conformance tests. Do not treat ODRL
-> as a replacement for ACP.
+> Define a reviewed, loss-aware mapping from the applicable WebCivics jural, jurisdiction, policy, legitimacy and
+> accountability terms. Include profile versioning, policy-source precedence, ODRL conflict composition, duty
+> fulfilment states, validation shapes, examples and conformance tests. Do not treat ODRL as a replacement for WAC/ACP or
+> make the runtime evaluator interpret legislation. Until the reviewed legislation corpus is available, implement
+> only the deterministic technical Databox/LWS ODRL terms and the signed compiled-policy input interface, using
+> synthetic legal-policy fixtures. Mark the WebCivics/statutory mapping as a gated follow-on artifact.
 
 **Artifacts:** RDF vocabulary, ODRL Profile, SHACL or equivalent validation, examples and term-level tests.
 
@@ -284,29 +312,44 @@ another program; operational tooling is included in the test evidence.
 > Extend authentication context to retain only cryptographically verified WebID, client, issuer, audience, assurance,
 > authentication time, actor, represented entity and delegation claims. Preserve DPoP or sender-constraint checks.
 > Carry this immutable context through authorization, operation outcome and audit without trusting request headers or
-> an unverified JWT decode.
+> an unverified JWT decode. Implement the adopted direct-federation or token-broker boundary and validate the external
+> issuer/claim contract. Keep external login, relationship credential and access token distinct; do not replace a
+> Solid WebID with a DID unless an adopted protocol explicitly defines that behavior. Preserve a standards-conforming
+> Solid-OIDC path for independent clients and an accepted external issuer; do not make a proprietary broker token the
+> only way to access the resource server. Where the LWS track is adopted, implement the selected authentication-suite
+> adapter, RFC 8693 token exchange, authorization-server metadata/challenge and storage-audience access tokens behind
+> versioned discovery. Keep assurance claims and sender constraint as advertised Databox profiles unless the pinned
+> LWS draft makes them normative.
 
 **Artifacts:** typed request context, extractor/adapter, propagation changes and claim-validation tests.
 
 **Acceptance gate:** forged assurance and actor claims are rejected; accepted claims can be traced into allow, deny
 and completed-operation audit events; human identity/security review passes.
 
-### DBX-13 — Relationship credential lifecycle
+### DBX-13 — Databox Connection Credential lifecycle
 
 **Agent level:** Hard  
 **Depends on:** DBX-02, DBX-07, DBX-10, DBX-12
 
 **Prompt:**
 
-> Implement issuance, validation, status, revocation and rotation for program-specific relationship credentials.
-> Bind the opaque Databox, program audience and pairwise consumer identity without exposing a global customer key.
-> Prove consumer-agent key control during connection and recovery. Ensure the credential is not accepted as a bearer
-> access token.
+> Implement issuance, export/import, validation, installation acknowledgement, status, revocation, renewal and
+> rotation for program-specific Databox Connection Credentials. Bind the opaque Databox, program, standards-based
+> discovery, immutable access-grant/policy reference and digest, compatibility profiles, pairwise consumer identity
+> and holder key without exposing a global customer key. Prove consumer-vault key control during connection,
+> every unattended token request, migration and recovery. Treat the credential as the explicitly consented long-term
+> authority for background connection use, with months/years or relationship-duration validity, inactivity,
+> reauthentication, rotation and revocation rules. Ensure its document is not accepted as a bearer access token;
+> issue separately audience-bound, short-lived access tokens after validating fresh holder-key proof.
 
-**Artifacts:** credential schema/service, status mechanism, proof ceremony and lifecycle tests.
+**Artifacts:** connection-credential schema/service, issuer/export/import interfaces, status mechanism, discovery and
+grant binding, proof ceremony and lifecycle tests.
 
-**Acceptance gate:** replay against another program fails; revoked and expired relationships fail; agent migration
-preserves history without preserving obsolete access; human cryptographic review passes.
+**Acceptance gate:** a conforming consumer vault can install the exported credential and maintain unattended access
+to only its Databox without repeated interactive login; copied credential bytes without the holder key fail; replay
+against another program fails; no reusable bearer token, shared secret or global identifier is present;
+revoked and expired relationships fail; vault migration preserves history without preserving obsolete access; human
+cryptographic and privacy review passes.
 
 ### DBX-14 — Composed authorization engine
 
@@ -315,13 +358,15 @@ preserves history without preserving obsolete access; human cryptographic review
 
 **Prompt:**
 
-> Implement authorization as the conjunction of tenant, Solid-OIDC, ACP, relationship, client, assurance, record
-> grade, delegation, immutable-operation and ODRL precondition decisions. Produce structured reason codes and safe
+> Implement authorization as the conjunction of tenant, Solid-OIDC, the selected WAC/ACP surface, relationship,
+> client, assurance, record grade, delegation, immutable-operation and ODRL precondition decisions. Use WAC for the
+> hackathon as fixed by HD-03; keep the composition interface authorization-system-neutral. Produce structured reason
+> codes and safe
 > step-up responses. Define deterministic precedence and fail closed on missing policy inputs.
 
 **Artifacts:** authorization components, decision model and exhaustive policy tests.
 
-**Acceptance gate:** truth-table tests cover every layer; broad ACP permission cannot bypass assurance, tenant,
+**Acceptance gate:** truth-table tests cover every layer; broad WAC/ACP permission cannot bypass assurance, tenant,
 immutability or ODRL prohibition; denial does not reveal protected resource existence.
 
 ## Wave D: exchange, policy execution and evidence
@@ -335,7 +380,8 @@ immutability or ODRL prohibition; denial does not reveal protected resource exis
 
 > Implement the protocol gateway for deposits and consumer submissions. Validate container, media type, size, shape,
 > addressed relationship, issuer, record class, legal basis, declared purpose, policy reference and idempotency. Add
-> bounded handling for binary evidence and a quarantine contract for malware scanning.
+> bounded handling for binary evidence and a quarantine contract for malware scanning. For corrections, validate the
+> target record/assertion, requested operation, proposed value or statement, supporting evidence and authority to act.
 
 **Artifacts:** validators, gateway handlers, error vocabulary and positive/negative fixtures.
 
@@ -367,7 +413,9 @@ keys fail; human cryptographic review passes.
 
 > Implement storage or operation decorators that make accepted records, submissions, receipts and evidence
 > append-only. Support superseding records, linked dispositions and tombstones without destructive rewriting. Ensure
-> administrative and owner permissions cannot bypass these invariants through ordinary Solid operations.
+> administrative and owner permissions cannot bypass these invariants through ordinary Solid operations. Make a
+> correction or associated statement apparent from the current representation and authorized record index without
+> erasing the prior evidence history.
 
 **Artifacts:** immutable storage policy, supersession/tombstone model and bypass tests.
 
@@ -382,8 +430,12 @@ retrievable according to retention policy; legal deletion produces the adopted t
 **Prompt:**
 
 > Implement canonical payload digests and signed acceptance receipts containing transaction, assigned resource,
-> parties, time, policy version, activated duties and idempotency key. Distinguish accepted, notified, retrieved,
-> acknowledged, reviewed and disposed states. Never issue acceptance before durable commit.
+> parties, time, policy version and digest, activated duties and idempotency key. Where a legal policy governs the
+> transaction, bind the compiled-policy digest, corpus-manifest digest, human-attestation identifier and evaluator
+> version. Distinguish accepted, notified, retrieved, acknowledged, reviewed and disposed states. Never issue
+> acceptance before durable commit.
+> Correction acceptance receipts also bind the target record, response profile, calculated due time and complaint
+> route without asserting that the proposed correction has been accepted as true.
 
 **Artifacts:** receipt schema, signer/verifier, state vocabulary and test vectors.
 
@@ -400,6 +452,9 @@ logical outcome; altered receipt or record bytes fail verification.
 > Implement the adopted append-only evidence ledger and consumer-visible audit projection. Bind authenticated actor,
 > represented entity, assurance, decision, operation, digests, institutional principal, policy evaluation, receipt,
 > notification and disposition outcomes. Record denied requests without leaking sensitive content.
+> Produce a minimised consumer record/disclosure projection that supports record awareness, current version and
+> dispute state, access/correction routes and applicable disclosure history. Treat record-existence visibility and
+> payload authorization separately and test non-disclosure side channels.
 
 **Artifacts:** ledger adapter, event schema, integrity mechanism, projection and verification tests.
 
@@ -416,7 +471,12 @@ policy context; ordinary Pod operations cannot rewrite the ledger.
 > Implement ODRL validation, immutable policy resolution, deterministic evaluation and durable duty instances. Handle
 > precondition duties, post-action obligations, constraints, conflict strategy, consequences and remedies. Implement
 > handlers for receipt issuance, holder notification, retention, deletion/tombstone and review staging. Record every
-> transition in evidence.
+> transition in evidence. Consume signed, human-attested compiled policy bundles; do not decide legislative
+> commencement, repeal, transition or jurisdiction in the request path. Apply effective-time and policy-update rules
+> from the adopted ADR.
+> Add deterministic handlers for record-index availability, correction acknowledgement and assessment, statement
+> association, reasons/complaint routes and per-recipient correction propagation. Keep acceptance, review, source
+> correction, notification and recipient completion as separate duty states.
 
 **Artifacts:** evaluator, policy registry, duty state machine, handlers and policy test suite.
 
@@ -432,12 +492,16 @@ retries are idempotent; policy substitution is detectable; independent Hard and 
 
 > Implement durable outbound LDN or the adopted notification mechanism using a transactional outbox. Add endpoint
 > validation, SSRF protection, bounded redirects, retries, deduplication, endpoint rotation, minimal payloads and
-> delivery evidence. Ensure notification failure does not erase an accepted deposit or falsely fulfill an ODRL duty.
+> delivery evidence. Implement the adopted cursor/event-feed or state-reconciliation recovery contract so a consumer
+> can recover after disconnect or retention-bounded downtime; an internal outbox is not that API. Treat WebSockets or
+> Solid Notifications as optional hints. Ensure notification failure does not erase an accepted deposit or falsely
+> fulfill an ODRL duty, and apply the policy-specific definition of fulfilment.
 
 **Artifacts:** outbox, dispatcher, endpoint policy, worker and failure/recovery tests.
 
-**Acceptance gate:** crash and retry tests do not lose or duplicate logical events; private-network targets are
-blocked; duty state accurately distinguishes queued, sent, accepted and failed.
+**Acceptance gate:** crash, retry and reconnect tests do not lose or duplicate logical events; a consumer can recover
+missed events through the specified durable contract; private-network targets are blocked; duty state accurately
+distinguishes queued, sent, transport-accepted, durably retrievable, acknowledged and failed where applicable.
 
 ## Wave E: bridge, review and consumer interoperability
 
@@ -450,7 +514,10 @@ blocked; duty state accurately distinguishes queued, sent, accepted and failed.
 
 > Build a synthetic retailer bridge that consumes committed purchase events and deposits digital receipts, warranty,
 > product, allergen and recall records. Use a transactional source/outbox boundary, program service identity and
-> idempotency. Do not connect to a real retailer or use real customer data.
+> stable namespaced source-event idempotency. Resolve a typed customerID only through the protected relationship
+> mapping registry and retain the returned Databox receipt. Do not connect to a real retailer or use real customer
+> data. Add the reverse governed correction-case path: map an opaque target to its protected source record, submit a
+> case, receive a disposition, publish a superseding record or linked statement and reconcile both systems.
 
 **Artifacts:** runnable bridge, synthetic source, mappings and recovery tests.
 
@@ -466,7 +533,13 @@ actor and program principal; bridge failure is observable and recoverable.
 
 > Implement a review queue for corrections, warranty claims and preferences. Preserve submitter identity and payload
 > digest, enforce staff assignment and assurance, prevent direct destructive system-of-record updates, and append a
-> signed human or governed disposition linked to the submission. Fulfill or fail applicable ODRL duties.
+> signed human or governed disposition linked to the submission. Consumer submissions arrive through authenticated
+> HTTP create on the Databox submission container; notifications only signal the committed event. Fulfill or fail
+> applicable ODRL duties.
+> Issue an immediate signed acknowledgement, calculate and monitor the applicable response clock, support corrected,
+> statement-associated, partially-corrected, no-change, more-information-required and redirected dispositions, and
+> expose reasons and complaint routes. Generate separately tracked prior-recipient duties from disclosure evidence
+> where the adopted policy requires them.
 
 **Artifacts:** review adapter/UI or API, disposition schema and workflow tests.
 
@@ -481,14 +554,21 @@ transfers and decisions are reconstructable; overdue and failed review duties ar
 **Prompt:**
 
 > Build a minimal reference consumer agent that controls separate pairwise identities for two synthetic programs,
-> registers notification endpoints, authenticates, retrieves and verifies records, stores independent copies,
+> imports and manages their Databox Connection Credentials in an isolated connection registry, registers notification
+> endpoints, authenticates, retrieves and verifies records, stores independent copies,
 > presents understandable ODRL terms, submits a scoped preference/correction and verifies acceptance receipts. It
-> must not expose a general wallet-browsing API to programs.
+> must not expose a general wallet-browsing API to programs. Implement the Databox features on top of ordinary Solid
+> discovery, Solid-OIDC and HTTP resource operations rather than a private SDK-only transport.
+> Display the authorized record/disclosure index, current and disputed versions, correction clock and disposition;
+> support payload step-up without assuming that index visibility always authorizes payload access.
 
-**Artifacts:** runnable agent, local store, two-program fixture and end-to-end scenario.
+**Artifacts:** runnable vault/agent, connection-credential importer, isolated connection registry, local knowledge
+store, multi-program fixture and end-to-end scenario.
 
-**Acceptance gate:** neither synthetic program learns the other identity or connection; exported records and receipts
-verify independently; submission disclosure contains only selected fields.
+**Acceptance gate:** adding, pausing, rotating and removing one connection does not affect another; neither synthetic
+program learns the other identity or connection; imported credentials bootstrap standards-based access without
+embedded bearer secrets; exported records and receipts verify independently; submission disclosure contains only
+selected fields.
 
 ## Wave F: integration, adversarial assurance and release
 
@@ -533,13 +613,22 @@ critical or high unresolved tenant, identity, cryptographic or evidence finding 
 **Prompt:**
 
 > Run Solid interoperability checks and the Databox conformance matrix against the packaged deployment. Validate
-> external WebIDs, approved clients, resource operations, notification protocol, credential verification and ODRL
-> behavior. Produce machine-readable and human-readable results with evidence links and explicit non-conformance.
+> the pinned dated Solid Protocol, Solid-OIDC, selected authorization and Notifications baselines. Validate standard
+> discovery, an external user-controlled WebID and accepted issuer, independent client identification, HTTP/LDP
+> methods, RDF content negotiation, conditional requests, CORS, authorization, standard challenges/errors and every
+> advertised notification channel. Run at least two independent non-Databox Solid client stacks plus the reference
+> agent. Then validate Databox credential, receipt and ODRL behavior as a separate extension layer. Produce a
+> machine-readable compatibility manifest and human-readable results with evidence links and explicit
+> non-conformance. Report current-Solid/CSS and W3C LWS Working Draft results separately, including experimental,
+> incomplete and feature-at-risk assertions. Use the Working Group test suite when available and map local tests to
+> its assertion identifiers.
 
-**Artifacts:** conformance report, interoperability evidence and exception register.
+**Artifacts:** compatibility manifest, conformance report, independent-client evidence and exception register.
 
-**Acceptance gate:** every requirement is passed, failed or explicitly not applicable with evidence; no requirement
-is marked passed solely because code or configuration exists.
+**Acceptance gate:** every requirement is passed, failed or explicitly not applicable with evidence; a consumer using
+an independent client and accepted external Solid-OIDC issuer can discover, authenticate, read permitted resources,
+append a permitted submission and use an advertised notification channel; no requirement is marked passed solely
+because code or configuration exists.
 
 ### DBX-28 — Operational and release readiness
 
@@ -551,34 +640,14 @@ is marked passed solely because code or configuration exists.
 > Assemble deployment, key ceremony, tenant onboarding, backup/restore, audit verification, incident response,
 > relationship recovery, policy publication, duty monitoring, retention/deletion and upgrade runbooks. Generate an
 > SBOM, dependency and secret scan, configuration hardening checklist and rollback plan. Have a Hard integrator review
-> all prompt handoffs, decisions, residual risks and conformance evidence.
+> all prompt handoffs, decisions, residual risks and conformance evidence. Include a standards-watch and migration
+> process for W3C LWS publication changes, with security, privacy, accessibility and internationalization review gates
+> for graduating draft features.
 
 **Artifacts:** runbooks, deployment profiles, security artifacts, release checklist and signed readiness decision.
 
 **Acceptance gate:** restore and key-rotation rehearsals pass; operators can detect failed duties and notification
 backlogs; accepted residual risks have named owners; release approval is independent of subsystem implementers.
-
-## Additional implementation questions
-
-This clarification creates some important decisions for the prompt plan:
-- Which external IdPs and token profiles are accepted?
-- Does a Databox broker exchange external identity tokens for DPoP access tokens?
-- How is IdP assurance translated into record-access grades?
-- How is the interactive user session converted into authority for a long-running consumer agent?
-- Does the relationship bind a pairwise WebID, DID, public key, or all three?
-- How are refresh, revocation and step-up authentication handled?
-- Are WebSockets optional optimization or a required conformance feature?
-- Is LDN or webhook delivery the durable notification baseline?
-- How does an agent recover missed events after disconnection?
-- Which notification state satisfies an ODRL notification duty?
-- How are legislative graphs versioned, hashed and pinned?
-- How are commencement, repeal, jurisdiction and transitional provisions evaluated?
-- Which outputs are machine-proposed versus human-attested?
-- How is a WebCivics legal position mapped to ODRL without losing jural correlatives?
-- How are conflicting mandatory baselines, guardian policies and user preferences resolved?
-- How is appealPath presented and exercised when a preventive control blocks access?
-- Can a policy update change existing records, or only new exchanges?
-- What evidence proves which corpus and interpretation version governed a decision?
 
 ## Prompt execution board
 
