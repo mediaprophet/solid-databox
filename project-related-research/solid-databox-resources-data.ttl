@@ -5722,3 +5722,259 @@
     dct:title "ConceptNet" ;
     dct:description "ConceptNet is a freely-available semantic network, designed to help computers understand the meanings of words that people use." .
 
+
+
+# --- Added from australian-linked-data-registries.md ---
+
+<https://catalogue.linked.data.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "| **Federal & Cross-Agency** | Australian Government Linked Data Working Group (AGLDWG) Catalogue" ;
+    schema:url <https://catalogue.linked.data.gov.au> .
+
+<https://data.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "data.gov.au (WofG Dataset Ontology)" ;
+    schema:url <https://data.gov.au> .
+
+<https://vocabs.ardc.edu.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Research Vocabularies Australia (ARDC)" ;
+    schema:url <https://vocabs.ardc.edu.au> .
+
+<https://healthterminologies.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "National Clinical Terminology Service (Health Terminologies)" ;
+    schema:url <https://healthterminologies.gov.au> .
+
+<https://meteor.aihw.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "AIHW Metadata Online Registry (METEOR)" ;
+    schema:url <https://meteor.aihw.gov.au> .
+
+<https://dataplace.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Dataplace (Australian Government Data Catalogue)" ;
+    schema:url <https://dataplace.gov.au> .
+
+<https://naa.gov.au/information-management/agift>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Australian Governments' Interactive Functions Thesaurus (AGIFT)" ;
+    schema:url <https://naa.gov.au/information-management/agift> .
+
+<https://data.nsw.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Data NSW (New South Wales State Registry)" ;
+    schema:url <https://data.nsw.gov.au> .
+
+<https://data.vic.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Data Vic (Victoria State Registry)" ;
+    schema:url <https://data.vic.gov.au> .
+
+<https://data.qld.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Queensland Open Data Portal" ;
+    schema:url <https://data.qld.gov.au> .
+
+<https://data.sa.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Data SA (South Australia Open Data)" ;
+    schema:url <https://data.sa.gov.au> .
+
+<https://data.wa.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Data WA (Western Australia Open Data)" ;
+    schema:url <https://data.wa.gov.au> .
+
+<https://data.act.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "ACT Open Data Portal (Australian Capital Territory)" ;
+    schema:url <https://data.act.gov.au> .
+
+<https://data.tas.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Open Data Tasmania" ;
+    schema:url <https://data.tas.gov.au> .
+
+<https://data.nt.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Northern Territory Open Data Portal" ;
+    schema:url <https://data.nt.gov.au> .
+
+<https://actmapi.act.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "ACTmapi (ACT Government Spatial Data)" ;
+    schema:url <https://actmapi.act.gov.au> .
+
+<https://portal-mainroads.opendata.arcgis.com>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Main Roads WA Open Data" ;
+    schema:url <https://portal-mainroads.opendata.arcgis.com> .
+
+<https://location.sa.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "LocationSA Map Viewer" ;
+    schema:url <https://location.sa.gov.au> .
+
+<https://data.melbourne.vic.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "City of Melbourne Open Data" ;
+    schema:url <https://data.melbourne.vic.gov.au> .
+
+<https://data.brisbane.qld.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Brisbane City Council Open Data" ;
+    schema:url <https://data.brisbane.qld.gov.au> .
+
+<https://darwin.nt.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "City of Darwin Open Data Hub" ;
+    schema:url <https://darwin.nt.gov.au> .
+
+<https://pid.geoscience.gov.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Geoscience Australia Definitional Resources Register" ;
+    schema:url <https://pid.geoscience.gov.au> .
+
+<https://pid.geoscience.gov.au/dataset/samples>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Geoscience Australia Samples Register" ;
+    schema:url <https://pid.geoscience.gov.au/dataset/samples> .
+
+<https://linked.data.gov.au/def/pdm>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Geoscience Australia (GA) Public Data Model Ontology" ;
+    schema:url <https://linked.data.gov.au/def/pdm> .
+
+<https://linked.data.gov.au/org/csiro>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "CSIRO Linked Data" ;
+    schema:url <https://linked.data.gov.au/org/csiro> .
+
+<https://linkeddata.tern.org.au>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "TERN Linked Data (incl. South Australia Biological Databases)" ;
+    schema:url <https://linkeddata.tern.org.au> .
+
+<https://linked.data.gov.au/def/plot>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "TERN Plot Ontology" ;
+    schema:url <https://linked.data.gov.au/def/plot> .
+
+<https://linked.data.gov.au/def/abis>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Australian Biodiversity Information Standard (ABIS)" ;
+    schema:url <https://linked.data.gov.au/def/abis> .
+
+<https://linked.data.gov.au/dataset/acorn-sat>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "ACORN-SAT (Australian Climate Observations Reference Network)" ;
+    schema:url <https://linked.data.gov.au/dataset/acorn-sat> .
+
+<https://environment.data.gov.au/def/op>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Observable Properties Ontology (CSIRO)" ;
+    schema:url <https://environment.data.gov.au/def/op> .
+
+<https://linked.data.gov.au/def/earthsci-for>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Earth Science Fields of Research (e.g., Ecology)" ;
+    schema:url <https://linked.data.gov.au/def/earthsci-for> .
+
+<https://linked.data.gov.au/org/abs>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Australian Bureau of Statistics (ABS) ASGS Ontologies" ;
+    schema:url <https://linked.data.gov.au/org/abs> .
+
+<https://linked.data.gov.au/def/placenames>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Place Names Gazetteer of Australia Ontology" ;
+    schema:url <https://linked.data.gov.au/def/placenames> .
+
+<https://linked.data.gov.au/def/gnaf>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Geocoded National Address File (G-NAF) Ontology" ;
+    schema:url <https://linked.data.gov.au/def/gnaf> .
+
+<https://linked.data.gov.au/def/loc-i>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Location Integration Capability (LOC-I) Ontology" ;
+    schema:url <https://linked.data.gov.au/def/loc-i> .
+
+<https://linked.data.gov.au/def/nam>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "National Address Model" ;
+    schema:url <https://linked.data.gov.au/def/nam> .
+
+<https://linked.data.gov.au/def/fsdf>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Foundational Spatial Data Framework (FSDF) Network Ontology" ;
+    schema:url <https://linked.data.gov.au/def/fsdf> .
+
+<https://linked.data.gov.au/def/geosparql-ext>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "GeoSPARQL Extensions Ontology" ;
+    schema:url <https://linked.data.gov.au/def/geosparql-ext> .
+
+<https://github.com/AGLDWG/AGRIF>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Australian Government Records Interoperability Framework (AGRIF)" ;
+    schema:url <https://github.com/AGLDWG/AGRIF> .
+
+<https://linked.data.gov.au/def/project>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "W3C PROV-O Extended Project Ontology" ;
+    schema:url <https://linked.data.gov.au/def/project> .
+
+<https://github.com/rmit-gkl/SMURF>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "SMURF Ontology (Spatial Data Linking)" ;
+    schema:url <https://github.com/rmit-gkl/SMURF> .
+
+<https://linked.data.gov.au/def/org-supermodel>
+    a sdr:Resource ;
+    sdr:sourceFile "australian-linked-data-registries.md" ;
+    dct:title "Organisational Supermodel" ;
+    schema:url <https://linked.data.gov.au/def/org-supermodel> .
+
