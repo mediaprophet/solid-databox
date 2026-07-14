@@ -21,6 +21,11 @@ In life-or-death scenarios where the patient is unconscious or unable to communi
 - **Immunization & Viral Status:** A verifiable ledger of vaccinations (e.g., COVID-19, Yellow Fever, Tetanus) and infectious disease status, which can be shared seamlessly with general practitioners, schools, or border control without carrying vulnerable paper booklets.
 - **Universal Prescription Ledger:** A cross-pharmacy, immutable record of prescribed medications. This prevents adverse drug interactions and drastically simplifies repeat prescriptions when a patient moves between different clinics, states, or health networks.
 
+### 4. Federal Health System Egress
+Currently, national health databases (such as Australia's My Health Record or the UK's NHS Spine) act as massive, centralized custodians of a citizen's entire medical history. The Solid Databox fundamentally changes this dynamic:
+- **Total Clinical Egress:** All data held in the federal health system—including hospital discharge summaries, specialist letters, pathology reports, and medical imaging—is automatically egressed as Verifiable Credentials directly into the citizen's Solid Pod.
+- **Sovereign Custodianship:** The citizen becomes the primary custodian of their complete, lifelong medical history. They no longer rely on a government portal to view their own health data, nor do they need to pay exorbitant fees to private clinics to release their own medical files to a new specialist.
+
 ## The Solid Databox Workflow in Emergencies
 
 1. **The Emergency Event:** A patient (e.g., an international student) is admitted to the ER unconscious following an accident. 
