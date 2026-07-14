@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solid Databox Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header class="glass-panel main-header">
+        <div class="header-content">
+            <h1>Solid Databox Resources</h1>
+            <p>An ontological directory of the Solid, RWW & Semantic Web ecosystem</p>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search resources by title, description...">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar glass-panel">
+            <div class="sidebar-header">
+                <h2>Filters</h2>
+                <button id="resetFilters" class="btn-text">Reset</button>
+            </div>
+            
+            <div id="facetsContainer" class="facets-container">
+                <!-- Facets will be injected here by app.js -->
+            </div>
+        </aside>
+
+        <section class="results-section">
+            <div class="results-header">
+                <span id="resultsCount">Loading resources...</span>
+            </div>
+            <div id="resourcesGrid" class="resources-grid">
+                <!-- Resource cards will be injected here by app.js -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
