@@ -33,6 +33,12 @@ NGOs and government bodies managing social housing face entirely different chall
 - **Vulnerability & Priority Flags:** Applicants can store verified medical or social worker assessments (e.g., proof of domestic violence risk, or physical disabilities requiring wheelchair-accessible housing) as highly encrypted VCs. These are shared strictly with the NGO to calculate priority allocation without forcing the applicant to repeatedly recount their trauma.
 - **Government Subsidy Integration:** Leveraging cross-context integrations, the applicant provides a VC proving their eligibility for government housing subsidies (e.g., Section 8, Commonwealth Rent Assistance). This allows the NGO to instantly verify funding without forcing the vulnerable applicant to repeatedly interface with slow government bureaucracies.
 
+### 4. Short-Term & Holiday Rentals (e.g., Airbnb, Stayz)
+The short-term rental market requires high-trust verification to prevent property damage and fraud, but currently relies on insecurely uploading passports to third-party tech platforms.
+- **Verified Guest Identity & Reputation:** Guests grant the host or platform temporary read-access to their verified digital ID and a "Good Guest" VC (compiled from previous successful short-term stays). This proves identity and reliability without handing over raw biometric or passport data to the platform.
+- **Digital Keys & Access Codes:** Upon booking confirmation, the host deposits a time-bound Verifiable Credential acting as a digital key (or smart-lock access code) directly into the guest's Databox. This credential automatically expires the moment checkout time passes.
+- **Incident & Deposit Resolution:** If a dispute occurs, time-stamped, cryptographically signed condition reports (photos taken by the guest upon arrival and deposited into their Pod) can be instantly shared to resolve bond/deposit disputes fairly.
+
 ---
 
 ## The Solid Databox Lifecycle
