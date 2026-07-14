@@ -6,3 +6,4 @@ This document tracks relevant open issues, architectural debates, and limitation
 
 - [solid/specification#217: Proposal: Support Decentralized Identifiers (DIDs) in addition to Web IDs](https://github.com/solid/specification/issues/217)
 - [W3C Decentralized Identifiers (DIDs) v1.0 Specification](https://w3c.github.io/did/)
+- [DIF DID SIOP (Self-Issued OpenID Provider)](https://identity.foundation/did-siop/) *(Note: Deprecated)*
