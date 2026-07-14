@@ -183,6 +183,9 @@ Resolvable vocabularies the specs reuse:
 - **Organisations & law** — [Org](http://www.w3.org/ns/org#), [RegOrg (`rov:`)](https://www.w3.org/ns/regorg#), [ELI](https://op.europa.eu/en/web/eu-vocabularies/eli) (European Legislation Identifier)
 - **This project's namespace** — `sop:` → [`https://w3id.org/solid-databox/ns#`](https://w3id.org/solid-databox/ns#)
 
+### Government & Linked Data
+- **[Australian Government Linked Data Working Group (AGLDWG)](https://www.linked.data.gov.au/)** — Guidelines, URI namespaces, and ontologies for Australian government linked data. ([AGLDWG GitHub](https://github.com/AGLDWG))
+
 ### WebCivics human-rights corpus
 - **[ns.webcivics.net](https://ns.webcivics.net/)** — the WebCivics ontology namespace: the `cml:` / `values:`
   corpus (human-rights instruments; jural, jurisdiction, and agency vocabularies) that carries
