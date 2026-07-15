@@ -1,5 +1,8 @@
 # Organisation-hosted Solid Databox
 
+The Australian compliance decision-support implementation and its fail-closed
+Forge gate are described in [compliance-framework.md](compliance-framework.md).
+
 ## Purpose
 
 An organisation-hosted Databox is a private, two-way exchange point between one organisation program and one

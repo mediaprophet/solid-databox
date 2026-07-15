@@ -39,6 +39,7 @@ jobs:
           flutter build web --base-href /seraphim/app/
           mkdir -p ../../dev-linkeddata-au/seraphim/app
           cp -r build/web/* ../../dev-linkeddata-au/seraphim/app/
+          touch ../../dev-linkeddata-au/.nojekyll
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

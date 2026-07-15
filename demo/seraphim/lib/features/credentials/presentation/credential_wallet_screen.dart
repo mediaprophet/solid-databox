@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:solidui/solidui.dart';
 import '../application/credential_providers.dart';
 
@@ -22,7 +23,7 @@ class CredentialWalletScreen extends ConsumerWidget {
               child: ListTile(
                 leading: const Icon(Icons.badge, color: Colors.blue),
                 title: Text(cred.type.join(', ')),
-                subtitle: Text('Issuer: ${cred.issuer}\nIssued: ${cred.issuanceDate}'),
+                subtitle: Text('Issuer: ${cred.issuer}'),
                 trailing: IconButton(
                   icon: const Icon(Icons.qr_code),
                   tooltip: 'Present Credential',
