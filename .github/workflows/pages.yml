@@ -27,6 +27,19 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Build Seraphim App
+        run: |
+          cd demo/seraphim
+          flutter pub get
+          flutter build web --base-href /seraphim/app/
+          mkdir -p ../../dev-linkeddata-au/seraphim/app
+          cp -r build/web/* ../../dev-linkeddata-au/seraphim/app/
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

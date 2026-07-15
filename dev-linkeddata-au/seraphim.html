@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seraphim | Solid Databox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .seraphim-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .seraphim-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .seraphim-header h1 {
+            color: #D67D59;
+            font-family: 'Nunito', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .launch-btn {
+            display: inline-block;
+            background: #D67D59;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(214, 125, 89, 0.4);
+        }
+        .launch-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 125, 89, 0.6);
+        }
+        .info-section {
+            margin-top: 30px;
+        }
+        .info-section h2 {
+            color: #6B8F71;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header class="glass-panel main-header" style="margin-bottom: 0;">
+        <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div>
+                <a href="index.html" style="color: white; text-decoration: none; opacity: 0.8; font-size: 0.9rem;">&larr; Back to Directory</a>
+            </div>
+            <h2 style="margin: 0; font-size: 1.2rem;">Solid Databox Ecosystem</h2>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="glass-panel seraphim-container">
+            <div class="seraphim-header">
+                <h1>Seraphim</h1>
+                <p style="font-size: 1.2rem; opacity: 0.9;">A consumer-controlled Solid client Flutter application.</p>
+                <a href="seraphim/app/index.html" class="launch-btn">Launch Web App</a>
+            </div>
+
+            <div class="info-section">
+                <h2>Data Architecture</h2>
+                <p>Following the architectural pattern of the ANU Software Innovation Institute (<code>anusii</code>), this application relies entirely on a remote, decentralized "online-first" model. It reads and writes encrypted data directly to your Solid Pod via <code>solidpod</code> and <code>solidui</code>, keeping your structured data securely in user-controlled remote vaults.</p>
+            </div>
+
+            <div class="info-section">
+                <h2>Human Rights & Qualia-DB</h2>
+                <p>Future implementations of this application intended to support human rights will be backed by a <strong>qualia-db license</strong> for natural persons. This ensures the protection and sovereignty of the individual's data across the semantic web.</p>
+            </div>
+
+            <div class="info-section">
+                <h2>Features</h2>
+                <ul>
+                    <li><strong>Domain Driven Design:</strong> 15 built-in functional domains including Case Plans, Budgets, and Evidence.</li>
+                    <li><strong>Hardware Ready:</strong> Scan check-in QR codes to resolve Solid Endpoints or snap photos of receipts for direct Pod upload.</li>
+                    <li><strong>Verifiable Presentations:</strong> Present credentials stored in your Pod dynamically as QR codes.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
