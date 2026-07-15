@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     let searchQuery = '';
 
+    function escapeHTML(value) {
+        return String(value ?? '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function itemCategories(item) {
+        if (Array.isArray(item.categories) && item.categories.length > 0) {
+            return item.categories;
+        }
+        return item.category ? [item.category] : [];
+    }
+
     const elements = {
         facetsContainer: document.getElementById('facetsContainer'),
         resourcesGrid: document.getElementById('resourcesGrid'),
@@ -94,10 +110,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     function extractFacetCounts(key) {
         const counts = {};
         rawData.forEach(item => {
-            const val = item[key];
-            if (val && val !== '') {
-                counts[val] = (counts[val] || 0) + 1;
-            }
+            const values = key === 'category' ? itemCategories(item) : [item[key]];
+            values.forEach(value => {
+                if (value) counts[value] = (counts[value] || 0) + 1;
+            });
         });
         
         // Sort by count descending
@@ -109,8 +125,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     function createFacetGroupHTML(title, groupKey, facetData) {
         let itemsHTML = Object.entries(facetData).map(([value, count]) => `
             <label class="facet-item">
-                <input type="checkbox" class="facet-checkbox" data-group="${groupKey}" value="${value}">
-                <span>${value}</span>
+                <input type="checkbox" class="facet-checkbox" data-group="${escapeHTML(groupKey)}" value="${escapeHTML(value)}">
+                <span>${escapeHTML(value)}</span>
                 <span class="facet-count">${count}</span>
             </label>
         `).join('');
@@ -135,7 +151,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // Check Facets
-            let matchesCategory = activeFilters.category.size === 0 || activeFilters.category.has(item.category);
+            let matchesCategory = activeFilters.category.size === 0 ||
+                itemCategories(item).some(category => activeFilters.category.has(category));
             let matchesType = activeFilters.type.size === 0 || activeFilters.type.has(item.type);
             let matchesLanguage = activeFilters.language.size === 0 || activeFilters.language.has(item.language);
 
@@ -159,35 +176,36 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const resourcesHTML = filteredData.map(item => {
-            const titleDisplay = item.title || item.link;
-            const linkHref = item.link && item.link.startsWith('http') ? item.link : '#';
+            const titleDisplay = escapeHTML(item.title || 'Untitled resource');
+            const linkHref = item.link && /^https?:\/\//i.test(item.link) ? item.link : '#';
             const isExternal = linkHref !== '#';
             
-            let badgesHTML = '';
-            if (item.category) badgesHTML += `<span class="badge category">${item.category}</span>`;
-            if (item.type) badgesHTML += `<span class="badge">${item.type}</span>`;
+            const badgesHTML = [
+                ...itemCategories(item).map(category => `<span class="badge category">${escapeHTML(category)}</span>`),
+                ...(item.type ? [`<span class="badge">${escapeHTML(item.type)}</span>`] : [])
+            ].join('');
             
             return `
                 <div class="resource-card">
                     <div class="card-header">
                         <h3 class="card-title">
-                            ${isExternal ? `<a href="${linkHref}" target="_blank" rel="noopener noreferrer">${titleDisplay}</a>` : titleDisplay}
+                            ${isExternal ? `<a href="${escapeHTML(linkHref)}" target="_blank" rel="noopener noreferrer">${titleDisplay}</a>` : titleDisplay}
                         </h3>
                     </div>
                     <div class="card-badges">
                         ${badgesHTML}
                     </div>
                     <div class="card-desc">
-                        ${item.description || '<span style="opacity: 0.5; font-style: italic;">No description provided</span>'}
+                        ${item.description ? escapeHTML(item.description) : '<span style="opacity: 0.5; font-style: italic;">No description provided</span>'}
                     </div>
                     <div class="card-footer">
                         ${isExternal ? `
-                            <a href="${linkHref}" class="card-link" target="_blank" rel="noopener noreferrer">
+                            <a href="${escapeHTML(linkHref)}" class="card-link" target="_blank" rel="noopener noreferrer">
                                 Visit Link
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                             </a>
                         ` : '<span></span>'}
-                        <span class="card-meta">${item.language || ''}</span>
+                        <span class="card-meta">${escapeHTML(item.language || '')}</span>
                     </div>
                 </div>
             `;
