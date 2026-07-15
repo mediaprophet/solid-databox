@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
+import 'package:solidpod/solidpod.dart' show tryRestoreSession;
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -18,12 +18,19 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   }
 
   Future<void> _checkSession() async {
-    // In a real app we would check the SolidAuth session via secure storage
-    // Mocking an initial delay for the POC
-    await Future.delayed(const Duration(seconds: 1));
-    if (mounted) {
-      // Assuming user needs to log in for now
-      context.go('/login');
+    try {
+      final session = await tryRestoreSession();
+      if (mounted) {
+        if (session != null) {
+          context.go('/');
+        } else {
+          context.go('/login');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        context.go('/login');
+      }
     }
   }
 

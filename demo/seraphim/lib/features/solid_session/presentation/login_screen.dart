@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:solidui/solidui.dart';
-
+import 'package:go_router/go_router.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -8,11 +8,21 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Seraphim Login')),
-      body: const Center(
+      body: Center(
         child: SolidLogin(
           clientId: 'https://seraphim.app/id',
-          redirectUris: ['seraphim://callback'],
-          child: Text('Login to Pod'),
+          redirectUris: const ['seraphim://callback'],
+          child: Builder(
+            builder: (context) {
+              // This builder is only rendered when SolidLogin transitions to its child upon success
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (context.mounted) {
+                  context.go('/');
+                }
+              });
+              return const CircularProgressIndicator();
+            },
+          ),
         ),
       ),
     );
