@@ -1,3 +1,3 @@
-﻿# Government   State Applications
+# Government: State Applications
 
-Define applications and standards specific to this vertical here.
+State and provincial governments are responsible for managing the core foundational registries of a citizen's life. The Databox architecture enables state agencies to issue highly secure, globally verifiable credentials for identity and ownership. This transforms how states manage Digital Driver's Licenses, Birth/Death/Marriage registries, vehicle registrations, and Land Titles. Instead of maintaining fragmented, vulnerable central databases, the state issues cryptographically verifiable claims directly to a citizen's Databox. This allows citizens to seamlessly prove their identity, age, or property ownership across state borders or to private entities with complete privacy-preserving consent mechanisms.
