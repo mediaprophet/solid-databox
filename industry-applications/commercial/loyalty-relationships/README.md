@@ -1,0 +1,3 @@
+# Commercial: Loyalty Relationships & Community Engagement
+
+Modern businesses are often held hostage by the algorithms of massive social media platforms or exploitative marketplace apps (like food delivery services) just to communicate with their own customers. The Databox architecture liberates businesses by enabling direct, peer-to-peer loyalty relationships. A local cafe or large retail chain can issue a verifiable "Loyalty Credential" directly to a customer's Pod. Through this direct connection, the business can securely broadcast exclusive offers, event invitations, or community updates straight to the consumer's Databox—entirely bypassing algorithmic news feeds, ad-spend, and third-party data aggregators.
