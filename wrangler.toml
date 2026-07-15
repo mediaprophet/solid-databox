@@ -1,5 +1,0 @@
-name = "solid-databox"
-compatibility_date = "2024-07-15"
-
-[assets]
-directory = "./dev-linkeddata-au"
