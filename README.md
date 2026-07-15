@@ -131,6 +131,8 @@ model for Digital Public Infrastructure alignment.
 
 ## Repository contents
 
+**Looking for a specific component, use case, or ontology?** Start with the **[Comprehensive Project Catalog](CATALOG.md)** for a categorized database of all building blocks, industry applications, and semantic domains in this repository.
+
 **The specification (ReSpec).** The normative and explanatory core.
 
 | File | What it is |

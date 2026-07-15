@@ -15,10 +15,9 @@ A prominent example is the WoT-Solid project, which bridges the gap between hete
 The synergy between Solid (Social Linked Data) and WoT has sparked interest in decentralized multi-agent systems. The W3C Autonomous Agents on the Web (WebAgents) Community Group focuses on how this convergence allows automated software clients to navigate, query, and act upon a uniform hypermedia fabric.
 
 ## 2. Ontologies in Use
-To ensure that data transitions seamlessly from a physical sensor to a decentralized Pod while remaining fully machine-readable, researchers rely on a combination of established Semantic Web ontologies:
+To ensure that data transitions seamlessly from a physical sensor to a decentralized Pod while remaining fully machine-readable, researchers rely on a combination of established Semantic Web ontologies, specifically the WoT Thing Description (TD) Ontology and the SOSA/SSN Ontology.
 
-- **WoT Thing Description (TD) Ontology:** The entry point and core semantic model of the WoT. It provides metadata and network-facing interfaces (Interaction Affordances) of physical devices, abstracting away underlying hardware protocols before data collection.
-- **SOSA/SSN (Sensor, Observation, Sample, and Actuator) Ontology:** Used to translate collected data into a semantic structure suitable for a Solid Pod. It guarantees that an IoT metric (e.g., a heart-rate reading) is stored as standardized RDF, annotated with context like time and location, rather than an application-specific JSON string.
+For detailed information, please refer to the dedicated [WoT and SOSA/SSN Ontologies](../../ontologies/wot-sosa-ssn/README.md) document.
 
 ## 3. Access Control for Sensitive IoT Data
 Solid handles access control and permissions for sensitive data like IoT health metrics using granular, policy-based systems.
