@@ -1,0 +1,20 @@
+{
+  "@context": "https://www.w3.org/ns/solid/oidc-context.jsonld",
+  "client_id": "https://dev.linkeddata.au/seraphim/app/clientid.jsonld",
+  "client_name": "Seraphim Solid Client",
+  "redirect_uris": [
+    "https://dev.linkeddata.au/seraphim/app/",
+    "https://dev.linkeddata.au/seraphim/app/index.html",
+    "seraphim://callback",
+    "http://localhost:4400/redirect"
+  ],
+  "post_logout_redirect_uris": [
+    "https://dev.linkeddata.au/seraphim/app/",
+    "https://dev.linkeddata.au/seraphim/app/index.html"
+  ],
+  "client_uri": "https://dev.linkeddata.au/seraphim/app/",
+  "logo_uri": "https://dev.linkeddata.au/seraphim/app/icons/Icon-192.png",
+  "scope": "openid profile offline_access webid",
+  "grant_types": ["refresh_token", "authorization_code"],
+  "response_types": ["code"]
+}
