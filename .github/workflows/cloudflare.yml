@@ -36,9 +36,11 @@ jobs:
           cp -r build/web/* ../../dev-linkeddata-au/seraphim/app/
           touch ../../dev-linkeddata-au/.nojekyll
 
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dev-linkeddata-au --project-name=solid-databox
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Publish to Cloudflare Pages (Node 22 Native)
+        run: npx wrangler pages deploy ./dev-linkeddata-au --project-name=solid-databox
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
