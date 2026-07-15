@@ -154,18 +154,43 @@ body {
 /* Sidebar & Facets */
 .sidebar {
     padding: 1.5rem;
-    height: fit-content;
+    max-height: calc(100vh - 4rem);
     position: sticky;
     top: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .sidebar-header {
+    flex: 0 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--glass-border);
+}
+
+.facets-container {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 0.5rem;
+    scrollbar-gutter: stable;
+}
+
+.facets-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.facets-container::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 999px;
+}
+
+.facets-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.55);
 }
 
 .sidebar-header h2 {
@@ -389,6 +414,7 @@ body {
     
     .sidebar {
         position: static;
+        max-height: 60vh;
         margin-bottom: 2rem;
     }
 }
