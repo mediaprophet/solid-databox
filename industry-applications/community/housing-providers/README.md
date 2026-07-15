@@ -1,4 +1,4 @@
-# NGOs & Commercial: Housing Providers Applications
+# Community & Commercial: Housing Providers Applications
 
 The housing sector—spanning private rentals, share-housing, and welfare-driven accommodation—is notoriously burdensome and invasive for applicants. Renters are forced to repeatedly surrender highly sensitive identity, financial, and behavioral data to disparate real estate agents and landlords, creating massive data-breach honey-pots. 
 

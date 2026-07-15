@@ -1,4 +1,4 @@
-# NGOs & Social Care: Social Work Applications
+# Community & Social Care: Social Work Applications
 
 Social work and crisis intervention operate in some of the most sensitive, high-stakes data environments in society. Vulnerable individuals are frequently forced to repeatedly recount their trauma, medical history, and financial destitution to multiple disconnected agencies simply to receive holistic care. 
 

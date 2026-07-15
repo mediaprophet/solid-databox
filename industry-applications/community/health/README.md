@@ -1,0 +1,3 @@
+# Community: Health Records & Care Applications
+
+Navigating community health services, allied health networks, and clinical specialists often requires patients to repeatedly fill out complex medical histories on vulnerable paper clipboards. By leveraging a Databox, individuals can easily and securely share their health records—including pathology results, vaccination certificates, and ongoing care plans—with authorized community health practitioners. This consent-driven architecture allows patients to revoke access instantly and ensures their most intimate medical data is never siloed in insecure, third-party databases prone to data breaches.

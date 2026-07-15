@@ -1,4 +1,4 @@
-# NGOs: Community & Pro-Bono Legal Services
+# Community: Pro-Bono Legal Services
 
 Community legal centers and pro-bono legal services provide critical access to justice for vulnerable individuals. Operating on limited resources, these services must rapidly verify a client's eligibility, gather complex legal histories, and manage highly privileged information securely. 
 

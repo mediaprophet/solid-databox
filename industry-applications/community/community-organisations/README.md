@@ -1,3 +1,3 @@
-﻿# Ngos   Community Organisations Applications
+# Community: Community Organisations Applications
 
 Define applications and standards specific to this vertical here.

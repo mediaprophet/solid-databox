@@ -1,0 +1,3 @@
+# Commercial: Festivals & Events
+
+The festivals and live events industry suffers from rampant ticket scalping, fragmented communication, and liability risks related to age-restricted zones. Integrating the Databox architecture transforms the event experience. Rather than insecure PDFs, event tickets are issued as Verifiable Credentials directly to a patron's Pod. This enables highly secure, frictionless age verification for alcohol purchases (proving age without revealing birthdate or identity) and cryptographically enforces access control to VIP or green-room areas. Furthermore, artist information, dynamic schedule updates, and emergency notifications can be securely broadcast directly to attendees via their Databox connection.

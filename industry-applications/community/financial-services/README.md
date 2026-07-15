@@ -1,4 +1,4 @@
-# NGOs: Financial Counselling & Welfare Services
+# Community: Financial Counselling & Welfare Services
 
 Financial counselling and pro-bono financial services assist individuals facing bankruptcy, severe debt, or economic abuse. These services require deep, invasive access to a client's financial reality to negotiate with creditors or access hardship funds. Traditionally, this involves insecurely handing over boxes of paper receipts or raw login credentials to bank accounts. A Solid Databox standardizes and secures this process.
 
