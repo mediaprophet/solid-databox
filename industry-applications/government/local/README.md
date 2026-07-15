@@ -1,3 +1,3 @@
-﻿# Government   Local Applications 
+# Government: Local Applications
 
-Define applications and standards specific to this vertical here.
+Local governments and municipal councils manage high-volume, high-frequency interactions with their residents. By integrating a Databox, councils can eliminate redundant portals and paper forms, replacing them with a unified, cryptographically secure inbox for every resident. This architecture radically simplifies the issuance of pet registrations, digital parking permits, rates notices, and facility bookings. It enables residents to securely submit forms, applications, and verifiable claims directly into the council's system, complete with immutable receipts for every transaction, ensuring seamless, zero-friction civic engagement.
