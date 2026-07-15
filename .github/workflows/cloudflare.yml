@@ -15,11 +15,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Build Seraphim App
+        run: |
+          cd demo/seraphim
+          flutter pub get
+          flutter build web --base-href /seraphim/app/
+          mkdir -p ../../dev-linkeddata-au/seraphim/app
+          cp -r build/web/* ../../dev-linkeddata-au/seraphim/app/
+          touch ../../dev-linkeddata-au/.nojekyll
+
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: 'solid-databox' # Update this if your Cloudflare project has a different name
-          directory: './dev-linkeddata-au'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy ./dev-linkeddata-au --project-name=solid-databox
