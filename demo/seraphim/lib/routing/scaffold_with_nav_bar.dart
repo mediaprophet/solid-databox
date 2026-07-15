@@ -22,7 +22,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
           NavigationDestination(icon: Icon(Icons.assignment), label: 'Plan'),
           NavigationDestination(icon: Icon(Icons.account_balance_wallet), label: 'Budget'),
           NavigationDestination(icon: Icon(Icons.security), label: 'Wallet'),
-          NavigationDestination(icon: Icon(Icons.handshake), label: 'Consent'),
+          NavigationDestination(icon: Icon(Icons.handshake), label: 'Permissions'),
         ],
       ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.2, curve: Curves.easeOutQuad),
     );

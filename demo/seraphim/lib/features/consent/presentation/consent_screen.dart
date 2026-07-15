@@ -13,7 +13,7 @@ class ConsentScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
-                'Consent Dashboard',
+                'Permissions Dashboard',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
