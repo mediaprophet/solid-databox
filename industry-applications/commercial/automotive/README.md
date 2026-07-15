@@ -1,0 +1,3 @@
+# Commercial: Automotive & Vehicle Maintenance
+
+By integrating a Databox, vehicle owners can aggregate a complete, immutable lifecycle record of their car in one secure location. Instead of disjointed paper receipts and siloed databases, every service center, tire shop, and fuel station issues cryptographically signed receipts and service records directly to the owner's Databox. This unified view simplifies managing automotive repairs, insurance renewals, state registrations, and fuel expenses. Furthermore, a verifiable chain of maintenance increases the vehicle's resale value and enables automated, predictive service reminders without locking the consumer into a single dealership's ecosystem.
