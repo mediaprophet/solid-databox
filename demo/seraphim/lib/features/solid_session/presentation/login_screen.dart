@@ -10,8 +10,11 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Seraphim Login')),
       body: Center(
         child: SolidLogin(
-          clientId: 'https://seraphim.app/id',
-          redirectUris: const ['seraphim://callback'],
+          clientId: 'https://dev.linkeddata.au/seraphim/app/clientid.jsonld',
+          redirectUris: const [
+            'https://dev.linkeddata.au/seraphim/app/',
+            'seraphim://callback'
+          ],
           child: Builder(
             builder: (context) {
               // This builder is only rendered when SolidLogin transitions to its child upon success
