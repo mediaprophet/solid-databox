@@ -6,6 +6,8 @@ class BudgetRepository {
 
   BudgetRepository(this.podUri);
 
+  final List<BudgetItem> _offlineItems = [];
+
   Future<List<BudgetItem>> getBudgetItems() async {
     final fileUrl = '$podUri/budget/items.ttl';
     try {
@@ -15,19 +17,20 @@ class BudgetRepository {
       final amountMatch = RegExp(r'<([^>]+)> <.*hasAmount> "(.*)" \.').firstMatch(data);
       final categoryMatch = RegExp(r'<([^>]+)> <.*hasCategory> "(.*)" \.').firstMatch(data);
       
+      final remoteItems = <BudgetItem>[];
       if (nameMatch != null && amountMatch != null) {
-        return [
+        remoteItems.add(
           BudgetItem(
             id: nameMatch.group(1) ?? '1',
             name: nameMatch.group(2) ?? 'Unknown',
             amount: double.tryParse(amountMatch.group(2) ?? '0') ?? 0.0,
             category: categoryMatch?.group(2) ?? 'Uncategorized',
           )
-        ];
+        );
       }
-      return [];
+      return [..._offlineItems, ...remoteItems];
     } catch (e) {
-      return [];
+      return _offlineItems.toList();
     }
   }
 
@@ -39,7 +42,11 @@ class BudgetRepository {
         '<${item.id}> <${fiboBase}FND/Accounting/CurrencyAmount/hasAmount> "${item.amount}" .\n'
         '<${item.id}> <${fiboBase}FBC/FinancialInstruments/FinancialInstruments/hasCategory> "${item.category}" .\n';
     
-    // Append to Pod using solidpod
-    await writePod(fileUrl, rdfData);
+    try {
+      // Append to Pod using solidpod
+      await writePod(fileUrl, rdfData);
+    } catch (e) {
+      _offlineItems.add(item);
+    }
   }
 }
