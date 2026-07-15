@@ -1,0 +1,3 @@
+# Civics: Volunteering & Civic Participation
+
+Civic participation relies heavily on volunteers, yet their contributions often go unrecognized on formal resumes. The Databox architecture transforms volunteering into a quantifiable, verifiable asset. When individuals participate in community service, disaster relief, or local civic duties, organizations issue cryptographically signed micro-credentials directly to the volunteer's Pod. These verifiable claims aggregate to build a robust "Civic Resume" that can be securely shared with prospective employers or educational institutions, proving community engagement, leadership, and specific skills acquired during volunteer work.

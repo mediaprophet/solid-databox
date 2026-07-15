@@ -1,0 +1,3 @@
+# Civics: Electoral Engagement & Representative Communication
+
+A healthy democracy requires transparent, verifiable communication between citizens and their elected representatives. Integrating a Databox establishes a verified, bi-directional channel for electoral engagement. Members of an electorate can cryptographically prove they reside in a specific district without revealing their full identity, allowing them to engage in constituent polling, submit policy feedback, or securely share highly sensitive documents (such as whistleblower evidence or hardship claims) directly with their Member of Parliament. This eliminates Astroturfing by ensuring every interaction maps to a verified constituent, while simultaneously protecting the citizen's privacy.
