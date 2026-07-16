@@ -221,7 +221,6 @@ a live web build; it is the demonstration client, not yet a finished product.
 |---|---|
 | [`solid-databox-kit-blueprint.md`](solid-databox-kit-blueprint.md) | The **Institutional Deployment Kit (Agent Edition)** — the databox-specific agent files + ontological factors so any institution's coding agent can scaffold a conforming databox and have a `conformance-checker` verify the invariants. |
 | [`soliddev-agent-helper/`](soliddev-agent-helper/) | **Draft.** A general-purpose **W3C Solid agent knowledge base** — root prompts (`agents.md`, `claude.md`, `.cursorrules`) plus `knowledge/` guides for Solid core, the semantic web, ecosystem standards, ontologies, and implementation. This is the *general Solid layer* the databox-specific kit builds upon: it teaches an agent to write correct Solid/RDF at all, before the kit adds the databox invariants. *(Currently a nested Git repository — see Status.)* |
-| [`legis2cml.py`](legis2cml.py) | Tooling — transforms legislation into the `cml:` concept layer; the basis of the planned legal corpus (see Resources). |
 
 **Reference implementations, demo & building blocks.** The running code and the modular pieces it composes
 (see [From specification to running code](#from-specification-to-running-code) above and the
@@ -230,7 +229,7 @@ a live web build; it is the demonstration client, not yet a finished product.
 | File / folder | What it is |
 |---|---|
 | [`implementations/css/`](implementations/css/README.md) | **Organisation side.** Notes and deployment guidance for the CSS-hosted databox — the design corpus the [Solid-CSS-Databox](https://github.com/mediaprophet/Solid-CSS-Databox) reference implementation is built from. |
-| [`implementations/ckan/`](implementations/ckan/README.md) | Bridging open-government data portals (CKAN) with citizen databoxes. |
+| [`implementations/ckan/`](implementations/ckan/README.md) | Bridging open-government data portals (CKAN) with citizen databoxes (barely started). |
 | [`demo/seraphim/`](demo/seraphim/) | **Person side.** The Seraphim consumer-agent Flutter app (`solidpod` / `solidui`). [Live web demo](https://dev.linkeddata.au/seraphim.html). |
 | [`components/`](CATALOG.md#2-components--building-blocks) | Modular building blocks — strong identity, micro-credentials, GS1 provenance, IoT / Web of Things, coupons & vouchers, platform integrations. |
 | [`contexts/`](CATALOG.md#3-contexts--domains) | Domain & regulatory contexts — compliance, CRM, ESG, guardianship & relations, health & welfare. |
@@ -276,30 +275,14 @@ Resolvable vocabularies the specs reuse:
 ### Government & Linked Data
 - **[Australian Government Linked Data Working Group (AGLDWG)](https://www.linked.data.gov.au/)** — Guidelines, URI namespaces, and ontologies for Australian government linked data. ([AGLDWG GitHub](https://github.com/AGLDWG))
 
-### WebCivics human-rights corpus
-- **[ns.webcivics.net](https://ns.webcivics.net/)** — the WebCivics ontology namespace: the `cml:` / `values:`
-  corpus (human-rights instruments; jural, jurisdiction, and agency vocabularies) that carries
-  Solid-Databox's rights-and-deontic layer. The vocabulary currently defers to it under the `wc:` prefix.
-  Machine output in this layer is always `cml:Proposed`, never attested — a human must sign to make it
-  authoritative.
-
-### Legal corpus (planned)
-A machine-readable **archive of Australian federal legislation** is to be prepared, in time, to support the
-work — codified via [`legis2cml.py`](legis2cml.py) into the `cml:` / `values:` concept layer and identified
-with [ELI](https://op.europa.eu/en/web/eu-vocabularies/eli). Its purpose is to ground each record type's
-obligations in the instrument and provision that require it — the *"obligations cite their law"* invariant —
-and to let the project define fit-for-purpose solutions **per vertical and per organisation type**: the
-legal basis a bank, an insurer, a hospital, a university, or an agency must each satisfy differs, and a
-codified corpus makes those differences explicit, comparable, and implementable.
 
 ---
 
 ## Status
 
 Unofficial draft, organised toward the **Solid 2026 Hackathon** (Canberra, July 2026). The specifications
-render under ReSpec; the reference-implementation kit, the per-institution profile, and the
-`soliddev-agent-helper/` knowledge base are all in **draft**, and the Australian federal **legal corpus is
-planned** (to be codified via `legis2cml.py`). Two reference implementations are further along: the
+render under ReSpec; the reference-implementation kit, the per-institution profile.
+ Two reference implementations are further along: the
 organisation-side **[Solid-CSS-Databox](https://github.com/mediaprophet/Solid-CSS-Databox)** has completed
 DBX-01…DBX-24 of a 28-prompt build (with live-server integration, DBX-25, active), and the consumer-side
 **[Seraphim](demo/seraphim/)** agent has a live web build — both fail-closed and experimental rather than
